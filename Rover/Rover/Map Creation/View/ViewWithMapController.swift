@@ -28,6 +28,7 @@ class ViewWithMapController: UIViewController {
         
         configureAndAddCollectionView()
         
+        // temporary items for developing
         for _ in 0...143 {
             mapItems.append(MapItem(mapItemType: .ground))
         }
@@ -86,6 +87,26 @@ class ViewWithMapController: UIViewController {
         ])
         
         NSLayoutConstraint(item: bottomPanelStackView!, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 80).isActive = true
+        
+        bottomPanelStackView.alignment = .fill
+        bottomPanelStackView.distribution = .fillEqually
+        bottomPanelStackView.spacing = 8.0
+        
+        for itemType in MapItemType.allCases {
+            let bottomPanelButton = BottomPanelButton()
+            
+            bottomPanelButton.mapItemType = itemType
+            bottomPanelButton.backgroundColor = .white
+            bottomPanelButton.translatesAutoresizingMaskIntoConstraints = false
+            
+            let imageName = itemType.returnStringValue(itemType:itemType)
+            
+            if let image = UIImage(named: "\(imageName).jpg") {
+                bottomPanelButton.setImage(image, for: .normal)
+            }
+            
+            bottomPanelStackView.addArrangedSubview(bottomPanelButton)
+        }
     }
     
 }
