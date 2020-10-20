@@ -15,19 +15,11 @@ class MapItemCollectionViewCell: UICollectionViewCell {
     
     var mapItemImage: UIImageView!
     
-    func initConstraints() {
+    override init(frame: CGRect) {
         
-        NSLayoutConstraint.activate([
-            mapItemImage.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            mapItemImage.centerYAnchor.constraint(equalTo: self.centerYAnchor)
-        ])
-    }
-    
-    override func awakeFromNib() {
+        super.init(frame: frame)
         
-        super.awakeFromNib()
-        
-        backgroundColor = .white
+        backgroundColor = .black
         clipsToBounds = true
         
         mapItemImage = UIImageView()
@@ -38,10 +30,26 @@ class MapItemCollectionViewCell: UICollectionViewCell {
         initConstraints()
     }
     
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    func initConstraints() {
+        
+        NSLayoutConstraint.activate([
+            mapItemImage.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            mapItemImage.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+        ])
+    }
+    
+    
     override func layoutSubviews() {
         
         super.layoutSubviews()
     }
+    
     
     func update(mapItemType: MapItemType) {
 
