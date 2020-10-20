@@ -12,6 +12,7 @@
 		B41D8C94253EE084005D7B9D /* MapItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41D8C93253EE084005D7B9D /* MapItemCollectionViewCell.swift */; };
 		B41D8C96253EF656005D7B9D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B41D8C95253EF656005D7B9D /* Default-568h@2x.png */; };
 		B4743C11253EF823005BEFE5 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4743C10253EF823005BEFE5 /* Launch Screen.storyboard */; };
+		B4743C13253F1E16005BEFE5 /* BottomPanelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4743C12253F1E16005BEFE5 /* BottomPanelButton.swift */; };
 		B4E378E3253EC8A900C80866 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E378E2253EC8A900C80866 /* AppDelegate.swift */; };
 		B4E378E5253EC8A900C80866 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E378E4253EC8A900C80866 /* SceneDelegate.swift */; };
 		B4E378E7253EC8A900C80866 /* ViewWithMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E378E6253EC8A900C80866 /* ViewWithMapController.swift */; };
@@ -24,6 +25,7 @@
 		B41D8C93253EE084005D7B9D /* MapItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		B41D8C95253EF656005D7B9D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		B4743C10253EF823005BEFE5 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		B4743C12253F1E16005BEFE5 /* BottomPanelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomPanelButton.swift; sourceTree = "<group>"; };
 		B4E378DF253EC8A900C80866 /* Rover.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rover.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4E378E2253EC8A900C80866 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B4E378E4253EC8A900C80866 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 			children = (
 				B4E378E6253EC8A900C80866 /* ViewWithMapController.swift */,
 				B41D8C93253EE084005D7B9D /* MapItemCollectionViewCell.swift */,
+				B4743C12253F1E16005BEFE5 /* BottomPanelButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -176,6 +179,7 @@
 				B4E378E3253EC8A900C80866 /* AppDelegate.swift in Sources */,
 				B41D8C94253EE084005D7B9D /* MapItemCollectionViewCell.swift in Sources */,
 				B4E378E5253EC8A900C80866 /* SceneDelegate.swift in Sources */,
+				B4743C13253F1E16005BEFE5 /* BottomPanelButton.swift in Sources */,
 				B41D8C92253EDE80005D7B9D /* MapItemType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
