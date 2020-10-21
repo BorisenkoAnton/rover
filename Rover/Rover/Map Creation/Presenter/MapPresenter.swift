@@ -11,8 +11,16 @@ import Foundation
 class MapPresenter {
     
     weak private var viewWithMapControllerDelegate: ViewWithMapControllerDelegate?
+    private var selectedSurfaceType: MapItemType?
     
     func setViewDelegate(viewWithMapControllerDelegate: ViewWithMapControllerDelegate) {
+        
         self.viewWithMapControllerDelegate = viewWithMapControllerDelegate
+    }
+    
+    
+    func surfaceTypeSelected(selectedType: MapItemType) {
+        
+        self.selectedSurfaceType = selectedType
     }
 }
