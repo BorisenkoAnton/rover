@@ -14,7 +14,7 @@ class ViewWithMapController: UIViewController, ViewWithMapControllerDelegate {
     var mapItemsCollectionView: UICollectionView!
     var bottomPanelStackView: UIStackView!
     
-    var mapItems = [MapItem](repeating: MapItem(), count: 143)
+    var mapItems = [MapItem](repeating: MapItem(), count: 144)
     
     private var itemsPerRow: CGFloat = 9
     private var minimumItemSpacing: CGFloat = 1
@@ -35,6 +35,32 @@ class ViewWithMapController: UIViewController, ViewWithMapControllerDelegate {
         mapItemsCollectionView.reloadData()
     }
 
+    
+    //MARK: actions
+    @objc func bottomPanelButtonPressed(sender: BottomPanelButton!) {
+        
+        for bottomButton in bottomPanelStackView.arrangedSubviews {
+            let buttonSurfaceType = (bottomButton as! BottomPanelButton).mapItemType
+            
+            let imageName = buttonSurfaceType!.returnStringValue(itemType:buttonSurfaceType!)
+            
+            if let image = UIImage(named: "\(imageName)") {
+                (bottomButton as! BottomPanelButton).setImage(image, for: .normal)
+            }
+        }
+
+        let buttonSurfaceType = sender.mapItemType
+        
+        let imageName = buttonSurfaceType!.returnStringValue(itemType:buttonSurfaceType!)
+        
+        if let image = UIImage(named: "\(imageName)_highlighted") {
+            sender.setImage(image, for: .normal)
+        }
+        
+        mapPresenter.surfaceTypeSelected(selectedType: sender.mapItemType)
+    }
+    
+    // MARK: configuring view elements
     func configureAndAddCollectionView() {
         
         mapItemsCollectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: UICollectionViewFlowLayout())
@@ -96,12 +122,12 @@ class ViewWithMapController: UIViewController, ViewWithMapControllerDelegate {
             let bottomPanelButton = BottomPanelButton()
             
             bottomPanelButton.mapItemType = itemType
-            bottomPanelButton.backgroundColor = .white
             bottomPanelButton.translatesAutoresizingMaskIntoConstraints = false
+            bottomPanelButton.addTarget(self, action: #selector(bottomPanelButtonPressed(sender:)), for: .touchUpInside)
             
             let imageName = itemType.returnStringValue(itemType:itemType)
             
-            if let image = UIImage(named: "\(imageName).jpg") {
+            if let image = UIImage(named: "\(imageName)") {
                 bottomPanelButton.setImage(image, for: .normal)
             }
             
@@ -111,7 +137,8 @@ class ViewWithMapController: UIViewController, ViewWithMapControllerDelegate {
     
 }
 
-// MARK: UICollectionViewDataSource & UICollectionViewDelegate
+// MARK:- UICollectionViewDataSource & UICollectionViewDelegate
+
 extension ViewWithMapController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
