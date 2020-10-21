@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B40F6DC6254014DD004A3845 /* ViewWithMapControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40F6DC5254014DD004A3845 /* ViewWithMapControllerDelegate.swift */; };
+		B40F6DC825401792004A3845 /* MapPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40F6DC725401792004A3845 /* MapPresenter.swift */; };
 		B41D8C90253EDD50005D7B9D /* MapItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41D8C8F253EDD50005D7B9D /* MapItem.swift */; };
 		B41D8C92253EDE80005D7B9D /* MapItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41D8C91253EDE80005D7B9D /* MapItemType.swift */; };
 		B41D8C94253EE084005D7B9D /* MapItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41D8C93253EE084005D7B9D /* MapItemCollectionViewCell.swift */; };
@@ -20,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B40F6DC5254014DD004A3845 /* ViewWithMapControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewWithMapControllerDelegate.swift; sourceTree = "<group>"; };
+		B40F6DC725401792004A3845 /* MapPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPresenter.swift; sourceTree = "<group>"; };
 		B41D8C8F253EDD50005D7B9D /* MapItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapItem.swift; sourceTree = "<group>"; };
 		B41D8C91253EDE80005D7B9D /* MapItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapItemType.swift; sourceTree = "<group>"; };
 		B41D8C93253EE084005D7B9D /* MapItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapItemCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -89,6 +93,7 @@
 		B4E378F7253ED44A00C80866 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				B40F6DC725401792004A3845 /* MapPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -96,6 +101,7 @@
 		B4E378F8253ED46900C80866 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B40F6DC5254014DD004A3845 /* ViewWithMapControllerDelegate.swift */,
 				B4E378E6253EC8A900C80866 /* ViewWithMapController.swift */,
 				B41D8C93253EE084005D7B9D /* MapItemCollectionViewCell.swift */,
 				B4743C12253F1E16005BEFE5 /* BottomPanelButton.swift */,
@@ -176,6 +182,8 @@
 			files = (
 				B4E378E7253EC8A900C80866 /* ViewWithMapController.swift in Sources */,
 				B41D8C90253EDD50005D7B9D /* MapItem.swift in Sources */,
+				B40F6DC825401792004A3845 /* MapPresenter.swift in Sources */,
+				B40F6DC6254014DD004A3845 /* ViewWithMapControllerDelegate.swift in Sources */,
 				B4E378E3253EC8A900C80866 /* AppDelegate.swift in Sources */,
 				B41D8C94253EE084005D7B9D /* MapItemCollectionViewCell.swift in Sources */,
 				B4E378E5253EC8A900C80866 /* SceneDelegate.swift in Sources */,
