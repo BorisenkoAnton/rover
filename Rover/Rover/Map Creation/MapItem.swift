@@ -9,5 +9,5 @@
 import Foundation
 
 struct MapItem {
-    var mapItemType: MapItemType
+    var mapItemType: MapItemType?
 }
