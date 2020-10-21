@@ -8,17 +8,19 @@
 
 import UIKit
 
-class ViewWithMapController: UIViewController {
+class ViewWithMapController: UIViewController, ViewWithMapControllerDelegate {
 
     var topPanelStackView: UIStackView!
     var mapItemsCollectionView: UICollectionView!
     var bottomPanelStackView: UIStackView!
     
-    var mapItems = [MapItem]()
+    var mapItems = [MapItem](repeating: MapItem(), count: 143)
     
     private var itemsPerRow: CGFloat = 9
     private var minimumItemSpacing: CGFloat = 1
     private let sectionInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
+    private let mapPresenter = MapPresenter()
+    
     
     override func viewDidLoad() {
         
@@ -28,10 +30,8 @@ class ViewWithMapController: UIViewController {
         
         configureAndAddCollectionView()
         
-        // temporary items for developing
-        for _ in 0...143 {
-            mapItems.append(MapItem(mapItemType: .ground))
-        }
+        mapPresenter.setViewDelegate(viewWithMapControllerDelegate: self)
+        
         mapItemsCollectionView.reloadData()
     }
 
@@ -128,7 +128,9 @@ extension ViewWithMapController: UICollectionViewDelegate, UICollectionViewDataS
         
         let mapItem = mapItems[indexPath.item]
         
-        cell.update(mapItemType: mapItem.mapItemType)
+        if let mapItemType = mapItem.mapItemType {
+            cell.update(mapItemType: mapItemType)
+        }
         
         return cell
     }
