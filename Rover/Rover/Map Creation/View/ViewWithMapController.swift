@@ -8,13 +8,13 @@
 
 import UIKit
 
-class ViewWithMapController: UIViewController, ViewWithMapControllerDelegate {
+class ViewWithMapController: UIViewController {
 
     var topPanelStackView: UIStackView!
     var mapItemsCollectionView: UICollectionView!
     var bottomPanelStackView: UIStackView!
     
-    var mapItems = [MapItem](repeating: MapItem(), count: 143)
+    var mapItems = [MapItem](repeating: MapItem(), count: 144)
     
     private var itemsPerRow: CGFloat = 9
     private var minimumItemSpacing: CGFloat = 1
@@ -32,9 +32,29 @@ class ViewWithMapController: UIViewController, ViewWithMapControllerDelegate {
         
         mapPresenter.setViewDelegate(viewWithMapControllerDelegate: self)
         
-        mapItemsCollectionView.reloadData()
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(detectPan(_:)))
+        
+        mapItemsCollectionView.addGestureRecognizer(panGestureRecognizer)
     }
 
+    
+    //MARK: actions
+    @objc func bottomPanelButtonPressed(sender: BottomPanelButton!) {
+        
+        mapPresenter.surfaceTypeSelected(selectedType: sender.mapItemType)
+    }
+    
+    @objc func detectPan(_ recognizer:UIPanGestureRecognizer) {
+        
+        let location = recognizer.location(in: self.mapItemsCollectionView)
+        
+        if let mapItemIndexPath = self.mapItemsCollectionView.indexPathForItem(at: location) {
+            
+            mapPresenter.mapItemSelected(selectedItemIndexPath: mapItemIndexPath)
+        }
+    }
+    
+    // MARK: configuring view elements
     func configureAndAddCollectionView() {
         
         mapItemsCollectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: UICollectionViewFlowLayout())
@@ -96,22 +116,53 @@ class ViewWithMapController: UIViewController, ViewWithMapControllerDelegate {
             let bottomPanelButton = BottomPanelButton()
             
             bottomPanelButton.mapItemType = itemType
-            bottomPanelButton.backgroundColor = .white
             bottomPanelButton.translatesAutoresizingMaskIntoConstraints = false
+            bottomPanelButton.addTarget(self, action: #selector(bottomPanelButtonPressed(sender:)), for: .touchUpInside)
             
             let imageName = itemType.returnStringValue(itemType:itemType)
             
-            if let image = UIImage(named: "\(imageName).jpg") {
+            if let image = UIImage(named: "\(imageName)") {
                 bottomPanelButton.setImage(image, for: .normal)
             }
             
             bottomPanelStackView.addArrangedSubview(bottomPanelButton)
         }
     }
-    
 }
 
-// MARK: UICollectionViewDataSource & UICollectionViewDelegate
+// MARK:- ViewWithMapControllerDelegate
+
+extension ViewWithMapController: ViewWithMapControllerDelegate {
+    
+    func highlightBottomPanelButton(selectedSurfaceType: MapItemType) {
+        
+        for bottomButton in bottomPanelStackView.arrangedSubviews {
+            let buttonSurfaceType = (bottomButton as! BottomPanelButton).mapItemType
+            
+            var imageName: String
+            
+            if buttonSurfaceType == selectedSurfaceType {
+                imageName = buttonSurfaceType!.returnStringValue(itemType:buttonSurfaceType!) + "_highlighted"
+            } else {
+                imageName = buttonSurfaceType!.returnStringValue(itemType:buttonSurfaceType!)
+            }
+            
+            if let image = UIImage(named: "\(imageName)") {
+                (bottomButton as! BottomPanelButton).setImage(image, for: .normal)
+            }
+        }
+    }
+    
+    
+    func setMapItemSurface(indexPath: IndexPath, surfaceType: MapItemType) {
+        
+        self.mapItems[indexPath.row].mapItemType = surfaceType
+        self.mapItemsCollectionView.reloadData()
+    }
+}
+
+// MARK:- UICollectionViewDataSource & UICollectionViewDelegate
+
 extension ViewWithMapController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -126,13 +177,23 @@ extension ViewWithMapController: UICollectionViewDelegate, UICollectionViewDataS
                 fatalError("Wrong cell")
         }
         
+        cell.mapItemImage.image = nil
+        
         let mapItem = mapItems[indexPath.item]
         
         if let mapItemType = mapItem.mapItemType {
+            
             cell.update(mapItemType: mapItemType)
         }
         
         return cell
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        mapPresenter.mapItemSelected(selectedItemIndexPath: indexPath)
+        self.mapItemsCollectionView.deselectItem(at: indexPath, animated: true)
     }
 }
 

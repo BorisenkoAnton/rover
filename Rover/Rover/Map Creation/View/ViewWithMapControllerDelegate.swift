@@ -10,4 +10,6 @@ import Foundation
 
 protocol ViewWithMapControllerDelegate: class {
     
+    func highlightBottomPanelButton(selectedSurfaceType: MapItemType)
+    func setMapItemSurface(indexPath: IndexPath, surfaceType: MapItemType)
 }
