@@ -22,7 +22,8 @@ class MapItemCollectionViewCell: UICollectionViewCell {
         backgroundColor = .black
         clipsToBounds = true
         
-        mapItemImage = UIImageView()
+        mapItemImage = UIImageView(frame: CGRect.zero)
+        mapItemImage.contentMode = .scaleToFill
         mapItemImage.translatesAutoresizingMaskIntoConstraints = false
         
         self.addSubview(mapItemImage)
@@ -39,8 +40,10 @@ class MapItemCollectionViewCell: UICollectionViewCell {
     func initConstraints() {
         
         NSLayoutConstraint.activate([
-            mapItemImage.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            mapItemImage.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+            mapItemImage.topAnchor.constraint(equalTo: self.topAnchor),
+            mapItemImage.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            mapItemImage.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            mapItemImage.leadingAnchor.constraint(equalTo: self.leadingAnchor)
         ])
     }
     
@@ -53,20 +56,12 @@ class MapItemCollectionViewCell: UICollectionViewCell {
     
     func update(mapItemType: MapItemType) {
 
-        switch mapItemType {
-        case .ground:
-            return
+        let imageName = mapItemType.returnStringValue(itemType: mapItemType)
         
-        case .hill:
-            return
-        
-        case .pit:
-            return
-            
-        case .quicksand:
-            return
+        if let image = UIImage(named: "\(imageName)") {
+
+            self.mapItemImage.image = image
         }
-        //mapItemImage.image = image
     }
     
 

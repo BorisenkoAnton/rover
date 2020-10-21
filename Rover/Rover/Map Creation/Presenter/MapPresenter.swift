@@ -20,7 +20,16 @@ class MapPresenter {
     
     
     func surfaceTypeSelected(selectedType: MapItemType) {
-        
+
         self.selectedSurfaceType = selectedType
+        self.viewWithMapControllerDelegate?.highlightBottomPanelButton(selectedSurfaceType: selectedType)
+    }
+    
+    
+    func mapItemSelected(selectedItemIndexPath: IndexPath) {
+        
+        guard let surfaceType = self.selectedSurfaceType else { return }
+
+        self.viewWithMapControllerDelegate?.setMapItemSurface(indexPath: selectedItemIndexPath, surfaceType: surfaceType)
     }
 }
