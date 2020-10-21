@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewWithMapController: UIViewController, ViewWithMapControllerDelegate {
+class ViewWithMapController: UIViewController {
 
     var topPanelStackView: UIStackView!
     var mapItemsCollectionView: UICollectionView!
@@ -38,24 +38,6 @@ class ViewWithMapController: UIViewController, ViewWithMapControllerDelegate {
     
     //MARK: actions
     @objc func bottomPanelButtonPressed(sender: BottomPanelButton!) {
-        
-        for bottomButton in bottomPanelStackView.arrangedSubviews {
-            let buttonSurfaceType = (bottomButton as! BottomPanelButton).mapItemType
-            
-            let imageName = buttonSurfaceType!.returnStringValue(itemType:buttonSurfaceType!)
-            
-            if let image = UIImage(named: "\(imageName)") {
-                (bottomButton as! BottomPanelButton).setImage(image, for: .normal)
-            }
-        }
-
-        let buttonSurfaceType = sender.mapItemType
-        
-        let imageName = buttonSurfaceType!.returnStringValue(itemType:buttonSurfaceType!)
-        
-        if let image = UIImage(named: "\(imageName)_highlighted") {
-            sender.setImage(image, for: .normal)
-        }
         
         mapPresenter.surfaceTypeSelected(selectedType: sender.mapItemType)
     }
@@ -134,7 +116,37 @@ class ViewWithMapController: UIViewController, ViewWithMapControllerDelegate {
             bottomPanelStackView.addArrangedSubview(bottomPanelButton)
         }
     }
+}
+
+// MARK:- ViewWithMapControllerDelegate
+
+extension ViewWithMapController: ViewWithMapControllerDelegate {
     
+    func highlightBottomPanelButton(selectedSurfaceType: MapItemType) {
+        
+        for bottomButton in bottomPanelStackView.arrangedSubviews {
+            let buttonSurfaceType = (bottomButton as! BottomPanelButton).mapItemType
+            
+            var imageName: String
+            
+            if buttonSurfaceType == selectedSurfaceType {
+                imageName = buttonSurfaceType!.returnStringValue(itemType:buttonSurfaceType!) + "_highlighted"
+            } else {
+                imageName = buttonSurfaceType!.returnStringValue(itemType:buttonSurfaceType!)
+            }
+            
+            if let image = UIImage(named: "\(imageName)") {
+                (bottomButton as! BottomPanelButton).setImage(image, for: .normal)
+            }
+        }
+    }
+    
+    
+    func setMapItemSurface(indexPath: IndexPath, surfaceType: MapItemType) {
+        
+        self.mapItems[indexPath.row].mapItemType = surfaceType
+        self.mapItemsCollectionView.reloadData()
+    }
 }
 
 // MARK:- UICollectionViewDataSource & UICollectionViewDelegate
@@ -153,13 +165,23 @@ extension ViewWithMapController: UICollectionViewDelegate, UICollectionViewDataS
                 fatalError("Wrong cell")
         }
         
+        cell.mapItemImage.image = nil
+        
         let mapItem = mapItems[indexPath.item]
         
         if let mapItemType = mapItem.mapItemType {
+            
             cell.update(mapItemType: mapItemType)
         }
         
         return cell
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        mapPresenter.mapItemSelected(selectedItemIndexPath: indexPath)
+        self.mapItemsCollectionView.deselectItem(at: indexPath, animated: true)
     }
 }
 
