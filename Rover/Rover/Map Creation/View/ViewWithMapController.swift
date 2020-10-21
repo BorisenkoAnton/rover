@@ -32,7 +32,9 @@ class ViewWithMapController: UIViewController {
         
         mapPresenter.setViewDelegate(viewWithMapControllerDelegate: self)
         
-        mapItemsCollectionView.reloadData()
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(detectPan(_:)))
+        
+        mapItemsCollectionView.addGestureRecognizer(panGestureRecognizer)
     }
 
     
@@ -40,6 +42,16 @@ class ViewWithMapController: UIViewController {
     @objc func bottomPanelButtonPressed(sender: BottomPanelButton!) {
         
         mapPresenter.surfaceTypeSelected(selectedType: sender.mapItemType)
+    }
+    
+    @objc func detectPan(_ recognizer:UIPanGestureRecognizer) {
+        
+        let location = recognizer.location(in: self.mapItemsCollectionView)
+        
+        if let mapItemIndexPath = self.mapItemsCollectionView.indexPathForItem(at: location) {
+            
+            mapPresenter.mapItemSelected(selectedItemIndexPath: mapItemIndexPath)
+        }
     }
     
     // MARK: configuring view elements
