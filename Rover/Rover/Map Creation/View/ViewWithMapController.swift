@@ -11,14 +11,21 @@ import UIKit
 class ViewWithMapController: UIViewController {
 
     var topPanelStackView: UIStackView!
-    var mapItemsCollectionView: UICollectionView!
+    var mapItemsCollectionView: UICollectionView! // Collection View, representing map
     var bottomPanelStackView: UIStackView!
     
-    var mapItems = [MapItem](repeating: MapItem(), count: 144)
+    private var itemsPerRow = 9
+    private var rowsCount = 16
+    private var minimumItemSpacing: CGFloat = MostOftenConstraintsConstants.minimumSpacing.cgfloatValue
+    private let sectionInsets = UIEdgeInsets(
+                                    top: MostOftenConstraintsConstants.defaultSpacing.cgfloatValue,
+                                    left: MostOftenConstraintsConstants.defaultSpacing.cgfloatValue,
+                                    bottom: MostOftenConstraintsConstants.defaultSpacing.cgfloatValue,
+                                    right: MostOftenConstraintsConstants.defaultSpacing.cgfloatValue
+    )
     
-    private var itemsPerRow: CGFloat = 9
-    private var minimumItemSpacing: CGFloat = 1
-    private let sectionInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
+    var mapItems = [MapItem]()
+    
     private let mapPresenter = MapPresenter()
     
     
@@ -26,15 +33,15 @@ class ViewWithMapController: UIViewController {
         
         super.viewDidLoad()
         
+        mapItems = [MapItem](repeating: MapItem(), count: itemsPerRow * rowsCount)
+        
         configureAndAddPanels()
         
         configureAndAddCollectionView()
         
         mapPresenter.setViewDelegate(viewWithMapControllerDelegate: self)
         
-        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(detectPan(_:)))
-        
-        mapItemsCollectionView.addGestureRecognizer(panGestureRecognizer)
+        addGestureRecognizer()
     }
 
     
@@ -51,7 +58,7 @@ class ViewWithMapController: UIViewController {
     }
     
     
-    @objc func detectPan(_ recognizer:UIPanGestureRecognizer) {
+    @objc func detectPanGestureRecognizer(_ recognizer:UIPanGestureRecognizer) {
         
         let location = recognizer.location(in: self.mapItemsCollectionView)
         
@@ -74,71 +81,62 @@ class ViewWithMapController: UIViewController {
         
         NSLayoutConstraint.activate([
             mapItemsCollectionView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            mapItemsCollectionView.topAnchor.constraint(equalTo: topPanelStackView.bottomAnchor, constant: 20),
-            mapItemsCollectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
-            mapItemsCollectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20),
-            mapItemsCollectionView.bottomAnchor.constraint(equalTo: bottomPanelStackView.topAnchor, constant: -20)
+            mapItemsCollectionView.topAnchor.constraint(equalTo: topPanelStackView.bottomAnchor, constant: MostOftenConstraintsConstants.bottom.cgfloatValue),
+            mapItemsCollectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: MostOftenConstraintsConstants.leading.cgfloatValue),
+            mapItemsCollectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -MostOftenConstraintsConstants.trailing.cgfloatValue),
+            mapItemsCollectionView.bottomAnchor.constraint(equalTo: bottomPanelStackView.topAnchor, constant: -MostOftenConstraintsConstants.bottom.cgfloatValue)
         ])
         
         mapItemsCollectionView.register(MapItemCollectionViewCell.self, forCellWithReuseIdentifier: MapItemCollectionViewCell.reuseID)
     }
     
-    
+    // Configuring and adding top (with random generating button) and bottom (with surface types) panels to view
     func configureAndAddPanels() {
-        
-        topPanelStackView = UIStackView(frame: .zero)
-        
-        topPanelStackView.translatesAutoresizingMaskIntoConstraints = false
-        topPanelStackView.alignment = .fill
-        topPanelStackView.distribution = .fillEqually
-        topPanelStackView.spacing = 8.0
+        // Top panel
+        topPanelStackView = createStackView()
         
         view.addSubview(topPanelStackView)
         
-        NSLayoutConstraint.activate([
-            topPanelStackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            topPanelStackView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 8),
-            topPanelStackView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 8),
-            topPanelStackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -8)
-        ])
+        let topPanelStackViewConstraints = ConstraintsConstantsSet(top: MostOftenConstraintsConstants.top.cgfloatValue,
+                                                                   trailing: -MostOftenConstraintsConstants.trailing.cgfloatValue,
+                                                                   bottom: nil,
+                                                                   leading: MostOftenConstraintsConstants.leading.cgfloatValue,
+                                                                   height: 60.0, width: nil
+        )
         
-        NSLayoutConstraint(item: topPanelStackView!, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 80).isActive = true
+        activateConstraints(for: topPanelStackView, constraintsConstantsSet: topPanelStackViewConstraints)
         
         let randomGenerationButton = UIButton()
 
         randomGenerationButton.setTitle("Generate", for: .normal)
-        //randomGenerationButton.backgroundColor = .white
         randomGenerationButton.translatesAutoresizingMaskIntoConstraints = false
         randomGenerationButton.addTarget(self, action: #selector(randomMapGenerationButtonPressed(sender:)), for: .touchUpInside)
         
         topPanelStackView.addArrangedSubview(randomGenerationButton)
         
-        bottomPanelStackView = UIStackView(frame: .zero)
-        
-        bottomPanelStackView.translatesAutoresizingMaskIntoConstraints = false
-        bottomPanelStackView.alignment = .fill
-        bottomPanelStackView.distribution = .fillEqually
-        bottomPanelStackView.spacing = 8.0
+        // Bottom panel
+        bottomPanelStackView = createStackView()
         
         view.addSubview(bottomPanelStackView)
         
-        NSLayoutConstraint.activate([
-            bottomPanelStackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            bottomPanelStackView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -20),
-            bottomPanelStackView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20),
-            bottomPanelStackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20)
-        ])
+        let bottomPanelStackViewConstraints = ConstraintsConstantsSet(top: nil,
+                                                                      trailing: -MostOftenConstraintsConstants.trailing.cgfloatValue,
+                                                                      bottom: -MostOftenConstraintsConstants.bottom.cgfloatValue,
+                                                                      leading: MostOftenConstraintsConstants.leading.cgfloatValue,
+                                                                      height: 80.0,
+                                                                      width: nil
+        )
         
-        NSLayoutConstraint(item: bottomPanelStackView!, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 80).isActive = true
+        activateConstraints(for: bottomPanelStackView, constraintsConstantsSet: bottomPanelStackViewConstraints)
         
-        for itemType in MapItemType.allCases {
+        for surfaceType in SurfaceType.allCases {
             let bottomPanelButton = BottomPanelButton()
             
-            bottomPanelButton.mapItemType = itemType
+            bottomPanelButton.mapItemType = surfaceType
             bottomPanelButton.translatesAutoresizingMaskIntoConstraints = false
             bottomPanelButton.addTarget(self, action: #selector(bottomPanelButtonPressed(sender:)), for: .touchUpInside)
             
-            let imageName = itemType.returnStringValue(itemType:itemType)
+            let imageName = surfaceType.returnStringValue(surfaceType:surfaceType)
             
             if let image = UIImage(named: "\(imageName)") {
                 bottomPanelButton.setImage(image, for: .normal)
@@ -147,13 +145,66 @@ class ViewWithMapController: UIViewController {
             bottomPanelStackView.addArrangedSubview(bottomPanelButton)
         }
     }
+    
+    
+    func createStackView() -> UIStackView {
+        
+        let panel = UIStackView()
+        
+        panel.translatesAutoresizingMaskIntoConstraints = false
+        panel.alignment = .fill
+        panel.distribution = .fillEqually
+        panel.spacing = MostOftenConstraintsConstants.defaultSpacing.cgfloatValue
+        
+        return panel
+    }
+    
+    
+    func addGestureRecognizer() {
+        
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(detectPanGestureRecognizer(_:)))
+        
+        mapItemsCollectionView.addGestureRecognizer(panGestureRecognizer)
+    }
+    
+    // Activating constraints for UIView element relative to self.view
+    func activateConstraints(for viewElement: UIView, constraintsConstantsSet: ConstraintsConstantsSet) {
+        
+        var constraintsToActivate = [NSLayoutConstraint]()
+        
+        if constraintsConstantsSet.top != nil{
+            constraintsToActivate.append(viewElement.topAnchor.constraint(equalTo: self.view.topAnchor, constant: constraintsConstantsSet.top!))
+        }
+        
+        if constraintsConstantsSet.leading != nil {
+            constraintsToActivate.append(viewElement.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: constraintsConstantsSet.leading!))
+        }
+        
+        if constraintsConstantsSet.trailing != nil {
+            constraintsToActivate.append(viewElement.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: constraintsConstantsSet.trailing!))
+        }
+        
+        if constraintsConstantsSet.bottom != nil {
+            constraintsToActivate.append(viewElement.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: constraintsConstantsSet.bottom!))
+        }
+        
+        if constraintsConstantsSet.height != nil {
+            constraintsToActivate.append(viewElement.heightAnchor.constraint(equalToConstant: constraintsConstantsSet.height!))
+        }
+        
+        if constraintsConstantsSet.width != nil {
+            constraintsToActivate.append(viewElement.widthAnchor.constraint(equalToConstant: constraintsConstantsSet.width!))
+        }
+        
+        NSLayoutConstraint.activate(constraintsToActivate)
+    }
 }
 
 // MARK:- ViewWithMapControllerDelegate
 
 extension ViewWithMapController: ViewWithMapControllerDelegate {
     
-    func highlightBottomPanelButton(selectedSurfaceType: MapItemType) {
+    func highlightBottomPanelButton(selectedSurfaceType: SurfaceType) {
         
         for bottomButton in bottomPanelStackView.arrangedSubviews {
             let buttonSurfaceType = (bottomButton as! BottomPanelButton).mapItemType
@@ -161,9 +212,9 @@ extension ViewWithMapController: ViewWithMapControllerDelegate {
             var imageName: String
             
             if buttonSurfaceType == selectedSurfaceType {
-                imageName = buttonSurfaceType!.returnStringValue(itemType:buttonSurfaceType!) + "_highlighted"
+                imageName = buttonSurfaceType!.returnStringValue(surfaceType:buttonSurfaceType!) + "_highlighted"
             } else {
-                imageName = buttonSurfaceType!.returnStringValue(itemType:buttonSurfaceType!)
+                imageName = buttonSurfaceType!.returnStringValue(surfaceType:buttonSurfaceType!)
             }
             
             if let image = UIImage(named: "\(imageName)") {
@@ -172,19 +223,21 @@ extension ViewWithMapController: ViewWithMapControllerDelegate {
         }
     }
     
-    
-    func setMapItemSurface(indexPath: IndexPath, surfaceType: MapItemType) {
+    // Set surface type for one map item (one content view cell)
+    func setMapItemSurface(indexPath: IndexPath, surfaceType: SurfaceType) {
         
         self.mapItems[indexPath.row].mapItemType = surfaceType
+        
         self.mapItemsCollectionView.reloadData()
     }
     
-    
-    func setMapItems(mapItemTypes: [MapItemType]) {
+    // Set surface types for all map
+    func setAllMapItemsSurfaceTypes(mapItemSurfaceTypes: [SurfaceType]) {
         
-        for (index, mapItemType) in mapItemTypes.enumerated() {
+        for (index, mapItemType) in mapItemSurfaceTypes.enumerated() {
             self.mapItems[index].mapItemType = mapItemType
         }
+        
         self.mapItemsCollectionView.reloadData()
     }
 }
@@ -221,7 +274,6 @@ extension ViewWithMapController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         mapPresenter.mapItemSelected(selectedItemIndexPath: indexPath)
-        self.mapItemsCollectionView.deselectItem(at: indexPath, animated: true)
     }
 }
 
@@ -230,9 +282,9 @@ extension ViewWithMapController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
      
-        let paddingSpace = sectionInsets.left + sectionInsets.right + minimumItemSpacing * (itemsPerRow - 1)
+        let paddingSpace = sectionInsets.left + sectionInsets.right + minimumItemSpacing * (CGFloat(integerLiteral: itemsPerRow) - 1)
         let availableWidth = collectionView.bounds.width - paddingSpace
-        let widthPerItem = availableWidth / itemsPerRow
+        let widthPerItem = availableWidth / CGFloat(integerLiteral: itemsPerRow)
      
         return CGSize(width: widthPerItem, height: widthPerItem)
     }

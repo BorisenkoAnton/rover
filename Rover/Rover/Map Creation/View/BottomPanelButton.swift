@@ -8,7 +8,8 @@
 
 import UIKit
 
+// Button for bottom panel, containing surface type
 class BottomPanelButton: UIButton {
     
-    var mapItemType: MapItemType!
+    var mapItemType: SurfaceType!
 }

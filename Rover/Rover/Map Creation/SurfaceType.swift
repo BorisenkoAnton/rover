@@ -8,14 +8,14 @@
 
 import Foundation
 
-enum MapItemType: CaseIterable {
+enum SurfaceType: CaseIterable {
     case ground
     case quicksand
     case pit
     case hill
     
-    func returnStringValue(itemType: MapItemType) -> String {
-        switch itemType {
+    func returnStringValue(surfaceType: SurfaceType) -> String {
+        switch surfaceType {
         case .ground:
             return "ground"
         

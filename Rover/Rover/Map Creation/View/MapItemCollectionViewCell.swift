@@ -8,12 +8,12 @@
 
 import UIKit
 
+// Class, representing map item
 class MapItemCollectionViewCell: UICollectionViewCell {
     
     static let reuseID = String(describing: MapItemCollectionViewCell.self)
-    static let nib = UINib(nibName: String(describing: MapItemCollectionViewCell.self), bundle: nil)
     
-    var mapItemImage: UIImageView!
+    var mapItemImage: UIImageView! // Image of the surface type
     
     override init(frame: CGRect) {
         
@@ -47,16 +47,10 @@ class MapItemCollectionViewCell: UICollectionViewCell {
         ])
     }
     
-    
-    override func layoutSubviews() {
-        
-        super.layoutSubviews()
-    }
-    
-    
-    func update(mapItemType: MapItemType) {
+    // Setting image for surface type
+    func update(mapItemType: SurfaceType) {
 
-        let imageName = mapItemType.returnStringValue(itemType: mapItemType)
+        let imageName = mapItemType.returnStringValue(surfaceType: mapItemType)
         
         if let image = UIImage(named: "\(imageName)") {
 

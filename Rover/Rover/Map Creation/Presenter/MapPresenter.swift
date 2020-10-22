@@ -11,7 +11,7 @@ import Foundation
 class MapPresenter {
     
     weak private var viewWithMapControllerDelegate: ViewWithMapControllerDelegate?
-    private var selectedSurfaceType: MapItemType?
+    private var selectedSurfaceType: SurfaceType?
     
     func setViewDelegate(viewWithMapControllerDelegate: ViewWithMapControllerDelegate) {
         
@@ -19,7 +19,7 @@ class MapPresenter {
     }
     
     
-    func surfaceTypeSelected(selectedType: MapItemType) {
+    func surfaceTypeSelected(selectedType: SurfaceType) {
 
         self.selectedSurfaceType = selectedType
         self.viewWithMapControllerDelegate?.highlightBottomPanelButton(selectedSurfaceType: selectedType)
@@ -35,8 +35,8 @@ class MapPresenter {
     
     func generateRandomMap(numberOfMapItems: Int) {
         
-        var generatedMap = [MapItemType]()
-        let allSurfaceTypes = MapItemType.allCases
+        var generatedMap = [SurfaceType]()
+        let allSurfaceTypes = SurfaceType.allCases
         
         for _ in 0..<numberOfMapItems {
             let randomIndex = Int.random(in: 0..<allSurfaceTypes.count)
@@ -46,6 +46,6 @@ class MapPresenter {
             generatedMap.append(surfaceType)
         }
         
-        self.viewWithMapControllerDelegate?.setMapItems(mapItemTypes: generatedMap)
+        self.viewWithMapControllerDelegate?.setAllMapItemsSurfaceTypes(mapItemSurfaceTypes: generatedMap)
     }
 }
