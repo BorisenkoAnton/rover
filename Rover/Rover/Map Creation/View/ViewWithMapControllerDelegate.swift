@@ -12,4 +12,5 @@ protocol ViewWithMapControllerDelegate: class {
     
     func highlightBottomPanelButton(selectedSurfaceType: MapItemType)
     func setMapItemSurface(indexPath: IndexPath, surfaceType: MapItemType)
+    func setMapItems(mapItemTypes: [MapItemType])
 }
