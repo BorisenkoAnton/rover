@@ -32,4 +32,20 @@ class MapPresenter {
 
         self.viewWithMapControllerDelegate?.setMapItemSurface(indexPath: selectedItemIndexPath, surfaceType: surfaceType)
     }
+    
+    func generateRandomMap(numberOfMapItems: Int) {
+        
+        var generatedMap = [MapItemType]()
+        let allSurfaceTypes = MapItemType.allCases
+        
+        for _ in 0..<numberOfMapItems {
+            let randomIndex = Int.random(in: 0..<allSurfaceTypes.count)
+            
+            let surfaceType = allSurfaceTypes[randomIndex]
+            
+            generatedMap.append(surfaceType)
+        }
+        
+        self.viewWithMapControllerDelegate?.setMapItems(mapItemTypes: generatedMap)
+    }
 }
