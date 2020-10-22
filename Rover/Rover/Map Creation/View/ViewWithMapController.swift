@@ -33,6 +33,8 @@ class ViewWithMapController: UIViewController {
         
         super.viewDidLoad()
         
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        
         mapItems = [MapItem](repeating: MapItem(), count: itemsPerRow * rowsCount)
         
         configureAndAddPanels()
