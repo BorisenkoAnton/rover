@@ -44,6 +44,13 @@ class ViewWithMapController: UIViewController {
         mapPresenter.surfaceTypeSelected(selectedType: sender.mapItemType)
     }
     
+    
+    @objc func randomMapGenerationButtonPressed(sender: UIButton!) {
+        
+        mapPresenter.generateRandomMap(numberOfMapItems: self.mapItems.count)
+    }
+    
+    
     @objc func detectPan(_ recognizer:UIPanGestureRecognizer) {
         
         let location = recognizer.location(in: self.mapItemsCollectionView)
@@ -76,11 +83,15 @@ class ViewWithMapController: UIViewController {
         mapItemsCollectionView.register(MapItemCollectionViewCell.self, forCellWithReuseIdentifier: MapItemCollectionViewCell.reuseID)
     }
     
+    
     func configureAndAddPanels() {
         
         topPanelStackView = UIStackView(frame: .zero)
         
         topPanelStackView.translatesAutoresizingMaskIntoConstraints = false
+        topPanelStackView.alignment = .fill
+        topPanelStackView.distribution = .fillEqually
+        topPanelStackView.spacing = 8.0
         
         view.addSubview(topPanelStackView)
         
@@ -93,9 +104,21 @@ class ViewWithMapController: UIViewController {
         
         NSLayoutConstraint(item: topPanelStackView!, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 80).isActive = true
         
+        let randomGenerationButton = UIButton()
+
+        randomGenerationButton.setTitle("Generate", for: .normal)
+        //randomGenerationButton.backgroundColor = .white
+        randomGenerationButton.translatesAutoresizingMaskIntoConstraints = false
+        randomGenerationButton.addTarget(self, action: #selector(randomMapGenerationButtonPressed(sender:)), for: .touchUpInside)
+        
+        topPanelStackView.addArrangedSubview(randomGenerationButton)
+        
         bottomPanelStackView = UIStackView(frame: .zero)
         
         bottomPanelStackView.translatesAutoresizingMaskIntoConstraints = false
+        bottomPanelStackView.alignment = .fill
+        bottomPanelStackView.distribution = .fillEqually
+        bottomPanelStackView.spacing = 8.0
         
         view.addSubview(bottomPanelStackView)
         
@@ -107,10 +130,6 @@ class ViewWithMapController: UIViewController {
         ])
         
         NSLayoutConstraint(item: bottomPanelStackView!, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 80).isActive = true
-        
-        bottomPanelStackView.alignment = .fill
-        bottomPanelStackView.distribution = .fillEqually
-        bottomPanelStackView.spacing = 8.0
         
         for itemType in MapItemType.allCases {
             let bottomPanelButton = BottomPanelButton()
@@ -157,6 +176,15 @@ extension ViewWithMapController: ViewWithMapControllerDelegate {
     func setMapItemSurface(indexPath: IndexPath, surfaceType: MapItemType) {
         
         self.mapItems[indexPath.row].mapItemType = surfaceType
+        self.mapItemsCollectionView.reloadData()
+    }
+    
+    
+    func setMapItems(mapItemTypes: [MapItemType]) {
+        
+        for (index, mapItemType) in mapItemTypes.enumerated() {
+            self.mapItems[index].mapItemType = mapItemType
+        }
         self.mapItemsCollectionView.reloadData()
     }
 }
