@@ -3,12 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		B40F6DC6254014DD004A3845 /* ViewWithMapControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40F6DC5254014DD004A3845 /* ViewWithMapControllerDelegate.swift */; };
 		B40F6DC825401792004A3845 /* MapPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40F6DC725401792004A3845 /* MapPresenter.swift */; };
+		B411B1692542EA2800BF9F60 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B411B1682542EA2800BF9F60 /* StorageManager.swift */; };
+		B411B16D2542EC3700BF9F60 /* DBMapModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B411B16C2542EC3700BF9F60 /* DBMapModel.swift */; };
 		B41D8C90253EDD50005D7B9D /* MapItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41D8C8F253EDD50005D7B9D /* MapItem.swift */; };
 		B41D8C92253EDE80005D7B9D /* SurfaceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41D8C91253EDE80005D7B9D /* SurfaceType.swift */; };
 		B41D8C94253EE084005D7B9D /* MapItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41D8C93253EE084005D7B9D /* MapItemCollectionViewCell.swift */; };
@@ -26,11 +28,16 @@
 		B4EB44F52542CCF40014DB6D /* ViewWithMapController+ViewWithMapControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EB44F42542CCF40014DB6D /* ViewWithMapController+ViewWithMapControllerDelegate.swift */; };
 		B4EB44F72542CDA70014DB6D /* ViewWithMapController+UICollectionViewDelegateFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EB44F62542CDA70014DB6D /* ViewWithMapController+UICollectionViewDelegateFlowLayout.swift */; };
 		B4EB44F92542CE3F0014DB6D /* ViewWithMapController+UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EB44F82542CE3F0014DB6D /* ViewWithMapController+UICollectionView.swift */; };
+		BBB3EDC57D7CDFF28498104E /* Pods_Rover.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 575A266CEAFB6BDB4E1B8EC3 /* Pods_Rover.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		575A266CEAFB6BDB4E1B8EC3 /* Pods_Rover.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Rover.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		746B1B0A4ED93577F7AFA31D /* Pods-Rover.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rover.release.xcconfig"; path = "Target Support Files/Pods-Rover/Pods-Rover.release.xcconfig"; sourceTree = "<group>"; };
 		B40F6DC5254014DD004A3845 /* ViewWithMapControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewWithMapControllerDelegate.swift; sourceTree = "<group>"; };
 		B40F6DC725401792004A3845 /* MapPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPresenter.swift; sourceTree = "<group>"; };
+		B411B1682542EA2800BF9F60 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		B411B16C2542EC3700BF9F60 /* DBMapModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBMapModel.swift; sourceTree = "<group>"; };
 		B41D8C8F253EDD50005D7B9D /* MapItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapItem.swift; sourceTree = "<group>"; };
 		B41D8C91253EDE80005D7B9D /* SurfaceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurfaceType.swift; sourceTree = "<group>"; };
 		B41D8C93253EE084005D7B9D /* MapItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapItemCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -50,6 +57,7 @@
 		B4EB44F42542CCF40014DB6D /* ViewWithMapController+ViewWithMapControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewWithMapController+ViewWithMapControllerDelegate.swift"; sourceTree = "<group>"; };
 		B4EB44F62542CDA70014DB6D /* ViewWithMapController+UICollectionViewDelegateFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewWithMapController+UICollectionViewDelegateFlowLayout.swift"; sourceTree = "<group>"; };
 		B4EB44F82542CE3F0014DB6D /* ViewWithMapController+UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewWithMapController+UICollectionView.swift"; sourceTree = "<group>"; };
+		FBA2B7C96F80CA528D1BC0AA /* Pods-Rover.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rover.debug.xcconfig"; path = "Target Support Files/Pods-Rover/Pods-Rover.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,16 +65,43 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBB3EDC57D7CDFF28498104E /* Pods_Rover.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B45DCF312541BC0C006A5C69 /* Storage */ = {
+		A5931FE722AF2C8D5A313751 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				575A266CEAFB6BDB4E1B8EC3 /* Pods_Rover.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B411B16A2542EC1400BF9F60 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				B45DCF322541BC5F006A5C69 /* StorageViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B411B16B2542EC2100BF9F60 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B411B16C2542EC3700BF9F60 /* DBMapModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B45DCF312541BC0C006A5C69 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				B411B16B2542EC2100BF9F60 /* Model */,
+				B411B16A2542EC1400BF9F60 /* View */,
+				B411B1682542EA2800BF9F60 /* StorageManager.swift */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -78,6 +113,8 @@
 				B41D8C95253EF656005D7B9D /* Default-568h@2x.png */,
 				B4E378E1253EC8A900C80866 /* Rover */,
 				B4E378E0253EC8A900C80866 /* Products */,
+				B8C5924ACC18CE211B504801 /* Pods */,
+				A5931FE722AF2C8D5A313751 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -146,6 +183,15 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		B8C5924ACC18CE211B504801 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FBA2B7C96F80CA528D1BC0AA /* Pods-Rover.debug.xcconfig */,
+				746B1B0A4ED93577F7AFA31D /* Pods-Rover.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -153,9 +199,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B4E378F3253EC8AA00C80866 /* Build configuration list for PBXNativeTarget "Rover" */;
 			buildPhases = (
+				93BEE72400BE59A8E6E1C6C5 /* [CP] Check Pods Manifest.lock */,
 				B4E378DB253EC8A900C80866 /* Sources */,
 				B4E378DC253EC8A900C80866 /* Frameworks */,
 				B4E378DD253EC8A900C80866 /* Resources */,
+				65A9BA8256A866895A646D3D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -212,11 +260,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		65A9BA8256A866895A646D3D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Rover/Pods-Rover-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Rover/Pods-Rover-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Rover/Pods-Rover-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		93BEE72400BE59A8E6E1C6C5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Rover-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B4E378DB253EC8A900C80866 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B411B1692542EA2800BF9F60 /* StorageManager.swift in Sources */,
 				B4EB44F92542CE3F0014DB6D /* ViewWithMapController+UICollectionView.swift in Sources */,
 				B4E378E7253EC8A900C80866 /* ViewWithMapController.swift in Sources */,
 				B41D8C90253EDD50005D7B9D /* MapItem.swift in Sources */,
@@ -224,6 +315,7 @@
 				B40F6DC825401792004A3845 /* MapPresenter.swift in Sources */,
 				B4E6AF142541860200FC0102 /* Most Often Constraints Constants.swift in Sources */,
 				B40F6DC6254014DD004A3845 /* ViewWithMapControllerDelegate.swift in Sources */,
+				B411B16D2542EC3700BF9F60 /* DBMapModel.swift in Sources */,
 				B4EB44F52542CCF40014DB6D /* ViewWithMapController+ViewWithMapControllerDelegate.swift in Sources */,
 				B4EB44F02542C4530014DB6D /* SceneFactory.swift in Sources */,
 				B4E378E3253EC8A900C80866 /* AppDelegate.swift in Sources */,
@@ -355,6 +447,7 @@
 		};
 		B4E378F4253EC8AA00C80866 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FBA2B7C96F80CA528D1BC0AA /* Pods-Rover.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -372,6 +465,7 @@
 		};
 		B4E378F5253EC8AA00C80866 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 746B1B0A4ED93577F7AFA31D /* Pods-Rover.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
