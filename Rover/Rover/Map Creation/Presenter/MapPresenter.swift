@@ -60,4 +60,27 @@ class MapPresenter {
         
         self.viewWithMapControllerDelegate?.navigateTo(viewController: storageVC)
     }
+    
+    
+    func saveMap(map: [MapItem]) {
+        
+        let mapToSave = DBMapModel()
+        
+        mapToSave.name = "test"
+        
+        for (row, mapItem) in map.enumerated() {
+            let mapItemToSave = DBMapItem()
+            
+            mapItemToSave.sectionIndex = 0
+            mapItemToSave.indexInSection = row
+            
+            if mapItem.mapItemType != nil {
+                mapItemToSave.surfaceType = mapItem.mapItemType?.returnStringValue(surfaceType: mapItem.mapItemType!)
+            }
+            
+            mapToSave.mapItems.append(mapItemToSave)
+        }
+        
+        StorageManager.saveMap(mapToSave)
+    }
 }
