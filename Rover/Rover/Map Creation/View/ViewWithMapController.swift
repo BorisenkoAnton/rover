@@ -14,10 +14,10 @@ class ViewWithMapController: UIViewController {
     var mapItemsCollectionView: UICollectionView! // Collection View, representing map
     var bottomPanelStackView: UIStackView!
     
-    private var itemsPerRow = 9
-    private var rowsCount = 16
-    private var minimumItemSpacing: CGFloat = MostOftenConstraintsConstants.minimumSpacing.cgfloatValue
-    private let sectionInsets = UIEdgeInsets(
+    var itemsPerRow = 9
+    var rowsCount = 16
+    var minimumItemSpacing: CGFloat = MostOftenConstraintsConstants.minimumSpacing.cgfloatValue
+    let sectionInsets = UIEdgeInsets(
                                     top: MostOftenConstraintsConstants.defaultSpacing.cgfloatValue,
                                     left: MostOftenConstraintsConstants.defaultSpacing.cgfloatValue,
                                     bottom: MostOftenConstraintsConstants.defaultSpacing.cgfloatValue,
@@ -26,12 +26,13 @@ class ViewWithMapController: UIViewController {
     
     var mapItems = [MapItem]()
     
-    private let mapPresenter = MapPresenter()
+    let mapPresenter = MapPresenter()
     
-    
-    override func viewDidLoad() {
+    override func loadView() {
         
-        super.viewDidLoad()
+        super.loadView()
+        
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
         
         mapItems = [MapItem](repeating: MapItem(), count: itemsPerRow * rowsCount)
         
@@ -49,6 +50,12 @@ class ViewWithMapController: UIViewController {
     @objc func bottomPanelButtonPressed(sender: BottomPanelButton!) {
         
         mapPresenter.surfaceTypeSelected(selectedType: sender.mapItemType)
+    }
+    
+    
+    @objc func storageButtonPressed(sender: UIButton!) {
+        
+        self.mapPresenter.storageButtonPressed()
     }
     
     
@@ -90,6 +97,18 @@ class ViewWithMapController: UIViewController {
         mapItemsCollectionView.register(MapItemCollectionViewCell.self, forCellWithReuseIdentifier: MapItemCollectionViewCell.reuseID)
     }
     
+    
+    func createButton(withTitle title:String, andTargetAction action: Selector, forEvent event:UIControl.Event) -> UIButton{
+        
+        let button = UIButton()
+        
+        button.setTitle(title, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: action, for: event)
+        
+        return button
+    }
+    
     // Configuring and adding top (with random generating button) and bottom (with surface types) panels to view
     func configureAndAddPanels() {
         // Top panel
@@ -106,13 +125,13 @@ class ViewWithMapController: UIViewController {
         
         activateConstraints(for: topPanelStackView, constraintsConstantsSet: topPanelStackViewConstraints)
         
-        let randomGenerationButton = UIButton()
+        let randomGenerationButton = createButton(withTitle: "Generate", andTargetAction: #selector(randomMapGenerationButtonPressed(sender:)), forEvent: .touchUpInside)
 
-        randomGenerationButton.setTitle("Generate", for: .normal)
-        randomGenerationButton.translatesAutoresizingMaskIntoConstraints = false
-        randomGenerationButton.addTarget(self, action: #selector(randomMapGenerationButtonPressed(sender:)), for: .touchUpInside)
-        
         topPanelStackView.addArrangedSubview(randomGenerationButton)
+        
+        let storageButton = createButton(withTitle: "Storage", andTargetAction: #selector(storageButtonPressed(sender:)), forEvent: .touchUpInside)
+        
+        topPanelStackView.addArrangedSubview(storageButton)
         
         // Bottom panel
         bottomPanelStackView = createStackView()
@@ -197,113 +216,5 @@ class ViewWithMapController: UIViewController {
         }
         
         NSLayoutConstraint.activate(constraintsToActivate)
-    }
-}
-
-// MARK:- ViewWithMapControllerDelegate
-
-extension ViewWithMapController: ViewWithMapControllerDelegate {
-    
-    func highlightBottomPanelButton(selectedSurfaceType: SurfaceType) {
-        
-        for bottomButton in bottomPanelStackView.arrangedSubviews {
-            let buttonSurfaceType = (bottomButton as! BottomPanelButton).mapItemType
-            
-            var imageName: String
-            
-            if buttonSurfaceType == selectedSurfaceType {
-                imageName = buttonSurfaceType!.returnStringValue(surfaceType:buttonSurfaceType!) + "_highlighted"
-            } else {
-                imageName = buttonSurfaceType!.returnStringValue(surfaceType:buttonSurfaceType!)
-            }
-            
-            if let image = UIImage(named: "\(imageName)") {
-                (bottomButton as! BottomPanelButton).setImage(image, for: .normal)
-            }
-        }
-    }
-    
-    // Set surface type for one map item (one content view cell)
-    func setMapItemSurface(indexPath: IndexPath, surfaceType: SurfaceType) {
-        
-        self.mapItems[indexPath.row].mapItemType = surfaceType
-        
-        self.mapItemsCollectionView.reloadData()
-    }
-    
-    // Set surface types for all map
-    func setAllMapItemsSurfaceTypes(mapItemSurfaceTypes: [SurfaceType]) {
-        
-        for (index, mapItemType) in mapItemSurfaceTypes.enumerated() {
-            self.mapItems[index].mapItemType = mapItemType
-        }
-        
-        self.mapItemsCollectionView.reloadData()
-    }
-}
-
-// MARK:- UICollectionViewDataSource & UICollectionViewDelegate
-
-extension ViewWithMapController: UICollectionViewDelegate, UICollectionViewDataSource {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        return mapItems.count
-    }
-    
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MapItemCollectionViewCell.reuseID, for: indexPath) as? MapItemCollectionViewCell else {
-                fatalError("Wrong cell")
-        }
-        
-        cell.mapItemImage.image = nil
-        
-        let mapItem = mapItems[indexPath.item]
-        
-        if let mapItemType = mapItem.mapItemType {
-            
-            cell.update(mapItemType: mapItemType)
-        }
-        
-        return cell
-    }
-    
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        mapPresenter.mapItemSelected(selectedItemIndexPath: indexPath)
-    }
-}
-
-// MARK:  UICollectionViewDelegateFlowLayout
-extension ViewWithMapController: UICollectionViewDelegateFlowLayout {
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-     
-        let paddingSpace = sectionInsets.left + sectionInsets.right + minimumItemSpacing * (CGFloat(integerLiteral: itemsPerRow) - 1)
-        let availableWidth = collectionView.bounds.width - paddingSpace
-        let widthPerItem = availableWidth / CGFloat(integerLiteral: itemsPerRow)
-     
-        return CGSize(width: widthPerItem, height: widthPerItem)
-    }
-    
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        
-        return sectionInsets
-    }
-    
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-     
-     return 1.0
-    }
-    
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-     
-        return minimumItemSpacing
     }
 }

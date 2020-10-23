@@ -6,11 +6,12 @@
 //  Copyright © 2020 Anton Borisenko. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol ViewWithMapControllerDelegate: class {
     
     func highlightBottomPanelButton(selectedSurfaceType: SurfaceType)
     func setMapItemSurface(indexPath: IndexPath, surfaceType: SurfaceType)
     func setAllMapItemsSurfaceTypes(mapItemSurfaceTypes: [SurfaceType])
+    func navigateTo(viewController: UIViewController)
 }
