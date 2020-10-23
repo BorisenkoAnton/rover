@@ -23,6 +23,9 @@
 		B4E378EC253EC8AA00C80866 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4E378EB253EC8AA00C80866 /* Assets.xcassets */; };
 		B4E6AF142541860200FC0102 /* Most Often Constraints Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E6AF132541860200FC0102 /* Most Often Constraints Constants.swift */; };
 		B4EB44F02542C4530014DB6D /* SceneFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EB44EF2542C4530014DB6D /* SceneFactory.swift */; };
+		B4EB44F52542CCF40014DB6D /* ViewWithMapController+ViewWithMapControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EB44F42542CCF40014DB6D /* ViewWithMapController+ViewWithMapControllerDelegate.swift */; };
+		B4EB44F72542CDA70014DB6D /* ViewWithMapController+UICollectionViewDelegateFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EB44F62542CDA70014DB6D /* ViewWithMapController+UICollectionViewDelegateFlowLayout.swift */; };
+		B4EB44F92542CE3F0014DB6D /* ViewWithMapController+UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EB44F82542CE3F0014DB6D /* ViewWithMapController+UICollectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +47,9 @@
 		B4E378F0253EC8AA00C80866 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B4E6AF132541860200FC0102 /* Most Often Constraints Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Most Often Constraints Constants.swift"; sourceTree = "<group>"; };
 		B4EB44EF2542C4530014DB6D /* SceneFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneFactory.swift; sourceTree = "<group>"; };
+		B4EB44F42542CCF40014DB6D /* ViewWithMapController+ViewWithMapControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewWithMapController+ViewWithMapControllerDelegate.swift"; sourceTree = "<group>"; };
+		B4EB44F62542CDA70014DB6D /* ViewWithMapController+UICollectionViewDelegateFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewWithMapController+UICollectionViewDelegateFlowLayout.swift"; sourceTree = "<group>"; };
+		B4EB44F82542CE3F0014DB6D /* ViewWithMapController+UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewWithMapController+UICollectionView.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +125,7 @@
 		B4E378F8253ED46900C80866 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B4EB44F32542CC760014DB6D /* Extensions */,
 				B40F6DC5254014DD004A3845 /* ViewWithMapControllerDelegate.swift */,
 				B4E378E6253EC8A900C80866 /* ViewWithMapController.swift */,
 				B41D8C93253EE084005D7B9D /* MapItemCollectionViewCell.swift */,
@@ -127,6 +134,16 @@
 				B4E6AF132541860200FC0102 /* Most Often Constraints Constants.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		B4EB44F32542CC760014DB6D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B4EB44F42542CCF40014DB6D /* ViewWithMapController+ViewWithMapControllerDelegate.swift */,
+				B4EB44F62542CDA70014DB6D /* ViewWithMapController+UICollectionViewDelegateFlowLayout.swift */,
+				B4EB44F82542CE3F0014DB6D /* ViewWithMapController+UICollectionView.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,12 +217,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4EB44F92542CE3F0014DB6D /* ViewWithMapController+UICollectionView.swift in Sources */,
 				B4E378E7253EC8A900C80866 /* ViewWithMapController.swift in Sources */,
 				B41D8C90253EDD50005D7B9D /* MapItem.swift in Sources */,
 				B45DCF332541BC5F006A5C69 /* StorageViewController.swift in Sources */,
 				B40F6DC825401792004A3845 /* MapPresenter.swift in Sources */,
 				B4E6AF142541860200FC0102 /* Most Often Constraints Constants.swift in Sources */,
 				B40F6DC6254014DD004A3845 /* ViewWithMapControllerDelegate.swift in Sources */,
+				B4EB44F52542CCF40014DB6D /* ViewWithMapController+ViewWithMapControllerDelegate.swift in Sources */,
 				B4EB44F02542C4530014DB6D /* SceneFactory.swift in Sources */,
 				B4E378E3253EC8A900C80866 /* AppDelegate.swift in Sources */,
 				B41D8C94253EE084005D7B9D /* MapItemCollectionViewCell.swift in Sources */,
@@ -213,6 +232,7 @@
 				B4E378E5253EC8A900C80866 /* SceneDelegate.swift in Sources */,
 				B4743C13253F1E16005BEFE5 /* BottomPanelButton.swift in Sources */,
 				B41D8C92253EDE80005D7B9D /* SurfaceType.swift in Sources */,
+				B4EB44F72542CDA70014DB6D /* ViewWithMapController+UICollectionViewDelegateFlowLayout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
