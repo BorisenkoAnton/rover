@@ -28,10 +28,9 @@ class ViewWithMapController: UIViewController {
     
     let mapPresenter = MapPresenter()
     
-    
-    override func viewDidLoad() {
+    override func loadView() {
         
-        super.viewDidLoad()
+        super.loadView()
         
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         
