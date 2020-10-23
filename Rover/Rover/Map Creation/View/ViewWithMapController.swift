@@ -59,6 +59,12 @@ class ViewWithMapController: UIViewController {
     }
     
     
+    @objc func saveMap(sender: UIButton!) {
+        
+        self.mapPresenter.saveMap(map: self.mapItems)
+    }
+    
+    
     @objc func randomMapGenerationButtonPressed(sender: UIButton!) {
         
         mapPresenter.generateRandomMap(numberOfMapItems: self.mapItems.count)
@@ -128,6 +134,10 @@ class ViewWithMapController: UIViewController {
         let randomGenerationButton = createButton(withTitle: "Generate", andTargetAction: #selector(randomMapGenerationButtonPressed(sender:)), forEvent: .touchUpInside)
 
         topPanelStackView.addArrangedSubview(randomGenerationButton)
+        
+        let saveButton = createButton(withTitle: "Save", andTargetAction: #selector(saveMap(sender:)), forEvent: .touchUpInside)
+
+        topPanelStackView.addArrangedSubview(saveButton)
         
         let storageButton = createButton(withTitle: "Storage", andTargetAction: #selector(storageButtonPressed(sender:)), forEvent: .touchUpInside)
         

@@ -12,5 +12,10 @@ let realm = try! Realm()
 
 class StorageManager {
     
-    
+    static func saveMap(_ map:DBMapModel) {
+        
+        try! realm.write {
+            realm.add(map)
+        }
+    }
 }

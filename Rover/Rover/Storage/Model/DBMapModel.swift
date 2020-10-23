@@ -14,7 +14,7 @@ class DBMapModel: Object {
     
     let mapItems = List<DBMapItem>()
     
-    convenience init(name: String) {
+    convenience init(name: String, mapItems: List<DBMapItem>) {
         
         self.init()
         
@@ -25,7 +25,7 @@ class DBMapModel: Object {
 
 class DBMapItem: Object {
     
-    @objc dynamic var surfacetype = ""
+    @objc dynamic var surfaceType: String?
     @objc dynamic var sectionIndex = 0
     @objc dynamic var indexInSection = 0
     

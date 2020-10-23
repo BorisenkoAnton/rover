@@ -7,10 +7,15 @@
 //
 
 import UIKit
+import RealmSwift
 
 class StorageViewController: UIViewController {
     
     let tableWithStoredMapsView = UITableView()
+    
+    var storedMaps = Array<DBMapModel>()
+    
+    let storagePresenter = StoragePresenter()
     
     override func loadView() {
         
@@ -19,8 +24,18 @@ class StorageViewController: UIViewController {
         addTableView()
         
         configureNavigationBar()
+        
+        self.storagePresenter.setViewDelegate(storageViewControllerDelegate: self)
     }
-
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        super.viewDidAppear(animated)
+        
+        self.storagePresenter.getStoredMaps()
+    }
+    
     
     func addTableView() {
         
@@ -31,6 +46,11 @@ class StorageViewController: UIViewController {
         tableWithStoredMapsView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         tableWithStoredMapsView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         tableWithStoredMapsView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        
+        tableWithStoredMapsView.delegate = self
+        tableWithStoredMapsView.dataSource = self
+        
+        tableWithStoredMapsView.register(CellWithStoredMap.self, forCellReuseIdentifier: CellWithStoredMap.reuseID)
     }
     
     
