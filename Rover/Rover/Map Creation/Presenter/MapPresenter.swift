@@ -13,6 +13,7 @@ class MapPresenter {
     weak private var viewWithMapControllerDelegate: ViewWithMapControllerDelegate?
     private var selectedSurfaceType: SurfaceType?
     
+    
     func setViewDelegate(viewWithMapControllerDelegate: ViewWithMapControllerDelegate) {
         
         self.viewWithMapControllerDelegate = viewWithMapControllerDelegate
@@ -33,6 +34,7 @@ class MapPresenter {
         self.viewWithMapControllerDelegate?.setMapItemSurface(indexPath: selectedItemIndexPath, surfaceType: surfaceType)
     }
     
+    
     func generateRandomMap(numberOfMapItems: Int) {
         
         var generatedMap = [SurfaceType]()
@@ -47,5 +49,13 @@ class MapPresenter {
         }
         
         self.viewWithMapControllerDelegate?.setAllMapItemsSurfaceTypes(mapItemSurfaceTypes: generatedMap)
+    }
+    
+    
+    func storageButtonPressed() {
+        
+        let storageVC = SceneFactory.createStorageViewController()
+        
+        self.viewWithMapControllerDelegate?.navigateTo(viewController: storageVC)
     }
 }
