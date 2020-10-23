@@ -13,6 +13,7 @@
 		B41D8C92253EDE80005D7B9D /* SurfaceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41D8C91253EDE80005D7B9D /* SurfaceType.swift */; };
 		B41D8C94253EE084005D7B9D /* MapItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41D8C93253EE084005D7B9D /* MapItemCollectionViewCell.swift */; };
 		B41D8C96253EF656005D7B9D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B41D8C95253EF656005D7B9D /* Default-568h@2x.png */; };
+		B45DCF332541BC5F006A5C69 /* StorageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45DCF322541BC5F006A5C69 /* StorageViewController.swift */; };
 		B468803225417598002BFF51 /* Constraints Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = B468803125417598002BFF51 /* Constraints Set.swift */; };
 		B4743C11253EF823005BEFE5 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4743C10253EF823005BEFE5 /* Launch Screen.storyboard */; };
 		B4743C13253F1E16005BEFE5 /* BottomPanelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4743C12253F1E16005BEFE5 /* BottomPanelButton.swift */; };
@@ -21,6 +22,7 @@
 		B4E378E7253EC8A900C80866 /* ViewWithMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E378E6253EC8A900C80866 /* ViewWithMapController.swift */; };
 		B4E378EC253EC8AA00C80866 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4E378EB253EC8AA00C80866 /* Assets.xcassets */; };
 		B4E6AF142541860200FC0102 /* Most Often Constraints Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E6AF132541860200FC0102 /* Most Often Constraints Constants.swift */; };
+		B4EB44F02542C4530014DB6D /* SceneFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EB44EF2542C4530014DB6D /* SceneFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,7 @@
 		B41D8C91253EDE80005D7B9D /* SurfaceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurfaceType.swift; sourceTree = "<group>"; };
 		B41D8C93253EE084005D7B9D /* MapItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		B41D8C95253EF656005D7B9D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		B45DCF322541BC5F006A5C69 /* StorageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageViewController.swift; sourceTree = "<group>"; };
 		B468803125417598002BFF51 /* Constraints Set.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constraints Set.swift"; sourceTree = "<group>"; };
 		B4743C10253EF823005BEFE5 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		B4743C12253F1E16005BEFE5 /* BottomPanelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomPanelButton.swift; sourceTree = "<group>"; };
@@ -40,6 +43,7 @@
 		B4E378EB253EC8AA00C80866 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B4E378F0253EC8AA00C80866 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B4E6AF132541860200FC0102 /* Most Often Constraints Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Most Often Constraints Constants.swift"; sourceTree = "<group>"; };
+		B4EB44EF2542C4530014DB6D /* SceneFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +57,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B45DCF312541BC0C006A5C69 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				B45DCF322541BC5F006A5C69 /* StorageViewController.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
 		B4E378D6253EC8A900C80866 = {
 			isa = PBXGroup;
 			children = (
@@ -75,10 +87,12 @@
 			isa = PBXGroup;
 			children = (
 				B4E378F6253ED43F00C80866 /* Map Creation */,
+				B45DCF312541BC0C006A5C69 /* Storage */,
 				B4E378E2253EC8A900C80866 /* AppDelegate.swift */,
 				B4E378E4253EC8A900C80866 /* SceneDelegate.swift */,
 				B4E378EB253EC8AA00C80866 /* Assets.xcassets */,
 				B4E378F0253EC8AA00C80866 /* Info.plist */,
+				B4EB44EF2542C4530014DB6D /* SceneFactory.swift */,
 			);
 			path = Rover;
 			sourceTree = "<group>";
@@ -188,9 +202,11 @@
 			files = (
 				B4E378E7253EC8A900C80866 /* ViewWithMapController.swift in Sources */,
 				B41D8C90253EDD50005D7B9D /* MapItem.swift in Sources */,
+				B45DCF332541BC5F006A5C69 /* StorageViewController.swift in Sources */,
 				B40F6DC825401792004A3845 /* MapPresenter.swift in Sources */,
 				B4E6AF142541860200FC0102 /* Most Often Constraints Constants.swift in Sources */,
 				B40F6DC6254014DD004A3845 /* ViewWithMapControllerDelegate.swift in Sources */,
+				B4EB44F02542C4530014DB6D /* SceneFactory.swift in Sources */,
 				B4E378E3253EC8A900C80866 /* AppDelegate.swift in Sources */,
 				B41D8C94253EE084005D7B9D /* MapItemCollectionViewCell.swift in Sources */,
 				B468803225417598002BFF51 /* Constraints Set.swift in Sources */,
