@@ -56,7 +56,7 @@ class ViewWithMapController: UIViewController {
     
     @objc func storageButtonPressed(sender: UIButton!) {
         
-        
+        self.mapPresenter.storageButtonPressed()
     }
     
     
