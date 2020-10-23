@@ -15,6 +15,13 @@ class SceneFactory {
         return createViewController(viewController: ViewWithMapController.self, navigationController: UINavigationController.self)
     }
     
+    
+    static func createStorageViewController() -> UINavigationController {
+        
+        return createViewController(viewController: StorageViewController.self, navigationController: UINavigationController.self)
+    }
+    
+    
     static private func createViewController(viewController: UIViewController.Type, navigationController: UINavigationController.Type) -> UINavigationController {
         
         let createdViewController = viewController.init()
