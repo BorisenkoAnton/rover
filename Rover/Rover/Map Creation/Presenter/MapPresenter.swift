@@ -56,6 +56,8 @@ class MapPresenter {
         
         let storageVC = SceneFactory.createStorageViewController()
         
+        storageVC.modalPresentationStyle = .fullScreen
+        
         self.viewWithMapControllerDelegate?.navigateTo(viewController: storageVC)
     }
 }
