@@ -10,12 +10,38 @@ import UIKit
 
 class StorageViewController: UIViewController {
     
-    //var nasvigationController = UINavigationController()
+    let tableWithStoredMapsView = UITableView()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func loadView() {
         
+        super.loadView()
         
+        addTableView()
+        
+        configureNavigationBar()
     }
 
+    
+    func addTableView() {
+        
+        view.addSubview(tableWithStoredMapsView)
+        
+        tableWithStoredMapsView.translatesAutoresizingMaskIntoConstraints = false
+        tableWithStoredMapsView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        tableWithStoredMapsView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        tableWithStoredMapsView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        tableWithStoredMapsView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+    }
+    
+    
+    func configureNavigationBar() {
+        
+        let synchronizationButton = UIBarButtonItem(title: "Synchronize", style: .plain, target: self, action: nil)
+        
+        self.navigationItem.rightBarButtonItem  = synchronizationButton
+        
+        let mapCreationButton = UIBarButtonItem(title: "Create", style: .plain, target: self, action: nil)
+        
+        self.navigationItem.leftBarButtonItem  = mapCreationButton
+    }
 }
