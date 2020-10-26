@@ -33,4 +33,10 @@ class StoragePresenter {
         
         StorageManager.deleteMap(map)
     }
+    
+    
+    func editMap(map: DBMapModel) {
+        
+        
+    }
 }

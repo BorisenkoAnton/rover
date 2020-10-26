@@ -12,7 +12,7 @@ class DBMapModel: Object {
     
     @objc dynamic var name = ""
     
-    let mapItems = List<DBMapItem>()
+    var mapItems = List<DBMapItem>()
     
     convenience init(name: String, mapItems: List<DBMapItem>) {
         

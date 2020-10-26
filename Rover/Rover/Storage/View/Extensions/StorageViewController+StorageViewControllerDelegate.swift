@@ -6,7 +6,7 @@
 //  Copyright © 2020 Anton Borisenko. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 extension StorageViewController: StorageViewControllerDelegate {
     
@@ -15,5 +15,11 @@ extension StorageViewController: StorageViewControllerDelegate {
         self.storedMaps = storedMaps
         
         self.tableWithStoredMapsView.reloadData()
+    }
+    
+    
+    func navigateTo(viewController: UIViewController) {
+        
+        self.navigationController?.present(viewController, animated: true)
     }
 }

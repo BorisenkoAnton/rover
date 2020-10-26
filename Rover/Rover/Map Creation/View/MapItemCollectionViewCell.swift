@@ -48,13 +48,16 @@ class MapItemCollectionViewCell: UICollectionViewCell {
     }
     
     // Setting image for surface type
-    func update(mapItemType: SurfaceType) {
+    func update(mapItemType: SurfaceType?) {
 
-        let imageName = mapItemType.returnStringValue(surfaceType: mapItemType)
-        
-        if let image = UIImage(named: "\(imageName)") {
+        if mapItemType != nil {
+            
+            let imageName = SurfaceType.returnStringValue(surfaceType: mapItemType!)
+            
+            if let image = UIImage(named: "\(imageName)") {
 
-            self.mapItemImage.image = image
+                self.mapItemImage.image = image
+            }
         }
     }
     

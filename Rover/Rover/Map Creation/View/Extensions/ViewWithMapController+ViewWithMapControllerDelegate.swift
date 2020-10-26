@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 extension ViewWithMapController: ViewWithMapControllerDelegate {
     
@@ -18,9 +19,9 @@ extension ViewWithMapController: ViewWithMapControllerDelegate {
             var imageName: String
             
             if buttonSurfaceType == selectedSurfaceType {
-                imageName = buttonSurfaceType!.returnStringValue(surfaceType:buttonSurfaceType!) + "_highlighted"
+                imageName = SurfaceType.returnStringValue(surfaceType:buttonSurfaceType!) + "_highlighted"
             } else {
-                imageName = buttonSurfaceType!.returnStringValue(surfaceType:buttonSurfaceType!)
+                imageName = SurfaceType.returnStringValue(surfaceType:buttonSurfaceType!)
             }
             
             if let image = UIImage(named: "\(imageName)") {
@@ -32,7 +33,11 @@ extension ViewWithMapController: ViewWithMapControllerDelegate {
     // Set surface type for one map item (one content view cell)
     func setMapItemSurface(indexPath: IndexPath, surfaceType: SurfaceType) {
         
-        self.mapItems[indexPath.row].mapItemType = surfaceType
+        let mapItem = DBMapItem()
+        
+        mapItem.surfaceType = SurfaceType.returnStringValue(surfaceType: surfaceType)
+        
+        self.map.mapItems.replace(index: indexPath.row, object: mapItem)
         
         self.mapItemsCollectionView.reloadData()
     }
@@ -40,9 +45,19 @@ extension ViewWithMapController: ViewWithMapControllerDelegate {
     // Set surface types for all map
     func setAllMapItemsSurfaceTypes(mapItemSurfaceTypes: [SurfaceType]) {
         
-        for (index, mapItemType) in mapItemSurfaceTypes.enumerated() {
-            self.mapItems[index].mapItemType = mapItemType
+        let mapItems = List<DBMapItem>()
+        
+        for mapItemSurfaceType in mapItemSurfaceTypes {
+            
+            let mapItem = DBMapItem()
+            mapItem.surfaceType = SurfaceType.returnStringValue(surfaceType: mapItemSurfaceType)
+            
+            mapItems.append(mapItem)
         }
+        
+        self.map.mapItems.removeAll()
+        
+        self.map.mapItems.append(objectsIn: mapItems)
         
         self.mapItemsCollectionView.reloadData()
     }

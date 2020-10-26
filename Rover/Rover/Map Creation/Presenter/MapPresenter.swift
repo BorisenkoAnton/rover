@@ -62,25 +62,10 @@ class MapPresenter {
     }
     
     
-    func saveMap(map: [MapItem]) {
+    func saveMap(map: DBMapModel) {
         
-        let mapToSave = DBMapModel()
+        map.name = "test"
         
-        mapToSave.name = "test"
-        
-        for (row, mapItem) in map.enumerated() {
-            let mapItemToSave = DBMapItem()
-            
-            mapItemToSave.sectionIndex = 0
-            mapItemToSave.indexInSection = row
-            
-            if mapItem.mapItemType != nil {
-                mapItemToSave.surfaceType = mapItem.mapItemType?.returnStringValue(surfaceType: mapItem.mapItemType!)
-            }
-            
-            mapToSave.mapItems.append(mapItemToSave)
-        }
-        
-        StorageManager.saveMap(mapToSave)
+        StorageManager.saveMap(map)
     }
 }

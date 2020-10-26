@@ -6,9 +6,10 @@
 //  Copyright © 2020 Anton Borisenko. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol StorageViewControllerDelegate: class {
     
     func setArrayOfStoredMaps(storedMaps: Array<DBMapModel>)
+    func navigateTo(viewController: UIViewController)
 }

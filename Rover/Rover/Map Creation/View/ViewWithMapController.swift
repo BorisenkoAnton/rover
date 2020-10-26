@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class ViewWithMapController: UIViewController {
 
@@ -24,7 +25,7 @@ class ViewWithMapController: UIViewController {
                                     right: MostOftenConstraintsConstants.defaultSpacing.cgfloatValue
     )
     
-    var mapItems = [MapItem]()
+    var map = DBMapModel()
     
     let mapPresenter = MapPresenter()
     
@@ -34,7 +35,7 @@ class ViewWithMapController: UIViewController {
         
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         
-        mapItems = [MapItem](repeating: MapItem(), count: itemsPerRow * rowsCount)
+        self.map.mapItems.append(objectsIn: [DBMapItem](repeating: DBMapItem(), count: itemsPerRow * rowsCount))
         
         configureAndAddPanels()
         
@@ -61,13 +62,13 @@ class ViewWithMapController: UIViewController {
     
     @objc func saveMap(sender: UIButton!) {
         
-        self.mapPresenter.saveMap(map: self.mapItems)
+        self.mapPresenter.saveMap(map: self.map)
     }
     
     
     @objc func randomMapGenerationButtonPressed(sender: UIButton!) {
         
-        mapPresenter.generateRandomMap(numberOfMapItems: self.mapItems.count)
+        mapPresenter.generateRandomMap(numberOfMapItems: self.map.mapItems.count)
     }
     
     
@@ -165,7 +166,7 @@ class ViewWithMapController: UIViewController {
             bottomPanelButton.translatesAutoresizingMaskIntoConstraints = false
             bottomPanelButton.addTarget(self, action: #selector(bottomPanelButtonPressed(sender:)), for: .touchUpInside)
             
-            let imageName = surfaceType.returnStringValue(surfaceType:surfaceType)
+            let imageName = SurfaceType.returnStringValue(surfaceType:surfaceType)
             
             if let image = UIImage(named: "\(imageName)") {
                 bottomPanelButton.setImage(image, for: .normal)

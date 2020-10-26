@@ -17,6 +17,7 @@ class StorageViewController: UIViewController {
     
     let storagePresenter = StoragePresenter()
     
+    
     override func loadView() {
         
         super.loadView()

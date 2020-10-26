@@ -12,7 +12,7 @@ extension ViewWithMapController: UICollectionViewDelegate, UICollectionViewDataS
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return mapItems.count
+        return map.mapItems.count
     }
 
 
@@ -24,11 +24,11 @@ extension ViewWithMapController: UICollectionViewDelegate, UICollectionViewDataS
         
         cell.mapItemImage.image = nil
         
-        let mapItem = mapItems[indexPath.item]
-        
-        if let mapItemType = mapItem.mapItemType {
+        let mapItem = self.map.mapItems[indexPath.item]
+
+        if let mapItemSurfaceType = mapItem.surfaceType {
             
-            cell.update(mapItemType: mapItemType)
+            cell.update(mapItemType: SurfaceType.surfaceTypeFromString(typeString: mapItemSurfaceType))
         }
         
         return cell
