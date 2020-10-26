@@ -16,7 +16,7 @@ class SceneFactory {
     }
     
     
-    static func createStorageViewController() -> UINavigationController {
+    static func storageScene() -> UINavigationController {
         
         return createViewController(viewController: StorageViewController.self, navigationController: UINavigationController.self)
     }

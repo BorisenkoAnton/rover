@@ -42,6 +42,7 @@ extension StorageViewController: UITableViewDelegate, UITableViewDataSource {
         
         let editAction = UIContextualAction(style: .normal, title: "Edit") { (action, view, actionPerformed) in
             
+            self.storagePresenter.editMap(map: self.storedMaps[indexPath.row], navigationController: self.navigationController!)
         }
         
         let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction, editAction])

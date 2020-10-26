@@ -6,7 +6,7 @@
 //  Copyright © 2020 Anton Borisenko. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class StoragePresenter {
     
@@ -35,8 +35,14 @@ class StoragePresenter {
     }
     
     
-    func editMap(map: DBMapModel) {
+    func editMap(map: DBMapModel, navigationController: UINavigationController) {
         
+        let viewWithMapVC = navigationController
         
+        ((viewWithMapVC.presentingViewController as! UINavigationController).viewControllers.first as! ViewWithMapController).map = map
+
+        ((viewWithMapVC.presentingViewController as! UINavigationController).viewControllers.first as! ViewWithMapController).mapItemsCollectionView.reloadData()
+        
+        self.storageViewControllerDelegate?.navigate()
     }
 }

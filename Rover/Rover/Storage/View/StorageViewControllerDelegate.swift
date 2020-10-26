@@ -11,5 +11,5 @@ import UIKit
 protocol StorageViewControllerDelegate: class {
     
     func setArrayOfStoredMaps(storedMaps: Array<DBMapModel>)
-    func navigateTo(viewController: UIViewController)
+    func navigate()
 }

@@ -25,17 +25,20 @@ class ViewWithMapController: UIViewController {
                                     right: MostOftenConstraintsConstants.defaultSpacing.cgfloatValue
     )
     
-    var map = DBMapModel()
+    var map: DBMapModel!
     
     let mapPresenter = MapPresenter()
     
     override func loadView() {
-        
         super.loadView()
         
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         
-        self.map.mapItems.append(objectsIn: [DBMapItem](repeating: DBMapItem(), count: itemsPerRow * rowsCount))
+        if self.map == nil {
+            self.map = DBMapModel()
+            
+            self.map.mapItems.append(objectsIn: [DBMapItem](repeating: DBMapItem(), count: itemsPerRow * rowsCount))
+        }
         
         configureAndAddPanels()
         

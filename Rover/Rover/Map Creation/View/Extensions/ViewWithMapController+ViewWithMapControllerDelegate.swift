@@ -33,33 +33,37 @@ extension ViewWithMapController: ViewWithMapControllerDelegate {
     // Set surface type for one map item (one content view cell)
     func setMapItemSurface(indexPath: IndexPath, surfaceType: SurfaceType) {
         
-        let mapItem = DBMapItem()
-        
-        mapItem.surfaceType = SurfaceType.returnStringValue(surfaceType: surfaceType)
-        
-        self.map.mapItems.replace(index: indexPath.row, object: mapItem)
-        
-        self.mapItemsCollectionView.reloadData()
+        try! realm.write {
+            let mapItem = DBMapItem()
+
+            mapItem.surfaceType = SurfaceType.returnStringValue(surfaceType: surfaceType)
+
+            self.map.mapItems.replace(index: indexPath.row, object: mapItem)
+
+            self.mapItemsCollectionView.reloadData()
+        }
     }
     
     // Set surface types for all map
     func setAllMapItemsSurfaceTypes(mapItemSurfaceTypes: [SurfaceType]) {
-        
-        let mapItems = List<DBMapItem>()
-        
-        for mapItemSurfaceType in mapItemSurfaceTypes {
+        try! realm.write {
+            let mapItems = List<DBMapItem>()
             
-            let mapItem = DBMapItem()
-            mapItem.surfaceType = SurfaceType.returnStringValue(surfaceType: mapItemSurfaceType)
+            for mapItemSurfaceType in mapItemSurfaceTypes {
+                
+                let mapItem = DBMapItem()
+                
+                mapItem.surfaceType = SurfaceType.returnStringValue(surfaceType: mapItemSurfaceType)
+                
+                mapItems.append(mapItem)
+            }
             
-            mapItems.append(mapItem)
+            self.map.mapItems.removeAll()
+            
+            self.map.mapItems.append(objectsIn: mapItems)
+            
+            self.mapItemsCollectionView.reloadData()
         }
-        
-        self.map.mapItems.removeAll()
-        
-        self.map.mapItems.append(objectsIn: mapItems)
-        
-        self.mapItemsCollectionView.reloadData()
     }
     
     

@@ -6,7 +6,7 @@
 //  Copyright © 2020 Anton Borisenko. All rights reserved.
 //
 
-import Foundation
+import RealmSwift
 
 class MapPresenter {
     
@@ -54,7 +54,7 @@ class MapPresenter {
     
     func storageButtonPressed() {
         
-        let storageVC = SceneFactory.createStorageViewController()
+        let storageVC = SceneFactory.storageScene()
         
         storageVC.modalPresentationStyle = .fullScreen
         
@@ -64,7 +64,9 @@ class MapPresenter {
     
     func saveMap(map: DBMapModel) {
         
-        map.name = "test"
+        try! realm.write {
+            map.name = "test"
+        }
         
         StorageManager.saveMap(map)
     }
