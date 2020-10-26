@@ -18,4 +18,12 @@ class StorageManager {
             realm.add(map)
         }
     }
+    
+    
+    static func deleteMap(_ map:DBMapModel) {
+        
+        try! realm.write {
+            realm.delete(map)
+        }
+    }
 }

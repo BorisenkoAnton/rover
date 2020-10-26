@@ -27,4 +27,10 @@ class StoragePresenter {
         
         self.storageViewControllerDelegate?.setArrayOfStoredMaps(storedMaps: storedMaps)
     }
+    
+    
+    func removeMapFromStorage(map: DBMapModel) {
+        
+        StorageManager.deleteMap(map)
+    }
 }

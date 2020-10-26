@@ -27,4 +27,26 @@ extension StorageViewController: UITableViewDelegate, UITableViewDataSource {
 
         return cell
     }
+    
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, view, actionPerformed) in
+            
+            self.storagePresenter.removeMapFromStorage(map: self.storedMaps[indexPath.row])
+            
+            self.storedMaps.remove(at: indexPath.row)
+            
+            self.tableWithStoredMapsView.deleteRows(at: [indexPath], with: .automatic)
+        }
+        
+        let editAction = UIContextualAction(style: .normal, title: "Edit") { (action, view, actionPerformed) in
+            
+        }
+        
+        let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction, editAction])
+
+        return swipeActions
+    }
+    
 }
