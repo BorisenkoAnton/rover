@@ -14,7 +14,8 @@ enum SurfaceType: CaseIterable {
     case pit
     case hill
     
-    func returnStringValue(surfaceType: SurfaceType) -> String {
+    
+    static func returnStringValue(surfaceType: SurfaceType) -> String {
         switch surfaceType {
         case .ground:
             return "ground"
@@ -27,6 +28,27 @@ enum SurfaceType: CaseIterable {
             
         case .quicksand:
             return "quicksand"
+        }
+    }
+    
+    
+    static func surfaceTypeFromString(typeString: String) -> SurfaceType?{
+        
+        switch typeString {
+        case "ground":
+            return .ground
+            
+        case "hill":
+            return .hill
+            
+        case "pit":
+            return .pit
+            
+        case "quicksand":
+            return .quicksand
+            
+        default:
+            return nil
         }
     }
 }
