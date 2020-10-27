@@ -165,11 +165,11 @@
 			children = (
 				B4E378F6253ED43F00C80866 /* Map Creation */,
 				B45DCF312541BC0C006A5C69 /* Storage */,
+				B4EB44EF2542C4530014DB6D /* SceneFactory.swift */,
 				B4E378E2253EC8A900C80866 /* AppDelegate.swift */,
 				B4E378E4253EC8A900C80866 /* SceneDelegate.swift */,
 				B4E378EB253EC8AA00C80866 /* Assets.xcassets */,
 				B4E378F0253EC8AA00C80866 /* Info.plist */,
-				B4EB44EF2542C4530014DB6D /* SceneFactory.swift */,
 			);
 			path = Rover;
 			sourceTree = "<group>";
