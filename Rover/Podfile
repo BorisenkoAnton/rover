@@ -8,7 +8,7 @@ target 'Rover' do
   # Pods for Rover
   pod 'RealmSwift'
 
-  pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
+  pod 'FirebaseFirestoreSwift'
 
 end
