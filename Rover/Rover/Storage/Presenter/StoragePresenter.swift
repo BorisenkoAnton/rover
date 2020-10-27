@@ -63,8 +63,6 @@ class StoragePresenter {
     
     func changeMapName(map: DBMapModel, newName: String) {
         
-        try! realm.write {
-            map.name = newName
-        }
+        StorageManager.changeMapname(map, newName: newName)
     }
 }
