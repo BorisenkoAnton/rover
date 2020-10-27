@@ -11,7 +11,6 @@ import RealmSwift
 
 class ViewWithMapController: UIViewController {
 
-    var topPanelStackView: UIStackView!
     var mapItemsCollectionView: UICollectionView! // Collection View, representing map
     var bottomPanelStackView: UIStackView!
     
@@ -31,8 +30,6 @@ class ViewWithMapController: UIViewController {
     
     override func loadView() {
         super.loadView()
-        
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
         
         configureAndAddPanels()
         
@@ -55,19 +52,19 @@ class ViewWithMapController: UIViewController {
     }
     
     
-    @objc func storageButtonPressed(sender: UIButton!) {
+    @objc func storageButtonPressed() {
         
         self.mapPresenter.storageButtonPressed()
     }
     
     
-    @objc func saveMap(sender: UIButton!) {
+    @objc func saveMap() {
         
         self.mapPresenter.saveMap(map: self.map)
     }
     
     
-    @objc func randomMapGenerationButtonPressed(sender: UIButton!) {
+    @objc func randomMapGenerationButtonPressed() {
         
         mapPresenter.generateRandomMap(numberOfMapItems: self.map.mapItems.count)
     }
@@ -96,7 +93,7 @@ class ViewWithMapController: UIViewController {
         
         NSLayoutConstraint.activate([
             mapItemsCollectionView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            mapItemsCollectionView.topAnchor.constraint(equalTo: topPanelStackView.bottomAnchor, constant: MostOftenConstraintsConstants.bottom.cgfloatValue),
+            mapItemsCollectionView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: MostOftenConstraintsConstants.top.cgfloatValue),
             mapItemsCollectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: MostOftenConstraintsConstants.leading.cgfloatValue),
             mapItemsCollectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -MostOftenConstraintsConstants.trailing.cgfloatValue),
             mapItemsCollectionView.bottomAnchor.constraint(equalTo: bottomPanelStackView.topAnchor, constant: -MostOftenConstraintsConstants.bottom.cgfloatValue)
@@ -119,31 +116,17 @@ class ViewWithMapController: UIViewController {
     
     // Configuring and adding top (with random generating button) and bottom (with surface types) panels to view
     func configureAndAddPanels() {
+        
         // Top panel
-        topPanelStackView = createStackView()
+        let randomMapGenerationButton = UIBarButtonItem(title: "Generate", style: .plain, target: self, action: #selector(randomMapGenerationButtonPressed))
         
-        view.addSubview(topPanelStackView)
+        let saveButton = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveMap))
         
-        let topPanelStackViewConstraints = ConstraintsConstantsSet(top: MostOftenConstraintsConstants.top.cgfloatValue,
-                                                                   trailing: -MostOftenConstraintsConstants.trailing.cgfloatValue,
-                                                                   bottom: nil,
-                                                                   leading: MostOftenConstraintsConstants.leading.cgfloatValue,
-                                                                   height: 60.0, width: nil
-        )
+        let storageButton = UIBarButtonItem(title: "Storage", style: .plain, target: self, action: #selector(storageButtonPressed))
         
-        activateConstraints(for: topPanelStackView, constraintsConstantsSet: topPanelStackViewConstraints)
+        self.navigationItem.leftBarButtonItem = randomMapGenerationButton
         
-        let randomGenerationButton = createButton(withTitle: "Generate", andTargetAction: #selector(randomMapGenerationButtonPressed(sender:)), forEvent: .touchUpInside)
-
-        topPanelStackView.addArrangedSubview(randomGenerationButton)
-        
-        let saveButton = createButton(withTitle: "Save", andTargetAction: #selector(saveMap(sender:)), forEvent: .touchUpInside)
-
-        topPanelStackView.addArrangedSubview(saveButton)
-        
-        let storageButton = createButton(withTitle: "Storage", andTargetAction: #selector(storageButtonPressed(sender:)), forEvent: .touchUpInside)
-        
-        topPanelStackView.addArrangedSubview(storageButton)
+        self.navigationItem.rightBarButtonItems = [storageButton, saveButton]
         
         // Bottom panel
         bottomPanelStackView = createStackView()
