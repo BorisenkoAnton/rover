@@ -37,11 +37,25 @@ class StoragePresenter {
     
     func editMap(map: DBMapModel, navigationController: UINavigationController) {
         
-        let viewWithMapVC = navigationController
+        let presentingViewController = (navigationController.presentingViewController as! UINavigationController).viewControllers.first
         
-        ((viewWithMapVC.presentingViewController as! UINavigationController).viewControllers.first as! ViewWithMapController).map = map
-
-        ((viewWithMapVC.presentingViewController as! UINavigationController).viewControllers.first as! ViewWithMapController).mapItemsCollectionView.reloadData()
+        (presentingViewController as! ViewWithMapController).mapPresenter.loadStoredMap(map: map)
+        
+        self.storageViewControllerDelegate?.navigate()
+    }
+    
+    
+    func createMap(navigationController: UINavigationController) {
+        
+        let presentingViewController = (navigationController.presentingViewController as! UINavigationController).viewControllers.first
+        
+        (presentingViewController as! ViewWithMapController).mapPresenter.clearMap()
+        
+        self.storageViewControllerDelegate?.navigate()
+    }
+    
+    
+    func returnToCurrentMap() {
         
         self.storageViewControllerDelegate?.navigate()
     }

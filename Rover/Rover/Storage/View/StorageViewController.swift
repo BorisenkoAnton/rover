@@ -61,8 +61,24 @@ class StorageViewController: UIViewController {
         
         self.navigationItem.rightBarButtonItem  = synchronizationButton
         
-        let mapCreationButton = UIBarButtonItem(title: "Create", style: .plain, target: self, action: nil)
+        let createButton = UIBarButtonItem(title: "Create", style: .plain, target: self, action: #selector(createButtonPressed))
         
-        self.navigationItem.leftBarButtonItem  = mapCreationButton
+        self.navigationItem.rightBarButtonItems = [synchronizationButton, createButton]
+        
+        let returnButton = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(returnButtonPressed))
+        
+        self.navigationItem.leftBarButtonItem  = returnButton
+    }
+    
+    
+    @objc func createButtonPressed() {
+        
+        self.storagePresenter.createMap(navigationController: self.navigationController!)
+    }
+    
+    
+    @objc func returnButtonPressed() {
+        
+        self.storagePresenter.returnToCurrentMap()
     }
 }
