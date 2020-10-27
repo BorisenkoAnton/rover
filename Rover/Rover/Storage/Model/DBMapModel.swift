@@ -8,11 +8,15 @@
 
 import RealmSwift
 
-class DBMapModel: Object {
+class DBMapModel: Object, Codable {
     
     @objc dynamic var name = ""
     
     var mapItems = List<DBMapItem>()
+    var asDictionary: [String: Any]? {
+      guard let data = try? JSONEncoder().encode(self) else { return nil }
+      return (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)).flatMap { $0 as? [String: Any] }
+    }
     
     convenience init(name: String, mapItems: List<DBMapItem>) {
         
@@ -23,7 +27,7 @@ class DBMapModel: Object {
 }
 
 
-class DBMapItem: Object {
+class DBMapItem: Object, Codable {
     
     @objc dynamic var surfaceType: String?
     @objc dynamic var sectionIndex = 0
