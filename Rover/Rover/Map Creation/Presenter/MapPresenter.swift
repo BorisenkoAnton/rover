@@ -64,8 +64,11 @@ class MapPresenter {
     
     func saveMap(map: DBMapModel) {
         
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy HH:mm:ss"
+        
         try! realm.write {
-            map.name = "test"
+            map.name = dateFormatter.string(from: Date())
         }
         
         StorageManager.saveMap(map)
