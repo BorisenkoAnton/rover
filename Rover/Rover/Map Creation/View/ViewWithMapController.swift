@@ -102,18 +102,6 @@ class ViewWithMapController: UIViewController {
         mapItemsCollectionView.register(MapItemCollectionViewCell.self, forCellWithReuseIdentifier: MapItemCollectionViewCell.reuseID)
     }
     
-    
-    func createButton(withTitle title:String, andTargetAction action: Selector, forEvent event:UIControl.Event) -> UIButton{
-        
-        let button = UIButton()
-        
-        button.setTitle(title, for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: action, for: event)
-        
-        return button
-    }
-    
     // Configuring and adding top (with random generating button) and bottom (with surface types) panels to view
     func configureAndAddPanels() {
         

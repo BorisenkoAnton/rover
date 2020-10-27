@@ -11,6 +11,7 @@ import RealmSwift
 
 extension ViewWithMapController: ViewWithMapControllerDelegate {
     
+    // Highliting selected surface
     func highlightBottomPanelButton(selectedSurfaceType: SurfaceType) {
         
         for bottomButton in bottomPanelStackView.arrangedSubviews {
@@ -80,7 +81,7 @@ extension ViewWithMapController: ViewWithMapControllerDelegate {
         self.mapItemsCollectionView.reloadData()
     }
     
-    
+    // Map with no surfaces
     func setClearMap() {
         
         self.map = DBMapModel()
