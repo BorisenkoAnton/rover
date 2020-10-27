@@ -59,4 +59,12 @@ class StoragePresenter {
         
         self.storageViewControllerDelegate?.navigate()
     }
+    
+    
+    func changeMapName(map: DBMapModel, newName: String) {
+        
+        try! realm.write {
+            map.name = newName
+        }
+    }
 }
