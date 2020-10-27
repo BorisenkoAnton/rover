@@ -71,4 +71,22 @@ extension ViewWithMapController: ViewWithMapControllerDelegate {
         
         self.navigationController?.present(viewController, animated: true)
     }
+    
+    
+    func setMap(map: DBMapModel) {
+        
+        self.map = map
+        
+        self.mapItemsCollectionView.reloadData()
+    }
+    
+    
+    func setClearMap() {
+        
+        self.map = DBMapModel()
+        
+        self.map.mapItems.append(objectsIn: [DBMapItem](repeating: DBMapItem(), count: itemsPerRow * rowsCount))
+        
+        self.mapItemsCollectionView.reloadData()
+    }
 }

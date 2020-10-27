@@ -6,7 +6,7 @@
 //  Copyright © 2020 Anton Borisenko. All rights reserved.
 //
 
-import UIKit
+import RealmSwift
 
 protocol ViewWithMapControllerDelegate: class {
     
@@ -14,4 +14,6 @@ protocol ViewWithMapControllerDelegate: class {
     func setMapItemSurface(indexPath: IndexPath, surfaceType: SurfaceType)
     func setAllMapItemsSurfaceTypes(mapItemSurfaceTypes: [SurfaceType])
     func navigateTo(viewController: UIViewController)
+    func setMap(map: DBMapModel)
+    func setClearMap()
 }

@@ -34,15 +34,13 @@ class ViewWithMapController: UIViewController {
         
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         
-        if self.map == nil {
-            self.map = DBMapModel()
-            
-            self.map.mapItems.append(objectsIn: [DBMapItem](repeating: DBMapItem(), count: itemsPerRow * rowsCount))
-        }
-        
         configureAndAddPanels()
         
         configureAndAddCollectionView()
+        
+        if self.map == nil {
+            setClearMap()
+        }
         
         mapPresenter.setViewDelegate(viewWithMapControllerDelegate: self)
         

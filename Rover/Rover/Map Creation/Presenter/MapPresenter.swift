@@ -70,4 +70,16 @@ class MapPresenter {
         
         StorageManager.saveMap(map)
     }
+    
+    
+    func loadStoredMap(map: DBMapModel) {
+        
+        self.viewWithMapControllerDelegate?.setMap(map: map)
+    }
+    
+    
+    func clearMap() {
+        
+        self.viewWithMapControllerDelegate?.setClearMap()
+    }
 }
