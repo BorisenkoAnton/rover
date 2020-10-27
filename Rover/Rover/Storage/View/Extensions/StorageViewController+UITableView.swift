@@ -23,8 +23,10 @@ extension StorageViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
-        cell.update(mapName: self.storedMaps[indexPath.row].name)
-
+        cell.update(mapName: self.storedMaps[indexPath.row].name, textfieldTag: indexPath.row)
+        
+        cell.mapNameTextField.delegate = self
+        
         return cell
     }
     

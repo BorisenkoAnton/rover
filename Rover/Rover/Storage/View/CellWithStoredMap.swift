@@ -11,19 +11,19 @@ import UIKit
 class CellWithStoredMap: UITableViewCell {
     
     static let reuseID = String(describing: CellWithStoredMap.self)
-    
-    var mapNameLabel: UILabel!
+
+    var mapNameTextField: UITextField!
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        self.mapNameLabel = UILabel()
+        self.mapNameTextField = UITextField()
         
-        self.mapNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        self.mapNameLabel.textAlignment = .center
+        self.mapNameTextField.translatesAutoresizingMaskIntoConstraints = false
+        self.mapNameTextField.textAlignment = .center
         
-        self.addSubview(mapNameLabel)
+        self.addSubview(mapNameTextField)
         
         initConstraints()
     }
@@ -34,9 +34,10 @@ class CellWithStoredMap: UITableViewCell {
     }
     
     
-    func update(mapName: String) {
+    func update(mapName: String, textfieldTag: Int) {
         
-        self.mapNameLabel.text = mapName
+        self.mapNameTextField.text = mapName
+        self.mapNameTextField.tag = textfieldTag
     }
     
     
@@ -44,10 +45,10 @@ class CellWithStoredMap: UITableViewCell {
         
         NSLayoutConstraint.activate([
             self.heightAnchor.constraint(equalToConstant: 50.0),
-            mapNameLabel.topAnchor.constraint(equalTo: self.topAnchor),
-            mapNameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            mapNameLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            mapNameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor)
+            mapNameTextField.topAnchor.constraint(equalTo: self.topAnchor),
+            mapNameTextField.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            mapNameTextField.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            mapNameTextField.leadingAnchor.constraint(equalTo: self.leadingAnchor)
         ])
     }
 }

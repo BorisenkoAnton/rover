@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B401573925480EE10010CBAA /* StorageViewController+UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B401573825480EE10010CBAA /* StorageViewController+UITextFieldDelegate.swift */; };
 		B40F6DC6254014DD004A3845 /* ViewWithMapControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40F6DC5254014DD004A3845 /* ViewWithMapControllerDelegate.swift */; };
 		B40F6DC825401792004A3845 /* MapPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40F6DC725401792004A3845 /* MapPresenter.swift */; };
 		B411B1692542EA2800BF9F60 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B411B1682542EA2800BF9F60 /* StorageManager.swift */; };
@@ -39,6 +40,7 @@
 /* Begin PBXFileReference section */
 		575A266CEAFB6BDB4E1B8EC3 /* Pods_Rover.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Rover.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		746B1B0A4ED93577F7AFA31D /* Pods-Rover.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rover.release.xcconfig"; path = "Target Support Files/Pods-Rover/Pods-Rover.release.xcconfig"; sourceTree = "<group>"; };
+		B401573825480EE10010CBAA /* StorageViewController+UITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StorageViewController+UITextFieldDelegate.swift"; sourceTree = "<group>"; };
 		B40F6DC5254014DD004A3845 /* ViewWithMapControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewWithMapControllerDelegate.swift; sourceTree = "<group>"; };
 		B40F6DC725401792004A3845 /* MapPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPresenter.swift; sourceTree = "<group>"; };
 		B411B1682542EA2800BF9F60 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 			children = (
 				B411B16F2543046F00BF9F60 /* StorageViewController+UITableView.swift */,
 				B430F2F5254311650025FC07 /* StorageViewController+StorageViewControllerDelegate.swift */,
+				B401573825480EE10010CBAA /* StorageViewController+UITextFieldDelegate.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 				B411B1692542EA2800BF9F60 /* StorageManager.swift in Sources */,
 				B4EB44F92542CE3F0014DB6D /* ViewWithMapController+UICollectionView.swift in Sources */,
 				B430F2F6254311650025FC07 /* StorageViewController+StorageViewControllerDelegate.swift in Sources */,
+				B401573925480EE10010CBAA /* StorageViewController+UITextFieldDelegate.swift in Sources */,
 				B4E378E7253EC8A900C80866 /* ViewWithMapController.swift in Sources */,
 				B41D8C90253EDD50005D7B9D /* MapItem.swift in Sources */,
 				B45DCF332541BC5F006A5C69 /* StorageViewController.swift in Sources */,
