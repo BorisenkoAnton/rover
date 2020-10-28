@@ -38,9 +38,11 @@ extension ViewWithMapController: ViewWithMapControllerDelegate {
             let mapItem = DBMapItem()
 
             mapItem.surfaceType = SurfaceType.returnStringValue(surfaceType: surfaceType)
-
+            
             self.map.mapItems.replace(index: indexPath.row, object: mapItem)
 
+            self.map.timestamp = Int(Date().timeIntervalSince1970)
+            
             self.mapItemsCollectionView.reloadData()
         }
     }
