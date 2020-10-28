@@ -64,13 +64,6 @@ class MapPresenter {
     
     func saveMap(map: DBMapModel) {
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yyyy HH:mm:ss"
-        
-        try! realm.write {
-            map.name = dateFormatter.string(from: Date())
-        }
-        
         StorageManager.saveMap(map)
     }
     
@@ -84,5 +77,14 @@ class MapPresenter {
     func clearMap() {
         
         self.viewWithMapControllerDelegate?.setClearMap()
+    }
+    
+    
+    func mapWasChanged(map: DBMapModel) {
+        
+        if map.name != "" {
+            
+            StorageManager.updateMapInCloud(map: map)
+        }
     }
 }

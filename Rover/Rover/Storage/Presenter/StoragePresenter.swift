@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class StoragePresenter {
     
@@ -21,11 +22,50 @@ class StoragePresenter {
     
     func getStoredMaps() {
         
-        let storedMapsResults = realm.objects(DBMapModel.self)
+        let storedMapsResults = StorageManager.getStoredMaps()
         
-        let storedMaps = Array(storedMapsResults)
+        var storedMaps = Array(storedMapsResults)
         
-        self.storageViewControllerDelegate?.setArrayOfStoredMaps(storedMaps: storedMaps)
+        var storedMapsNames = [String]()
+        
+        for storedMap in storedMaps {
+            
+            storedMapsNames.append(storedMap.name)
+        }
+        
+        let latestlocalUpdatesTimestamp = storedMapsResults.max(ofProperty: "timestamp") as Int?
+
+        firestore.collection("maps").whereField("timestamp", isGreaterThan: latestlocalUpdatesTimestamp).getDocuments { (querySnapshot, error) in
+            
+            if let error = error {
+                print("Error getting documents: \(error)")
+            } else {
+                
+                for document in querySnapshot!.documents {
+                    do {
+                        let map = try DBMapModel(from: document.data())
+                        
+                        if storedMapsNames.firstIndex(of: map.name) != nil {
+                            try realm.write {
+                                
+                                let local =  storedMaps[storedMapsNames.firstIndex(of: map.name)!]
+                                
+                                for (index, value) in map.mapItems.enumerated() {
+                                    local.mapItems[index] = value
+                                }
+                                
+                                local.timestamp = map.timestamp
+                                
+                            }
+                        }
+                    } catch {
+                        print("Error while deserializing")
+                    }
+                }
+            }
+            
+            self.storageViewControllerDelegate?.setArrayOfStoredMaps(storedMaps: storedMaps)
+        }
     }
     
     

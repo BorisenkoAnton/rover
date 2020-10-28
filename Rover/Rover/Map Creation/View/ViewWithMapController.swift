@@ -54,6 +54,7 @@ class ViewWithMapController: UIViewController {
     
     @objc func storageButtonPressed() {
         
+        self.mapPresenter.mapWasChanged(map: self.map)
         self.mapPresenter.storageButtonPressed()
     }
     
