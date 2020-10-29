@@ -81,7 +81,7 @@ class StorageManager {
     }
     
     // Setting surface types for all map
-    static func setMapItemsSurfaceTypes(map: DBMapModel, surfaces: [SurfaceType]) {
+    static func setSurfacesForFullMap(map: DBMapModel, surfaces: [SurfaceType]) {
         
         let mapItems = List<DBMapItem>()
         
