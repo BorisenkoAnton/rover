@@ -12,7 +12,7 @@ class SceneFactory {
     
     static func mapCreationScene() -> UINavigationController {
         
-        return createViewController(viewController: ViewWithMapController.self, navigationController: UINavigationController.self)
+        return createViewController(viewController: MapCreationViewController.self, navigationController: UINavigationController.self)
     }
     
     

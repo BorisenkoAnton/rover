@@ -9,20 +9,15 @@
 import UIKit
 import RealmSwift
 
-class ViewWithMapController: UIViewController {
+class MapCreationViewController: UIViewController {
 
     var mapItemsCollectionView: UICollectionView! // Collection View, representing map
     var bottomPanelStackView: UIStackView!
     
-    var itemsPerRow = 9
-    var rowsCount = 16
-    var minimumItemSpacing: CGFloat = MostOftenConstraintsConstants.minimumSpacing.cgfloatValue
-    let sectionInsets = UIEdgeInsets(
-                                    top: MostOftenConstraintsConstants.defaultSpacing.cgfloatValue,
-                                    left: MostOftenConstraintsConstants.defaultSpacing.cgfloatValue,
-                                    bottom: MostOftenConstraintsConstants.defaultSpacing.cgfloatValue,
-                                    right: MostOftenConstraintsConstants.defaultSpacing.cgfloatValue
-    )
+    let itemsPerRow = 9
+    let rowsCount = 16
+    let minimumItemSpacing: CGFloat = 1.0
+    let sectionInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
     
     var map: DBMapModel!
     
@@ -67,7 +62,7 @@ class ViewWithMapController: UIViewController {
     
     @objc func randomMapGenerationButtonPressed() {
         
-        mapPresenter.generateRandomMap(numberOfMapItems: self.map.mapItems.count)
+        mapPresenter.generateRandomMap(numberOfMapItems: self.map.mapItems.count, map: self.map)
     }
     
     
@@ -94,10 +89,10 @@ class ViewWithMapController: UIViewController {
         
         NSLayoutConstraint.activate([
             mapItemsCollectionView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            mapItemsCollectionView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: MostOftenConstraintsConstants.top.cgfloatValue),
-            mapItemsCollectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: MostOftenConstraintsConstants.leading.cgfloatValue),
-            mapItemsCollectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -MostOftenConstraintsConstants.trailing.cgfloatValue),
-            mapItemsCollectionView.bottomAnchor.constraint(equalTo: bottomPanelStackView.topAnchor, constant: -MostOftenConstraintsConstants.bottom.cgfloatValue)
+            mapItemsCollectionView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 20.0),
+            mapItemsCollectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20.0),
+            mapItemsCollectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20.0),
+            mapItemsCollectionView.bottomAnchor.constraint(equalTo: bottomPanelStackView.topAnchor, constant: -20.0)
         ])
         
         mapItemsCollectionView.register(MapItemCollectionViewCell.self, forCellWithReuseIdentifier: MapItemCollectionViewCell.reuseID)
@@ -122,15 +117,12 @@ class ViewWithMapController: UIViewController {
         
         view.addSubview(bottomPanelStackView)
         
-        let bottomPanelStackViewConstraints = ConstraintsConstantsSet(top: nil,
-                                                                      trailing: -MostOftenConstraintsConstants.trailing.cgfloatValue,
-                                                                      bottom: -MostOftenConstraintsConstants.bottom.cgfloatValue,
-                                                                      leading: MostOftenConstraintsConstants.leading.cgfloatValue,
-                                                                      height: 80.0,
-                                                                      width: nil
-        )
-        
-        activateConstraints(for: bottomPanelStackView, constraintsConstantsSet: bottomPanelStackViewConstraints)
+        NSLayoutConstraint.activate([
+            bottomPanelStackView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20.0),
+            bottomPanelStackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20.0),
+            bottomPanelStackView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -20.0),
+            bottomPanelStackView.heightAnchor.constraint(equalToConstant: 80.0)
+        ])
         
         for surfaceType in SurfaceType.allCases {
             let bottomPanelButton = BottomPanelButton()
@@ -157,7 +149,7 @@ class ViewWithMapController: UIViewController {
         panel.translatesAutoresizingMaskIntoConstraints = false
         panel.alignment = .fill
         panel.distribution = .fillEqually
-        panel.spacing = MostOftenConstraintsConstants.defaultSpacing.cgfloatValue
+        panel.spacing = 8.0
         
         return panel
     }
@@ -168,37 +160,5 @@ class ViewWithMapController: UIViewController {
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(detectPanGestureRecognizer(_:)))
         
         mapItemsCollectionView.addGestureRecognizer(panGestureRecognizer)
-    }
-    
-    // Activating constraints for UIView element relative to self.view
-    func activateConstraints(for viewElement: UIView, constraintsConstantsSet: ConstraintsConstantsSet) {
-        
-        var constraintsToActivate = [NSLayoutConstraint]()
-        
-        if constraintsConstantsSet.top != nil{
-            constraintsToActivate.append(viewElement.topAnchor.constraint(equalTo: self.view.topAnchor, constant: constraintsConstantsSet.top!))
-        }
-        
-        if constraintsConstantsSet.leading != nil {
-            constraintsToActivate.append(viewElement.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: constraintsConstantsSet.leading!))
-        }
-        
-        if constraintsConstantsSet.trailing != nil {
-            constraintsToActivate.append(viewElement.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: constraintsConstantsSet.trailing!))
-        }
-        
-        if constraintsConstantsSet.bottom != nil {
-            constraintsToActivate.append(viewElement.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: constraintsConstantsSet.bottom!))
-        }
-        
-        if constraintsConstantsSet.height != nil {
-            constraintsToActivate.append(viewElement.heightAnchor.constraint(equalToConstant: constraintsConstantsSet.height!))
-        }
-        
-        if constraintsConstantsSet.width != nil {
-            constraintsToActivate.append(viewElement.widthAnchor.constraint(equalToConstant: constraintsConstantsSet.width!))
-        }
-        
-        NSLayoutConstraint.activate(constraintsToActivate)
     }
 }

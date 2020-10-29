@@ -8,11 +8,11 @@
 
 import RealmSwift
 
-protocol ViewWithMapControllerDelegate: class {
+protocol MapCreationViewControllerDelegate: class {
     
     func highlightBottomPanelButton(selectedSurfaceType: SurfaceType)
     func setMapItemSurface(indexPath: IndexPath, surfaceType: SurfaceType)
-    func setAllMapItemsSurfaceTypes(mapItemSurfaces: [SurfaceType])
+    func reloadMapView()
     func navigateTo(viewController: UIViewController)
     func setMap(map: DBMapModel)
     func setClearMap()
