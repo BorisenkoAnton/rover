@@ -23,6 +23,7 @@ extension StorageViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
+        // Tag for text fild is set to track index of Map, which name will be changed
         cell.update(mapName: self.storedMaps[indexPath.row].name, textfieldTag: indexPath.row)
         
         cell.mapNameTextField.delegate = self

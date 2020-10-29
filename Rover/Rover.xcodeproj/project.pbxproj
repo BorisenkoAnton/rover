@@ -25,6 +25,7 @@
 		B468803225417598002BFF51 /* Constraints Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = B468803125417598002BFF51 /* Constraints Set.swift */; };
 		B4743C11253EF823005BEFE5 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4743C10253EF823005BEFE5 /* Launch Screen.storyboard */; };
 		B4743C13253F1E16005BEFE5 /* BottomPanelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4743C12253F1E16005BEFE5 /* BottomPanelButton.swift */; };
+		B47E71CF25482F1500969686 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B47E71CE25482F1500969686 /* GoogleService-Info.plist */; };
 		B4E378E3253EC8A900C80866 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E378E2253EC8A900C80866 /* AppDelegate.swift */; };
 		B4E378E5253EC8A900C80866 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E378E4253EC8A900C80866 /* SceneDelegate.swift */; };
 		B4E378E7253EC8A900C80866 /* ViewWithMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E378E6253EC8A900C80866 /* ViewWithMapController.swift */; };
@@ -58,6 +59,7 @@
 		B468803125417598002BFF51 /* Constraints Set.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constraints Set.swift"; sourceTree = "<group>"; };
 		B4743C10253EF823005BEFE5 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		B4743C12253F1E16005BEFE5 /* BottomPanelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomPanelButton.swift; sourceTree = "<group>"; };
+		B47E71CE25482F1500969686 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B4E378DF253EC8A900C80866 /* Rover.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rover.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4E378E2253EC8A900C80866 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B4E378E4253EC8A900C80866 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -165,11 +167,12 @@
 			children = (
 				B4E378F6253ED43F00C80866 /* Map Creation */,
 				B45DCF312541BC0C006A5C69 /* Storage */,
+				B4EB44EF2542C4530014DB6D /* SceneFactory.swift */,
 				B4E378E2253EC8A900C80866 /* AppDelegate.swift */,
 				B4E378E4253EC8A900C80866 /* SceneDelegate.swift */,
 				B4E378EB253EC8AA00C80866 /* Assets.xcassets */,
 				B4E378F0253EC8AA00C80866 /* Info.plist */,
-				B4EB44EF2542C4530014DB6D /* SceneFactory.swift */,
+				B47E71CE25482F1500969686 /* GoogleService-Info.plist */,
 			);
 			path = Rover;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4743C11253EF823005BEFE5 /* Launch Screen.storyboard in Resources */,
+				B47E71CF25482F1500969686 /* GoogleService-Info.plist in Resources */,
 				B4E378EC253EC8AA00C80866 /* Assets.xcassets in Resources */,
 				B41D8C96253EF656005D7B9D /* Default-568h@2x.png in Resources */,
 			);

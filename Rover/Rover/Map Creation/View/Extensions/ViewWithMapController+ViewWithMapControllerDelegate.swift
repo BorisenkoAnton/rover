@@ -11,6 +11,7 @@ import RealmSwift
 
 extension ViewWithMapController: ViewWithMapControllerDelegate {
     
+    // Highliting selected surface
     func highlightBottomPanelButton(selectedSurfaceType: SurfaceType) {
         
         for bottomButton in bottomPanelStackView.arrangedSubviews {
@@ -37,33 +38,21 @@ extension ViewWithMapController: ViewWithMapControllerDelegate {
             let mapItem = DBMapItem()
 
             mapItem.surfaceType = SurfaceType.returnStringValue(surfaceType: surfaceType)
-
+            
             self.map.mapItems.replace(index: indexPath.row, object: mapItem)
 
+            self.map.timestamp = Int(Date().timeIntervalSince1970)
+            
             self.mapItemsCollectionView.reloadData()
         }
     }
     
     // Set surface types for all map
-    func setAllMapItemsSurfaceTypes(mapItemSurfaceTypes: [SurfaceType]) {
-        try! realm.write {
-            let mapItems = List<DBMapItem>()
-            
-            for mapItemSurfaceType in mapItemSurfaceTypes {
-                
-                let mapItem = DBMapItem()
-                
-                mapItem.surfaceType = SurfaceType.returnStringValue(surfaceType: mapItemSurfaceType)
-                
-                mapItems.append(mapItem)
-            }
-            
-            self.map.mapItems.removeAll()
-            
-            self.map.mapItems.append(objectsIn: mapItems)
-            
-            self.mapItemsCollectionView.reloadData()
-        }
+    func setAllMapItemsSurfaceTypes(mapItemSurfaces: [SurfaceType]) {
+        
+        StorageManager.setMapItemsSurfaceTypes(map: self.map, surfaces: mapItemSurfaces)
+        
+        self.mapItemsCollectionView.reloadData()
     }
     
     
@@ -80,7 +69,7 @@ extension ViewWithMapController: ViewWithMapControllerDelegate {
         self.mapItemsCollectionView.reloadData()
     }
     
-    
+    // Map with no surfaces
     func setClearMap() {
         
         self.map = DBMapModel()

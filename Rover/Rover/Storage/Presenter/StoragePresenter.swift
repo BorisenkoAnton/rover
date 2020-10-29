@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class StoragePresenter {
     
@@ -21,11 +22,23 @@ class StoragePresenter {
     
     func getStoredMaps() {
         
-        let storedMapsResults = realm.objects(DBMapModel.self)
+        let storedMapsResults = StorageManager.getStoredMaps()
         
         let storedMaps = Array(storedMapsResults)
         
-        self.storageViewControllerDelegate?.setArrayOfStoredMaps(storedMaps: storedMaps)
+        var storedMapsNames = [String]()
+        
+        for storedMap in storedMaps {
+            
+            storedMapsNames.append(storedMap.name)
+        }
+        
+        let latestlocalUpdatesTimestamp = storedMapsResults.max(ofProperty: "timestamp") as Int?
+
+        StorageManager.syncronize(storedMaps: storedMaps, storedMapsNames: storedMapsNames, latestLocalTimestamp: latestlocalUpdatesTimestamp) {
+            
+            self.storageViewControllerDelegate?.setArrayOfStoredMaps(storedMaps: storedMaps)
+        }
     }
     
     
@@ -63,8 +76,6 @@ class StoragePresenter {
     
     func changeMapName(map: DBMapModel, newName: String) {
         
-        try! realm.write {
-            map.name = newName
-        }
+        StorageManager.changeMapName(map, newName: newName)
     }
 }
