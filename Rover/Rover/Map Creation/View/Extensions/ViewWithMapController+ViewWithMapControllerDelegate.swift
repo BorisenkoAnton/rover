@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-extension ViewWithMapController: ViewWithMapControllerDelegate {
+extension MapCreationViewController: MapCreationViewControllerDelegate {
     
     // Highliting selected surface
     func highlightBottomPanelButton(selectedSurfaceType: SurfaceType) {
@@ -48,9 +48,7 @@ extension ViewWithMapController: ViewWithMapControllerDelegate {
     }
     
     // Set surface types for all map
-    func setAllMapItemsSurfaceTypes(mapItemSurfaces: [SurfaceType]) {
-        
-        StorageManager.setMapItemsSurfaceTypes(map: self.map, surfaces: mapItemSurfaces)
+    func reloadMapView() {
         
         self.mapItemsCollectionView.reloadData()
     }

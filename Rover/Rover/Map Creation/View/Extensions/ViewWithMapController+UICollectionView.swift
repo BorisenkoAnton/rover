@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension ViewWithMapController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension MapCreationViewController: UICollectionViewDelegate, UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         

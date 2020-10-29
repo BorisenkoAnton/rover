@@ -52,7 +52,7 @@ class StoragePresenter {
         
         let presentingViewController = (navigationController.presentingViewController as! UINavigationController).viewControllers.first
         
-        (presentingViewController as! ViewWithMapController).mapPresenter.loadStoredMap(map: map)
+        (presentingViewController as! MapCreationViewController).mapPresenter.loadStoredMap(map: map)
         
         self.storageViewControllerDelegate?.navigate()
     }
@@ -62,7 +62,7 @@ class StoragePresenter {
         
         let presentingViewController = (navigationController.presentingViewController as! UINavigationController).viewControllers.first
         
-        (presentingViewController as! ViewWithMapController).mapPresenter.clearMap()
+        (presentingViewController as! MapCreationViewController).mapPresenter.clearMap()
         
         self.storageViewControllerDelegate?.navigate()
     }

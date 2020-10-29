@@ -10,11 +10,11 @@ import RealmSwift
 
 class MapPresenter {
     
-    weak private var viewWithMapControllerDelegate: ViewWithMapControllerDelegate?
+    weak private var viewWithMapControllerDelegate: MapCreationViewControllerDelegate?
     private var selectedSurfaceType: SurfaceType?
     
     
-    func setViewDelegate(viewWithMapControllerDelegate: ViewWithMapControllerDelegate) {
+    func setViewDelegate(viewWithMapControllerDelegate: MapCreationViewControllerDelegate) {
         
         self.viewWithMapControllerDelegate = viewWithMapControllerDelegate
     }
@@ -35,7 +35,7 @@ class MapPresenter {
     }
     
     
-    func generateRandomMap(numberOfMapItems: Int) {
+    func generateRandomMap(numberOfMapItems: Int, map: DBMapModel) {
         
         var generatedMap = [SurfaceType]()
         let allSurfaceTypes = SurfaceType.allCases
@@ -48,7 +48,9 @@ class MapPresenter {
             generatedMap.append(surfaceType)
         }
         
-        self.viewWithMapControllerDelegate?.setAllMapItemsSurfaceTypes(mapItemSurfaces: generatedMap)
+        StorageManager.setSurfacesForFullMap(map: map, surfaces: generatedMap)
+        
+        self.viewWithMapControllerDelegate?.reloadMapView()
     }
     
     

@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension ViewWithMapController: UICollectionViewDelegateFlowLayout {
+extension MapCreationViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
      
