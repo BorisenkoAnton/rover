@@ -23,9 +23,9 @@ class StorageManager {
         
         let mapName = "map" + dateFormatter.string(from: Date())
         
-        map.name = mapName
-        
         try! realm.write {
+            
+            map.name = mapName
             
             realm.add(map)
         }
