@@ -57,7 +57,7 @@ class StorageViewController: UIViewController {
     
     func configureNavigationBar() {
         
-        let synchronizationButton = UIBarButtonItem(title: "Synchronize", style: .plain, target: self, action: nil)
+        let synchronizationButton = UIBarButtonItem(title: "Synchronize", style: .plain, target: self, action: #selector(synchronizeButtonPressed))
         
         self.navigationItem.rightBarButtonItem  = synchronizationButton
         
@@ -80,5 +80,11 @@ class StorageViewController: UIViewController {
     @objc func returnButtonPressed() {
         
         self.storagePresenter.returnToCurrentMap()
+    }
+    
+    
+    @objc func synchronizeButtonPressed() {
+        
+        self.storagePresenter.getStoredMaps()
     }
 }
