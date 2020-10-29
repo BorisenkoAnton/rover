@@ -24,7 +24,7 @@ class StoragePresenter {
         
         let storedMapsResults = StorageManager.getStoredMaps()
         
-        var storedMaps = Array(storedMapsResults)
+        let storedMaps = Array(storedMapsResults)
         
         var storedMapsNames = [String]()
         
@@ -35,34 +35,7 @@ class StoragePresenter {
         
         let latestlocalUpdatesTimestamp = storedMapsResults.max(ofProperty: "timestamp") as Int?
 
-        firestore.collection("maps").whereField("timestamp", isGreaterThan: latestlocalUpdatesTimestamp).getDocuments { (querySnapshot, error) in
-            
-            if let error = error {
-                print("Error getting documents: \(error)")
-            } else {
-                
-                for document in querySnapshot!.documents {
-                    do {
-                        let map = try DBMapModel(from: document.data())
-                        
-                        if storedMapsNames.firstIndex(of: map.name) != nil {
-                            try realm.write {
-                                
-                                let local =  storedMaps[storedMapsNames.firstIndex(of: map.name)!]
-                                
-                                for (index, value) in map.mapItems.enumerated() {
-                                    local.mapItems[index] = value
-                                }
-                                
-                                local.timestamp = map.timestamp
-                                
-                            }
-                        }
-                    } catch {
-                        print("Error while deserializing")
-                    }
-                }
-            }
+        StorageManager.syncronize(storedMaps: storedMaps, storedMapsNames: storedMapsNames, latestLocalTimestamp: latestlocalUpdatesTimestamp) {
             
             self.storageViewControllerDelegate?.setArrayOfStoredMaps(storedMaps: storedMaps)
         }
@@ -103,6 +76,6 @@ class StoragePresenter {
     
     func changeMapName(map: DBMapModel, newName: String) {
         
-        StorageManager.changeMapname(map, newName: newName)
+        StorageManager.changeMapName(map, newName: newName)
     }
 }

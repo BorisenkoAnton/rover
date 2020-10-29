@@ -48,25 +48,11 @@ extension ViewWithMapController: ViewWithMapControllerDelegate {
     }
     
     // Set surface types for all map
-    func setAllMapItemsSurfaceTypes(mapItemSurfaceTypes: [SurfaceType]) {
-        try! realm.write {
-            let mapItems = List<DBMapItem>()
-            
-            for mapItemSurfaceType in mapItemSurfaceTypes {
-                
-                let mapItem = DBMapItem()
-                
-                mapItem.surfaceType = SurfaceType.returnStringValue(surfaceType: mapItemSurfaceType)
-                
-                mapItems.append(mapItem)
-            }
-            
-            self.map.mapItems.removeAll()
-            
-            self.map.mapItems.append(objectsIn: mapItems)
-            
-            self.mapItemsCollectionView.reloadData()
-        }
+    func setAllMapItemsSurfaceTypes(mapItemSurfaces: [SurfaceType]) {
+        
+        StorageManager.setMapItemsSurfaceTypes(map: self.map, surfaces: mapItemSurfaces)
+        
+        self.mapItemsCollectionView.reloadData()
     }
     
     

@@ -12,7 +12,7 @@ protocol ViewWithMapControllerDelegate: class {
     
     func highlightBottomPanelButton(selectedSurfaceType: SurfaceType)
     func setMapItemSurface(indexPath: IndexPath, surfaceType: SurfaceType)
-    func setAllMapItemsSurfaceTypes(mapItemSurfaceTypes: [SurfaceType])
+    func setAllMapItemsSurfaceTypes(mapItemSurfaces: [SurfaceType])
     func navigateTo(viewController: UIViewController)
     func setMap(map: DBMapModel)
     func setClearMap()

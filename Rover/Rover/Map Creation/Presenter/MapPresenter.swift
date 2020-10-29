@@ -48,7 +48,7 @@ class MapPresenter {
             generatedMap.append(surfaceType)
         }
         
-        self.viewWithMapControllerDelegate?.setAllMapItemsSurfaceTypes(mapItemSurfaceTypes: generatedMap)
+        self.viewWithMapControllerDelegate?.setAllMapItemsSurfaceTypes(mapItemSurfaces: generatedMap)
     }
     
     
