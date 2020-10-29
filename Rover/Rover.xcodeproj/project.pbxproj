@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B401573925480EE10010CBAA /* StorageViewController+UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B401573825480EE10010CBAA /* StorageViewController+UITextFieldDelegate.swift */; };
-		B40F6DC6254014DD004A3845 /* ViewWithMapControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40F6DC5254014DD004A3845 /* ViewWithMapControllerDelegate.swift */; };
+		B40F6DC6254014DD004A3845 /* MapCreationViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40F6DC5254014DD004A3845 /* MapCreationViewControllerDelegate.swift */; };
 		B40F6DC825401792004A3845 /* MapPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40F6DC725401792004A3845 /* MapPresenter.swift */; };
 		B411B1692542EA2800BF9F60 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B411B1682542EA2800BF9F60 /* StorageManager.swift */; };
 		B411B16D2542EC3700BF9F60 /* DBMapModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B411B16C2542EC3700BF9F60 /* DBMapModel.swift */; };
@@ -22,15 +22,13 @@
 		B430F2F6254311650025FC07 /* StorageViewController+StorageViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B430F2F5254311650025FC07 /* StorageViewController+StorageViewControllerDelegate.swift */; };
 		B430F2F8254311CC0025FC07 /* StoragePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B430F2F7254311CC0025FC07 /* StoragePresenter.swift */; };
 		B45DCF332541BC5F006A5C69 /* StorageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45DCF322541BC5F006A5C69 /* StorageViewController.swift */; };
-		B468803225417598002BFF51 /* Constraints Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = B468803125417598002BFF51 /* Constraints Set.swift */; };
 		B4743C11253EF823005BEFE5 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4743C10253EF823005BEFE5 /* Launch Screen.storyboard */; };
 		B4743C13253F1E16005BEFE5 /* BottomPanelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4743C12253F1E16005BEFE5 /* BottomPanelButton.swift */; };
 		B47E71CF25482F1500969686 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B47E71CE25482F1500969686 /* GoogleService-Info.plist */; };
 		B4E378E3253EC8A900C80866 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E378E2253EC8A900C80866 /* AppDelegate.swift */; };
 		B4E378E5253EC8A900C80866 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E378E4253EC8A900C80866 /* SceneDelegate.swift */; };
-		B4E378E7253EC8A900C80866 /* ViewWithMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E378E6253EC8A900C80866 /* ViewWithMapController.swift */; };
+		B4E378E7253EC8A900C80866 /* MapCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E378E6253EC8A900C80866 /* MapCreationViewController.swift */; };
 		B4E378EC253EC8AA00C80866 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4E378EB253EC8AA00C80866 /* Assets.xcassets */; };
-		B4E6AF142541860200FC0102 /* Most Often Constraints Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E6AF132541860200FC0102 /* Most Often Constraints Constants.swift */; };
 		B4EB44F02542C4530014DB6D /* SceneFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EB44EF2542C4530014DB6D /* SceneFactory.swift */; };
 		B4EB44F52542CCF40014DB6D /* ViewWithMapController+ViewWithMapControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EB44F42542CCF40014DB6D /* ViewWithMapController+ViewWithMapControllerDelegate.swift */; };
 		B4EB44F72542CDA70014DB6D /* ViewWithMapController+UICollectionViewDelegateFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EB44F62542CDA70014DB6D /* ViewWithMapController+UICollectionViewDelegateFlowLayout.swift */; };
@@ -42,7 +40,7 @@
 		575A266CEAFB6BDB4E1B8EC3 /* Pods_Rover.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Rover.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		746B1B0A4ED93577F7AFA31D /* Pods-Rover.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rover.release.xcconfig"; path = "Target Support Files/Pods-Rover/Pods-Rover.release.xcconfig"; sourceTree = "<group>"; };
 		B401573825480EE10010CBAA /* StorageViewController+UITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StorageViewController+UITextFieldDelegate.swift"; sourceTree = "<group>"; };
-		B40F6DC5254014DD004A3845 /* ViewWithMapControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewWithMapControllerDelegate.swift; sourceTree = "<group>"; };
+		B40F6DC5254014DD004A3845 /* MapCreationViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCreationViewControllerDelegate.swift; sourceTree = "<group>"; };
 		B40F6DC725401792004A3845 /* MapPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPresenter.swift; sourceTree = "<group>"; };
 		B411B1682542EA2800BF9F60 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		B411B16C2542EC3700BF9F60 /* DBMapModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBMapModel.swift; sourceTree = "<group>"; };
@@ -56,17 +54,15 @@
 		B430F2F5254311650025FC07 /* StorageViewController+StorageViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StorageViewController+StorageViewControllerDelegate.swift"; sourceTree = "<group>"; };
 		B430F2F7254311CC0025FC07 /* StoragePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoragePresenter.swift; sourceTree = "<group>"; };
 		B45DCF322541BC5F006A5C69 /* StorageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageViewController.swift; sourceTree = "<group>"; };
-		B468803125417598002BFF51 /* Constraints Set.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constraints Set.swift"; sourceTree = "<group>"; };
 		B4743C10253EF823005BEFE5 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		B4743C12253F1E16005BEFE5 /* BottomPanelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomPanelButton.swift; sourceTree = "<group>"; };
 		B47E71CE25482F1500969686 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B4E378DF253EC8A900C80866 /* Rover.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rover.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4E378E2253EC8A900C80866 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B4E378E4253EC8A900C80866 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B4E378E6253EC8A900C80866 /* ViewWithMapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewWithMapController.swift; sourceTree = "<group>"; };
+		B4E378E6253EC8A900C80866 /* MapCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCreationViewController.swift; sourceTree = "<group>"; };
 		B4E378EB253EC8AA00C80866 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B4E378F0253EC8AA00C80866 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B4E6AF132541860200FC0102 /* Most Often Constraints Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Most Often Constraints Constants.swift"; sourceTree = "<group>"; };
 		B4EB44EF2542C4530014DB6D /* SceneFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneFactory.swift; sourceTree = "<group>"; };
 		B4EB44F42542CCF40014DB6D /* ViewWithMapController+ViewWithMapControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewWithMapController+ViewWithMapControllerDelegate.swift"; sourceTree = "<group>"; };
 		B4EB44F62542CDA70014DB6D /* ViewWithMapController+UICollectionViewDelegateFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewWithMapController+UICollectionViewDelegateFlowLayout.swift"; sourceTree = "<group>"; };
@@ -200,12 +196,10 @@
 			isa = PBXGroup;
 			children = (
 				B4EB44F32542CC760014DB6D /* Extensions */,
-				B40F6DC5254014DD004A3845 /* ViewWithMapControllerDelegate.swift */,
-				B4E378E6253EC8A900C80866 /* ViewWithMapController.swift */,
+				B40F6DC5254014DD004A3845 /* MapCreationViewControllerDelegate.swift */,
+				B4E378E6253EC8A900C80866 /* MapCreationViewController.swift */,
 				B41D8C93253EE084005D7B9D /* MapItemCollectionViewCell.swift */,
 				B4743C12253F1E16005BEFE5 /* BottomPanelButton.swift */,
-				B468803125417598002BFF51 /* Constraints Set.swift */,
-				B4E6AF132541860200FC0102 /* Most Often Constraints Constants.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -349,13 +343,12 @@
 				B4EB44F92542CE3F0014DB6D /* ViewWithMapController+UICollectionView.swift in Sources */,
 				B430F2F6254311650025FC07 /* StorageViewController+StorageViewControllerDelegate.swift in Sources */,
 				B401573925480EE10010CBAA /* StorageViewController+UITextFieldDelegate.swift in Sources */,
-				B4E378E7253EC8A900C80866 /* ViewWithMapController.swift in Sources */,
+				B4E378E7253EC8A900C80866 /* MapCreationViewController.swift in Sources */,
 				B41D8C90253EDD50005D7B9D /* MapItem.swift in Sources */,
 				B45DCF332541BC5F006A5C69 /* StorageViewController.swift in Sources */,
 				B40F6DC825401792004A3845 /* MapPresenter.swift in Sources */,
 				B411B1702543046F00BF9F60 /* StorageViewController+UITableView.swift in Sources */,
-				B4E6AF142541860200FC0102 /* Most Often Constraints Constants.swift in Sources */,
-				B40F6DC6254014DD004A3845 /* ViewWithMapControllerDelegate.swift in Sources */,
+				B40F6DC6254014DD004A3845 /* MapCreationViewControllerDelegate.swift in Sources */,
 				B430F2F12543072C0025FC07 /* CellWithStoredMap.swift in Sources */,
 				B430F2F8254311CC0025FC07 /* StoragePresenter.swift in Sources */,
 				B430F2F42543113A0025FC07 /* StorageViewControllerDelegate.swift in Sources */,
@@ -364,7 +357,6 @@
 				B4EB44F02542C4530014DB6D /* SceneFactory.swift in Sources */,
 				B4E378E3253EC8A900C80866 /* AppDelegate.swift in Sources */,
 				B41D8C94253EE084005D7B9D /* MapItemCollectionViewCell.swift in Sources */,
-				B468803225417598002BFF51 /* Constraints Set.swift in Sources */,
 				B4E378E5253EC8A900C80866 /* SceneDelegate.swift in Sources */,
 				B4743C13253F1E16005BEFE5 /* BottomPanelButton.swift in Sources */,
 				B41D8C92253EDE80005D7B9D /* SurfaceType.swift in Sources */,
