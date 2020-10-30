@@ -40,4 +40,14 @@ class SceneFactory {
         
         return storageNavigationController
     }
+    
+    
+    static func simulationScene() -> UINavigationController {
+        
+        let stimulationViewController = SimulationViewController()
+        
+        let stimulationNavigationController = UINavigationController.init(rootViewController: stimulationViewController)
+        
+        return stimulationNavigationController
+    }
 }
