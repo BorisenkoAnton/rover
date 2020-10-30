@@ -21,7 +21,7 @@ class MapCreationViewController: UIViewController {
     
     var map: DBMapModel!
     
-    let mapPresenter = MapPresenter()
+    var mapPresenterDelegate: MapPresenterDelegate?
     
     override func loadView() {
         super.loadView()
@@ -34,35 +34,36 @@ class MapCreationViewController: UIViewController {
             setClearMap()
         }
         
-        mapPresenter.setViewDelegate(viewWithMapControllerDelegate: self)
+        mapPresenterDelegate?.setViewDelegate(viewWithMapControllerDelegate: self)
         
         addGestureRecognizer()
     }
 
     
     //MARK: actions
+    
     @objc func bottomPanelButtonPressed(sender: BottomPanelButton!) {
         
-        mapPresenter.surfaceTypeSelected(selectedType: sender.mapItemType)
+        mapPresenterDelegate?.surfaceTypeSelected(selectedType: sender.mapItemType)
     }
     
     
     @objc func storageButtonPressed() {
         
-        self.mapPresenter.mapWasChanged(map: self.map)
-        self.mapPresenter.storageButtonPressed()
+        self.mapPresenterDelegate?.mapWasChanged(map: self.map)
+        self.mapPresenterDelegate?.storageButtonPressed()
     }
     
     
     @objc func saveMap() {
         
-        self.mapPresenter.saveMap(map: self.map)
+        self.mapPresenterDelegate?.saveMap(map: self.map)
     }
     
     
     @objc func randomMapGenerationButtonPressed() {
         
-        mapPresenter.generateRandomMap(numberOfMapItems: self.map.mapItems.count, map: self.map)
+        mapPresenterDelegate?.generateRandomMap(numberOfMapItems: self.map.mapItems.count, map: self.map)
     }
     
     
@@ -72,7 +73,7 @@ class MapCreationViewController: UIViewController {
         
         if let mapItemIndexPath = self.mapItemsCollectionView.indexPathForItem(at: location) {
             
-            mapPresenter.mapItemSelected(selectedItemIndexPath: mapItemIndexPath)
+            mapPresenterDelegate?.mapItemSelected(selectedItemIndexPath: mapItemIndexPath)
         }
     }
     

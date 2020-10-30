@@ -10,6 +10,12 @@ import UIKit
 
 extension StorageViewController: StorageViewControllerDelegate {
     
+    func setStoragePresenterDelegate(delegate: StoragePresenterDelegate) {
+        
+        self.storagePresenterDelegate = delegate
+    }
+    
+    
     func setArrayOfStoredMaps(storedMaps: Array<DBMapModel>) {
         
         self.storedMaps = storedMaps

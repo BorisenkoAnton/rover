@@ -10,6 +10,7 @@ import RealmSwift
 
 protocol MapCreationViewControllerDelegate: class {
     
+    func setMapPresenterDelegate(delegate: MapPresenterDelegate)
     func highlightBottomPanelButton(selectedSurfaceType: SurfaceType)
     func setMapItemSurface(indexPath: IndexPath, surfaceType: SurfaceType)
     func reloadMapView()

@@ -27,8 +27,8 @@ extension MapCreationViewController: UICollectionViewDelegateFlowLayout {
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-     
-     return 1.0
+        
+        return 1.0
     }
     
     

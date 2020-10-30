@@ -12,22 +12,32 @@ class SceneFactory {
     
     static func mapCreationScene() -> UINavigationController {
         
-        return createViewController(viewController: MapCreationViewController.self, navigationController: UINavigationController.self)
+        let mapCreationViewController = MapCreationViewController()
+        
+        let mapCreationNavigationController = UINavigationController.init(rootViewController: mapCreationViewController)
+        
+        let mapPresenter = MapPresenter()
+        
+        mapPresenter.setViewDelegate(viewWithMapControllerDelegate: mapCreationViewController)
+        
+        mapCreationViewController.setMapPresenterDelegate(delegate: mapPresenter)
+        
+        return mapCreationNavigationController
     }
     
     
     static func storageScene() -> UINavigationController {
         
-        return createViewController(viewController: StorageViewController.self, navigationController: UINavigationController.self)
-    }
-    
-    
-    static private func createViewController(viewController: UIViewController.Type, navigationController: UINavigationController.Type) -> UINavigationController {
+        let storageViewController = StorageViewController()
         
-        let createdViewController = viewController.init()
+        let storageNavigationController = UINavigationController.init(rootViewController: storageViewController)
         
-        let createdNavigationController = navigationController.init(rootViewController: createdViewController)
+        let storagePresenter = StoragePresenter()
         
-        return createdNavigationController
+        storagePresenter.setViewDelegate(storageViewControllerDelegate: storageViewController)
+        
+        storageViewController.setStoragePresenterDelegate(delegate: storagePresenter)
+        
+        return storageNavigationController
     }
 }

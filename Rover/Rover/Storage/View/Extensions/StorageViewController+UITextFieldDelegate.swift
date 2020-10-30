@@ -20,7 +20,7 @@ extension StorageViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         
         if (textField.text != nil) && (textField.text != "") {
-            self.storagePresenter.changeMapName(map: self.storedMaps[textField.tag], newName: textField.text!)
+            self.storagePresenterDelegate?.changeMapName(map: self.storedMaps[textField.tag], newName: textField.text!)
         }
     }
 }

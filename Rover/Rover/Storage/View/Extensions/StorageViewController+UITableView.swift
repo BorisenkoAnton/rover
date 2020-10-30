@@ -36,7 +36,7 @@ extension StorageViewController: UITableViewDelegate, UITableViewDataSource {
         
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, view, actionPerformed) in
             
-            self.storagePresenter.removeMapFromStorage(map: self.storedMaps[indexPath.row])
+            self.storagePresenterDelegate?.removeMapFromStorage(map: self.storedMaps[indexPath.row])
             
             self.storedMaps.remove(at: indexPath.row)
             
@@ -45,7 +45,7 @@ extension StorageViewController: UITableViewDelegate, UITableViewDataSource {
         
         let editAction = UIContextualAction(style: .normal, title: "Edit") { (action, view, actionPerformed) in
             
-            self.storagePresenter.editMap(map: self.storedMaps[indexPath.row], navigationController: self.navigationController!)
+            self.storagePresenterDelegate?.editMap(map: self.storedMaps[indexPath.row], navigationController: self.navigationController!)
         }
         
         let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction, editAction])

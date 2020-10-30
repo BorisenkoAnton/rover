@@ -11,6 +11,11 @@ import RealmSwift
 
 extension MapCreationViewController: MapCreationViewControllerDelegate {
     
+    func setMapPresenterDelegate(delegate: MapPresenterDelegate) {
+        
+        self.mapPresenterDelegate = delegate
+    }
+    
     // Highliting selected surface
     func highlightBottomPanelButton(selectedSurfaceType: SurfaceType) {
         

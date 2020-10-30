@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class StoragePresenter {
+class StoragePresenter: StoragePresenterDelegate {
     
     weak private var storageViewControllerDelegate: StorageViewControllerDelegate?
     
@@ -52,7 +52,7 @@ class StoragePresenter {
         
         let presentingViewController = (navigationController.presentingViewController as! UINavigationController).viewControllers.first
         
-        (presentingViewController as! MapCreationViewController).mapPresenter.loadStoredMap(map: map)
+        (presentingViewController as! MapCreationViewController).mapPresenterDelegate?.loadStoredMap(map: map)
         
         self.storageViewControllerDelegate?.navigate()
     }
@@ -62,7 +62,7 @@ class StoragePresenter {
         
         let presentingViewController = (navigationController.presentingViewController as! UINavigationController).viewControllers.first
         
-        (presentingViewController as! MapCreationViewController).mapPresenter.clearMap()
+        (presentingViewController as! MapCreationViewController).mapPresenterDelegate?.clearMap()
         
         self.storageViewControllerDelegate?.navigate()
     }

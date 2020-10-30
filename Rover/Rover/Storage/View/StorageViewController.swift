@@ -15,7 +15,7 @@ class StorageViewController: UIViewController {
     
     var storedMaps = Array<DBMapModel>()
     
-    let storagePresenter = StoragePresenter()
+    var storagePresenterDelegate: StoragePresenterDelegate?
     
     
     override func loadView() {
@@ -26,7 +26,7 @@ class StorageViewController: UIViewController {
         
         configureNavigationBar()
         
-        self.storagePresenter.setViewDelegate(storageViewControllerDelegate: self)
+        self.storagePresenterDelegate?.setViewDelegate(storageViewControllerDelegate: self)
     }
     
     
@@ -34,7 +34,7 @@ class StorageViewController: UIViewController {
         
         super.viewDidAppear(animated)
         
-        self.storagePresenter.getStoredMaps()
+        self.storagePresenterDelegate?.getStoredMaps()
     }
     
     
@@ -73,18 +73,18 @@ class StorageViewController: UIViewController {
     
     @objc func createButtonPressed() {
         
-        self.storagePresenter.createMap(navigationController: self.navigationController!)
+        self.storagePresenterDelegate?.createMap(navigationController: self.navigationController!)
     }
     
     
     @objc func returnButtonPressed() {
         
-        self.storagePresenter.returnToCurrentMap()
+        self.storagePresenterDelegate?.returnToCurrentMap()
     }
     
     
     @objc func synchronizeButtonPressed() {
         
-        self.storagePresenter.getStoredMaps()
+        self.storagePresenterDelegate?.getStoredMaps()
     }
 }

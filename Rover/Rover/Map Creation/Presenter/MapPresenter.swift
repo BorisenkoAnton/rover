@@ -8,7 +8,7 @@
 
 import RealmSwift
 
-class MapPresenter {
+class MapPresenter: MapPresenterDelegate {
     
     weak private var viewWithMapControllerDelegate: MapCreationViewControllerDelegate?
     private var selectedSurfaceType: SurfaceType?

@@ -18,7 +18,8 @@ extension MapCreationViewController: UICollectionViewDelegate, UICollectionViewD
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MapItemCollectionViewCell.reuseID, for: indexPath) as? MapItemCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MapItemCollectionViewCell.reuseID, for: indexPath) as? MapItemCollectionViewCell
+        else {
                 fatalError("Wrong cell")
         }
         
@@ -37,6 +38,6 @@ extension MapCreationViewController: UICollectionViewDelegate, UICollectionViewD
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        mapPresenter.mapItemSelected(selectedItemIndexPath: indexPath)
+        mapPresenterDelegate?.mapItemSelected(selectedItemIndexPath: indexPath)
     }
 }
