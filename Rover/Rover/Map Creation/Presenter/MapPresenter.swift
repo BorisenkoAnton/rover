@@ -10,20 +10,20 @@ import RealmSwift
 
 class MapPresenter: MapPresenterDelegate {
     
-    weak private var viewWithMapControllerDelegate: MapCreationViewControllerDelegate?
+    weak private var mapCreationViewControllerDelegate: MapCreationViewControllerDelegate?
     private var selectedSurfaceType: SurfaceType?
     
     
     func setViewDelegate(viewWithMapControllerDelegate: MapCreationViewControllerDelegate) {
         
-        self.viewWithMapControllerDelegate = viewWithMapControllerDelegate
+        self.mapCreationViewControllerDelegate = viewWithMapControllerDelegate
     }
     
     
     func surfaceTypeSelected(selectedType: SurfaceType) {
 
         self.selectedSurfaceType = selectedType
-        self.viewWithMapControllerDelegate?.highlightBottomPanelButton(selectedSurfaceType: selectedType)
+        self.mapCreationViewControllerDelegate?.highlightBottomPanelButton(selectedSurfaceType: selectedType)
     }
     
     
@@ -31,7 +31,7 @@ class MapPresenter: MapPresenterDelegate {
         
         guard let surfaceType = self.selectedSurfaceType else { return }
 
-        self.viewWithMapControllerDelegate?.setMapItemSurface(indexPath: selectedItemIndexPath, surfaceType: surfaceType)
+        self.mapCreationViewControllerDelegate?.setMapItemSurface(indexPath: selectedItemIndexPath, surfaceType: surfaceType)
     }
     
     
@@ -50,7 +50,7 @@ class MapPresenter: MapPresenterDelegate {
         
         StorageManager.setSurfacesForFullMap(map: map, surfaces: generatedMap)
         
-        self.viewWithMapControllerDelegate?.reloadMapView()
+        self.mapCreationViewControllerDelegate?.reloadMapView()
     }
     
     
@@ -60,7 +60,7 @@ class MapPresenter: MapPresenterDelegate {
         
         storageVC.modalPresentationStyle = .fullScreen
         
-        self.viewWithMapControllerDelegate?.navigateTo(viewController: storageVC)
+        self.mapCreationViewControllerDelegate?.navigateTo(viewController: storageVC)
     }
     
     
@@ -72,13 +72,13 @@ class MapPresenter: MapPresenterDelegate {
     
     func loadStoredMap(map: DBMapModel) {
         
-        self.viewWithMapControllerDelegate?.setMap(map: map)
+        self.mapCreationViewControllerDelegate?.setMap(map: map)
     }
     
     
     func clearMap() {
         
-        self.viewWithMapControllerDelegate?.setClearMap()
+        self.mapCreationViewControllerDelegate?.setClearMap()
     }
     
     
