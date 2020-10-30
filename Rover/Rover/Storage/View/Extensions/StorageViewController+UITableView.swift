@@ -48,9 +48,13 @@ extension StorageViewController: UITableViewDelegate, UITableViewDataSource {
             self.storagePresenterDelegate?.editMap(map: self.storedMaps[indexPath.row], navigationController: self.navigationController!)
         }
         
-        let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction, editAction])
+        let simulateAction = UIContextualAction(style: .normal, title: "Simulate") { (action, view, actionPerformed) in
+            
+            self.storagePresenterDelegate?.simulateMap(map: self.storedMaps[indexPath.row], navigationController: self.navigationController!)
+        }
+        
+        let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction, editAction, simulateAction])
 
         return swipeActions
     }
-    
 }

@@ -58,6 +58,16 @@ class StoragePresenter: StoragePresenterDelegate {
     }
     
     
+    func simulateMap(map: DBMapModel, navigationController: UINavigationController) {
+        
+        let simulationVC = SceneFactory.simulationScene()
+        
+        simulationVC.modalPresentationStyle = .fullScreen
+        
+        self.storageViewControllerDelegate?.navigateTo(viewController: simulationVC)
+    }
+    
+    
     func createMap(navigationController: UINavigationController) {
         
         let presentingViewController = (navigationController.presentingViewController as! UINavigationController).viewControllers.first

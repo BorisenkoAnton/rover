@@ -14,6 +14,7 @@ protocol StoragePresenterDelegate: class {
     func getStoredMaps()
     func removeMapFromStorage(map: DBMapModel)
     func editMap(map: DBMapModel, navigationController: UINavigationController)
+    func simulateMap(map: DBMapModel, navigationController: UINavigationController)
     func createMap(navigationController: UINavigationController)
     func returnToCurrentMap()
     func changeMapName(map: DBMapModel, newName: String)

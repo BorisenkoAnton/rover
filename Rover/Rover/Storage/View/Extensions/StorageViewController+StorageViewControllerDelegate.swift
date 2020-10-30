@@ -28,4 +28,10 @@ extension StorageViewController: StorageViewControllerDelegate {
 
         self.dismiss(animated: true)
     }
+    
+    
+    func navigateTo(viewController: UIViewController) {
+        
+        self.navigationController?.present(viewController, animated: true)
+    }
 }
