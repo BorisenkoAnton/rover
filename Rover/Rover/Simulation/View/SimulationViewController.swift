@@ -6,4 +6,14 @@
 //  Copyright © 2020 Anton Borisenko. All rights reserved.
 //
 
-import Foundation
+import UIKit
+import GLKit
+import OpenGLES
+
+class SimulationViewController: GLKViewController {
+    
+    override func loadView() {
+        
+        self.view = SimulationView()
+    }
+}
