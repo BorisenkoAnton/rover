@@ -32,7 +32,7 @@ enum SurfaceType: CaseIterable {
     }
     
     
-    static func surfaceTypeFromString(typeString: String) -> SurfaceType?{
+    static func surfaceTypeFromString(typeString: String) -> SurfaceType? {
         
         switch typeString {
         case "ground":
@@ -50,5 +50,29 @@ enum SurfaceType: CaseIterable {
         default:
             return nil
         }
+    }
+    
+    
+    static func getPenaltyFromSurfaceType(typeString: String) -> Int? {
+        
+        let surfaceType = surfaceTypeFromString(typeString: typeString)
+        
+        var penalty: Int
+        
+        switch surfaceType {
+        case .hill:
+            penalty = 2
+            
+        case .quicksand:
+            penalty = 3
+            
+        case .pit:
+            penalty = 4
+        
+        default:
+            penalty = 0
+        }
+        
+        return penalty
     }
 }
