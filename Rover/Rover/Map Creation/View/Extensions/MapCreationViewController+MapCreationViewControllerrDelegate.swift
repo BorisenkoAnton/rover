@@ -77,7 +77,26 @@ extension MapCreationViewController: MapCreationViewControllerDelegate {
         
         self.map = DBMapModel()
         
-        self.map.mapItems.append(objectsIn: [DBMapItem](repeating: DBMapItem(), count: itemsPerRow * rowsCount))
+        //self.map.mapItems.append(objectsIn: [DBMapItem](repeating: DBMapItem(), count: itemsPerRow * rowsCount))
+        
+        var rowIndex = 0
+        var indexInRow = 0
+        
+        for index in 0..<(self.rowsCount * self.itemsPerRow) {
+            if (index != 0) && (index % (self.itemsPerRow - 1)) == 0 {
+                rowIndex += 1
+                indexInRow = 0
+            }
+            
+            let mapItem = DBMapItem()
+            
+            mapItem.row = rowIndex
+            mapItem.indexInRow = indexInRow
+            
+            indexInRow += 1
+            
+            self.map.mapItems.append(mapItem)
+        }
         
         self.mapItemsCollectionView.reloadData()
     }
