@@ -60,7 +60,7 @@ class StoragePresenter: StoragePresenterDelegate {
     
     func simulateMap(map: DBMapModel, navigationController: UINavigationController) {
         
-        let simulationVC = SceneFactory.simulationScene()
+        let simulationVC = SceneFactory.simulationScene(map: map)
         
         simulationVC.modalPresentationStyle = .fullScreen
         
