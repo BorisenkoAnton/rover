@@ -42,11 +42,18 @@ class SceneFactory {
     }
     
     
-    static func simulationScene() -> UINavigationController {
+    static func simulationScene(map: DBMapModel) -> UINavigationController {
         
         let stimulationViewController = SimulationViewController()
         
         let stimulationNavigationController = UINavigationController.init(rootViewController: stimulationViewController)
+        
+        let simulationPresenter = SimulationPresenter()
+        
+        simulationPresenter.setViewDelegate(simulationViewControllerDelegate: stimulationViewController)
+        simulationPresenter.map = map
+        
+        stimulationViewController.setSimulationPresenterDelegate(delegate: simulationPresenter)
         
         return stimulationNavigationController
     }
