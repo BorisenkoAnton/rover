@@ -46,10 +46,6 @@ extension Decodable {
 class DBMapItem: Object, Codable {
     
     @objc dynamic var surfaceType: String?
-    @objc dynamic var sectionIndex = 0
-    @objc dynamic var indexInSection = 0
-    
-    var indexPath: IndexPath {
-        return IndexPath(item: indexInSection, section: sectionIndex)
-    }
+    @objc dynamic var row = 0
+    @objc dynamic var indexInRow = 0
 }
