@@ -14,6 +14,20 @@ class Path {
     public let node: Node
     public let previousPath: Path?
   
+    var pathNodes: [Node] {
+        
+        var pathNodes: [Node] = [self.node]
+
+        var iterativePath = self
+        
+        while let path = iterativePath.previousPath {
+            pathNodes.append(path.node)
+
+            iterativePath = path
+        }
+
+        return pathNodes
+    }
     
     init(to node: Node, via connection: Connection? = nil, previousPath path: Path? = nil) {
         
