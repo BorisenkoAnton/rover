@@ -81,17 +81,29 @@ class StorageManager {
     }
     
     // Setting surface types for all map
-    static func setSurfacesForFullMap(map: DBMapModel, surfaces: [SurfaceType]) {
+    static func setSurfacesForFullMap(map: DBMapModel, surfaces: [SurfaceType], itemsPerRow: Int) {
         
         let mapItems = List<DBMapItem>()
         
-        for mapItemSurfaceType in surfaces {
+        var rowIndex = 0
+        var indexInRow = 0
+        
+        for (index, mapItemSurfaceType) in surfaces.enumerated() {
+            
+            if (index != 0) && (index % itemsPerRow) == 0 {
+                rowIndex += 1
+                indexInRow = 0
+            }
             
             let mapItem = DBMapItem()
             
             mapItem.surfaceType = SurfaceType.returnStringValue(surfaceType: mapItemSurfaceType)
+            mapItem.row = rowIndex
+            mapItem.indexInRow = indexInRow
             
             mapItems.append(mapItem)
+            
+            indexInRow += 1
         }
             
         try! realm.write {

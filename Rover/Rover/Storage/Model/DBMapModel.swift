@@ -32,6 +32,14 @@ class DBMapModel: Object, Codable {
 }
 
 
+class DBMapItem: Object, Codable {
+    
+    @objc dynamic var surfaceType: String?
+    @objc dynamic var row = 0
+    @objc dynamic var indexInRow = 0
+}
+
+
 extension Decodable {
     
     init(from: Any) throws {
@@ -40,12 +48,4 @@ extension Decodable {
       let decoder = JSONDecoder()
       self = try decoder.decode(Self.self, from: data)
     }
-}
-
-
-class DBMapItem: Object, Codable {
-    
-    @objc dynamic var surfaceType: String?
-    @objc dynamic var row = 0
-    @objc dynamic var indexInRow = 0
 }

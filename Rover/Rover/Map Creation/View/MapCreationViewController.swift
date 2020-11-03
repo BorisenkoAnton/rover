@@ -63,7 +63,7 @@ class MapCreationViewController: UIViewController {
     
     @objc func randomMapGenerationButtonPressed() {
         
-        mapPresenterDelegate?.generateRandomMap(numberOfMapItems: self.map.mapItems.count, map: self.map)
+        mapPresenterDelegate?.generateRandomMap(neededNumberOfMapItems: self.map.mapItems.count, map: self.map, itemsPerRow: self.itemsPerRow)
     }
     
     
