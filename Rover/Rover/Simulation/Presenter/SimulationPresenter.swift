@@ -24,10 +24,22 @@ class SimulationPresenter: SimulationPresenterDelegate {
         
         var mapSectors = [MapSector]()
         
+        let screenSize = UIScreen.main.bounds
+        
+        let xPseudoConstraint = screenSize.width * 0.05
+        
+        let sectorSideSize = screenSize.width / 9.0
+        
+        let yPseudoConstraint = screenSize.height * 0.05
+        
         for mapItem in self.map.mapItems {
             let penalty = SurfaceType.getPenaltyFromSurfaceType(typeString: mapItem.surfaceType!)
             
-            let coordinates = CGRect(x: (CGFloat)(mapItem.indexInRow * 50), y: (CGFloat)(mapItem.row * 50), width: 50.0, height: 50.0)
+            let coordinates = CGRect(x: (CGFloat)(mapItem.indexInRow) * sectorSideSize,
+                                     y: (CGFloat)(15 - mapItem.row) * sectorSideSize + yPseudoConstraint,
+                                     width: sectorSideSize,
+                                     height: sectorSideSize
+            )
             
             let mapSector = MapSector(coordinates: coordinates, penalty: penalty!, surfaceImageName: mapItem.surfaceType!)
             

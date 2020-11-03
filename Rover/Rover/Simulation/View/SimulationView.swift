@@ -19,12 +19,12 @@ class SimulationView: GLKView {
             for mapSector in self.map! {
                 let image = CIImage(cgImage: UIImage(named: mapSector.surfaceImageName)!.cgImage!)
                 
-                print(mapSector)
-                
                 let scale = CGAffineTransform(scaleX: self.contentScaleFactor, y: self.contentScaleFactor)
+                
                 let drawingRect = mapSector.coordinates.applying(scale)
                 
                 self.ciContext?.draw(image, in: drawingRect, from: image.extent)
+                
             }
         }
     }
