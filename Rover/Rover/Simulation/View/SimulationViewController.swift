@@ -19,6 +19,7 @@ class SimulationViewController: GLKViewController, SimulationViewControllerDeleg
     override func loadView() {
         
         setupGL()
+        
         self.simulationPresenterDelegate?.setMapToView()
     }
 
@@ -46,5 +47,7 @@ class SimulationViewController: GLKViewController, SimulationViewControllerDeleg
         (self.view as! SimulationView).map = map
         
         self.view.setNeedsDisplay()
+        
+        self.simulationPresenterDelegate?.mapWasSet(map: (self.view as! SimulationView).map!)
     }
 }

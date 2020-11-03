@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MapSector {
+class MapSector: Node {
 
     let coordinates: CGRect
     let surfaceImageName: String
