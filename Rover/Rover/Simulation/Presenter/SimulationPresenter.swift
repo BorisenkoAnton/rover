@@ -26,8 +26,6 @@ class SimulationPresenter: SimulationPresenterDelegate {
         
         let screenSize = UIScreen.main.bounds
         
-        let xPseudoConstraint = screenSize.width * 0.05
-        
         let sectorSideSize = screenSize.width / 9.0
         
         let yPseudoConstraint = screenSize.height * 0.05
@@ -46,6 +44,31 @@ class SimulationPresenter: SimulationPresenterDelegate {
             mapSectors.append(mapSector)
         }
         
+        for (index, mapItem) in self.map.mapItems.enumerated() {
+            
+            if mapItem.row > 0 {
+                mapSectors[index].connections.append(Connection(to: mapSectors[index - 9], weight: mapSectors[index - 9].penalty))
+            }
+            
+            if mapItem.row < 15 {
+                mapSectors[index].connections.append(Connection(to: mapSectors[index + 9], weight: mapSectors[index + 9].penalty))
+            }
+            
+            if mapItem.indexInRow > 0 {
+                mapSectors[index].connections.append(Connection(to: mapSectors[index - 1], weight: mapSectors[index - 1].penalty))
+            }
+            
+            if mapItem.indexInRow < 8 {
+                mapSectors[index].connections.append(Connection(to: mapSectors[index + 1], weight: mapSectors[index + 1].penalty))
+            }
+        }
+        
         self.simulationViewControllerDelegate?.setMap(map: mapSectors)
+    }
+    
+    
+    func mapWasSet(map: [MapSector]) {
+        
+        let path = ShortestPathFinder.shortestPath(source: map[4], destination: map[139])
     }
 }
