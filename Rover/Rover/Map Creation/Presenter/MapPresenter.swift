@@ -35,12 +35,12 @@ class MapPresenter: MapPresenterDelegate {
     }
     
     
-    func generateRandomMap(numberOfMapItems: Int, map: DBMapModel) {
+    func generateRandomMap(neededNumberOfMapItems: Int, map: DBMapModel, itemsPerRow: Int) {
         
         var generatedMap = [SurfaceType]()
         let allSurfaceTypes = SurfaceType.allCases
         
-        for _ in 0..<numberOfMapItems {
+        for _ in 0..<neededNumberOfMapItems {
             let randomIndex = Int.random(in: 0..<allSurfaceTypes.count)
             
             let surfaceType = allSurfaceTypes[randomIndex]
@@ -48,7 +48,7 @@ class MapPresenter: MapPresenterDelegate {
             generatedMap.append(surfaceType)
         }
         
-        StorageManager.setSurfacesForFullMap(map: map, surfaces: generatedMap)
+        StorageManager.setSurfacesForFullMap(map: map, surfaces: generatedMap, itemsPerRow: itemsPerRow)
         
         self.mapCreationViewControllerDelegate?.reloadMapView()
     }
