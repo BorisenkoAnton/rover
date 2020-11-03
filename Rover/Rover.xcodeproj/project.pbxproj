@@ -13,6 +13,10 @@
 		B411B1692542EA2800BF9F60 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B411B1682542EA2800BF9F60 /* StorageManager.swift */; };
 		B411B16D2542EC3700BF9F60 /* DBMapModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B411B16C2542EC3700BF9F60 /* DBMapModel.swift */; };
 		B411B1702543046F00BF9F60 /* StorageViewController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B411B16F2543046F00BF9F60 /* StorageViewController+UITableView.swift */; };
+		B41446E8255177F700052BF1 /* ShortestPathFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41446E4255177F700052BF1 /* ShortestPathFinder.swift */; };
+		B41446E9255177F700052BF1 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41446E5255177F700052BF1 /* Node.swift */; };
+		B41446EA255177F700052BF1 /* Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41446E6255177F700052BF1 /* Path.swift */; };
+		B41446EB255177F700052BF1 /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41446E7255177F700052BF1 /* Connection.swift */; };
 		B41D8C90253EDD50005D7B9D /* MapItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41D8C8F253EDD50005D7B9D /* MapItem.swift */; };
 		B41D8C92253EDE80005D7B9D /* SurfaceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41D8C91253EDE80005D7B9D /* SurfaceType.swift */; };
 		B41D8C94253EE084005D7B9D /* MapItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41D8C93253EE084005D7B9D /* MapItemCollectionViewCell.swift */; };
@@ -53,6 +57,10 @@
 		B411B1682542EA2800BF9F60 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		B411B16C2542EC3700BF9F60 /* DBMapModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBMapModel.swift; sourceTree = "<group>"; };
 		B411B16F2543046F00BF9F60 /* StorageViewController+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StorageViewController+UITableView.swift"; sourceTree = "<group>"; };
+		B41446E4255177F700052BF1 /* ShortestPathFinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortestPathFinder.swift; sourceTree = "<group>"; };
+		B41446E5255177F700052BF1 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
+		B41446E6255177F700052BF1 /* Path.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Path.swift; sourceTree = "<group>"; };
+		B41446E7255177F700052BF1 /* Connection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
 		B41D8C8F253EDD50005D7B9D /* MapItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapItem.swift; sourceTree = "<group>"; };
 		B41D8C91253EDE80005D7B9D /* SurfaceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurfaceType.swift; sourceTree = "<group>"; };
 		B41D8C93253EE084005D7B9D /* MapItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapItemCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -135,6 +143,17 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		B41446E3255177D500052BF1 /* Dijkstra */ = {
+			isa = PBXGroup;
+			children = (
+				B41446E7255177F700052BF1 /* Connection.swift */,
+				B41446E5255177F700052BF1 /* Node.swift */,
+				B41446E6255177F700052BF1 /* Path.swift */,
+				B41446E4255177F700052BF1 /* ShortestPathFinder.swift */,
+			);
+			path = Dijkstra;
+			sourceTree = "<group>";
+		};
 		B430F2F2254311130025FC07 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
@@ -167,6 +186,7 @@
 		B4ADE4F4254C4B0200E13AD4 /* Simulation */ = {
 			isa = PBXGroup;
 			children = (
+				B41446E3255177D500052BF1 /* Dijkstra */,
 				B4ADE4F5254C4B1800E13AD4 /* View */,
 				B46E037225501C3500842537 /* Presenter */,
 				B4944115255017490098D2C0 /* MapSector.swift */,
@@ -388,6 +408,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B46E037625501D0000842537 /* SimulationPresenterDelegate.swift in Sources */,
+				B41446EA255177F700052BF1 /* Path.swift in Sources */,
 				B411B1692542EA2800BF9F60 /* StorageManager.swift in Sources */,
 				B4ADE4F2254C048200E13AD4 /* StoragePresenterDelegate.swift in Sources */,
 				B4EB44F92542CE3F0014DB6D /* MapCreationViewController+UICollectionView.swift in Sources */,
@@ -397,7 +418,9 @@
 				B4ADE4F0254BFDDD00E13AD4 /* MapPresenterDelegate.swift in Sources */,
 				B4E378E7253EC8A900C80866 /* MapCreationViewController.swift in Sources */,
 				B46E037425501C6600842537 /* SimulationViewControllerDelegate.swift in Sources */,
+				B41446EB255177F700052BF1 /* Connection.swift in Sources */,
 				B41D8C90253EDD50005D7B9D /* MapItem.swift in Sources */,
+				B41446E9255177F700052BF1 /* Node.swift in Sources */,
 				B45DCF332541BC5F006A5C69 /* StorageViewController.swift in Sources */,
 				B40F6DC825401792004A3845 /* MapPresenter.swift in Sources */,
 				B46E037825501D8900842537 /* SimulationPresenter.swift in Sources */,
@@ -405,6 +428,7 @@
 				B40F6DC6254014DD004A3845 /* MapCreationViewControllerDelegate.swift in Sources */,
 				B430F2F12543072C0025FC07 /* CellWithStoredMap.swift in Sources */,
 				B430F2F8254311CC0025FC07 /* StoragePresenter.swift in Sources */,
+				B41446E8255177F700052BF1 /* ShortestPathFinder.swift in Sources */,
 				B4ADE4F9254C4EFA00E13AD4 /* SimulationView.swift in Sources */,
 				B430F2F42543113A0025FC07 /* StorageViewControllerDelegate.swift in Sources */,
 				B411B16D2542EC3700BF9F60 /* DBMapModel.swift in Sources */,
