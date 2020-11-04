@@ -7,6 +7,7 @@
 //
 
 import GLKit
+import OpenGLES
 
 class SimulationView: GLKView {
 
@@ -24,7 +25,6 @@ class SimulationView: GLKView {
                 let drawingRect = mapSector.coordinates.applying(scale)
                 
                 self.ciContext?.draw(image, in: drawingRect, from: image.extent)
-                
             }
         }
     }
