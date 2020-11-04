@@ -36,11 +36,14 @@
 		B4ADE4F0254BFDDD00E13AD4 /* MapPresenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ADE4EF254BFDDD00E13AD4 /* MapPresenterDelegate.swift */; };
 		B4ADE4F2254C048200E13AD4 /* StoragePresenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ADE4F1254C048200E13AD4 /* StoragePresenterDelegate.swift */; };
 		B4ADE4F7254C4B3A00E13AD4 /* SimulationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ADE4F6254C4B3A00E13AD4 /* SimulationViewController.swift */; };
-		B4ADE4F9254C4EFA00E13AD4 /* SimulationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4ADE4F8254C4EFA00E13AD4 /* SimulationView.swift */; };
 		B4E378E3253EC8A900C80866 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E378E2253EC8A900C80866 /* AppDelegate.swift */; };
 		B4E378E5253EC8A900C80866 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E378E4253EC8A900C80866 /* SceneDelegate.swift */; };
 		B4E378E7253EC8A900C80866 /* MapCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E378E6253EC8A900C80866 /* MapCreationViewController.swift */; };
 		B4E378EC253EC8AA00C80866 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4E378EB253EC8AA00C80866 /* Assets.xcassets */; };
+		B4E9BC9E255292F100C58E95 /* Vertex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E9BC9D255292F100C58E95 /* Vertex.swift */; };
+		B4E9BCA02552E40100C58E95 /* Array+size.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E9BC9F2552E40100C58E95 /* Array+size.swift */; };
+		B4E9BCA32552EE1A00C58E95 /* SimulationViewController+GLKViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E9BCA22552EE1A00C58E95 /* SimulationViewController+GLKViewControllerDelegate.swift */; };
+		B4E9BCA52552EE7400C58E95 /* SimulationViewController+SimulationViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E9BCA42552EE7400C58E95 /* SimulationViewController+SimulationViewControllerDelegate.swift */; };
 		B4EB44F02542C4530014DB6D /* SceneFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EB44EF2542C4530014DB6D /* SceneFactory.swift */; };
 		B4EB44F52542CCF40014DB6D /* MapCreationViewController+MapCreationViewControllerrDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EB44F42542CCF40014DB6D /* MapCreationViewController+MapCreationViewControllerrDelegate.swift */; };
 		B4EB44F72542CDA70014DB6D /* MapCreationViewController+UICollectionViewDelegateFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EB44F62542CDA70014DB6D /* MapCreationViewController+UICollectionViewDelegateFlowLayout.swift */; };
@@ -80,13 +83,16 @@
 		B4ADE4EF254BFDDD00E13AD4 /* MapPresenterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPresenterDelegate.swift; sourceTree = "<group>"; };
 		B4ADE4F1254C048200E13AD4 /* StoragePresenterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoragePresenterDelegate.swift; sourceTree = "<group>"; };
 		B4ADE4F6254C4B3A00E13AD4 /* SimulationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulationViewController.swift; sourceTree = "<group>"; };
-		B4ADE4F8254C4EFA00E13AD4 /* SimulationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulationView.swift; sourceTree = "<group>"; };
 		B4E378DF253EC8A900C80866 /* Rover.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rover.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4E378E2253EC8A900C80866 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B4E378E4253EC8A900C80866 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B4E378E6253EC8A900C80866 /* MapCreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCreationViewController.swift; sourceTree = "<group>"; };
 		B4E378EB253EC8AA00C80866 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B4E378F0253EC8AA00C80866 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B4E9BC9D255292F100C58E95 /* Vertex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vertex.swift; sourceTree = "<group>"; };
+		B4E9BC9F2552E40100C58E95 /* Array+size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+size.swift"; sourceTree = "<group>"; };
+		B4E9BCA22552EE1A00C58E95 /* SimulationViewController+GLKViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SimulationViewController+GLKViewControllerDelegate.swift"; sourceTree = "<group>"; };
+		B4E9BCA42552EE7400C58E95 /* SimulationViewController+SimulationViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SimulationViewController+SimulationViewControllerDelegate.swift"; sourceTree = "<group>"; };
 		B4EB44EF2542C4530014DB6D /* SceneFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneFactory.swift; sourceTree = "<group>"; };
 		B4EB44F42542CCF40014DB6D /* MapCreationViewController+MapCreationViewControllerrDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapCreationViewController+MapCreationViewControllerrDelegate.swift"; sourceTree = "<group>"; };
 		B4EB44F62542CDA70014DB6D /* MapCreationViewController+UICollectionViewDelegateFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapCreationViewController+UICollectionViewDelegateFlowLayout.swift"; sourceTree = "<group>"; };
@@ -197,9 +203,10 @@
 		B4ADE4F5254C4B1800E13AD4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B4E9BCA12552ED8800C58E95 /* Extensions */,
 				B4ADE4F6254C4B3A00E13AD4 /* SimulationViewController.swift */,
-				B4ADE4F8254C4EFA00E13AD4 /* SimulationView.swift */,
 				B46E037325501C6600842537 /* SimulationViewControllerDelegate.swift */,
+				B4E9BC9D255292F100C58E95 /* Vertex.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -233,6 +240,7 @@
 				B4EB44EF2542C4530014DB6D /* SceneFactory.swift */,
 				B4E378E2253EC8A900C80866 /* AppDelegate.swift */,
 				B4E378E4253EC8A900C80866 /* SceneDelegate.swift */,
+				B4E9BC9F2552E40100C58E95 /* Array+size.swift */,
 				B4E378EB253EC8AA00C80866 /* Assets.xcassets */,
 				B4E378F0253EC8AA00C80866 /* Info.plist */,
 				B47E71CE25482F1500969686 /* GoogleService-Info.plist */,
@@ -270,6 +278,15 @@
 				B4743C12253F1E16005BEFE5 /* BottomPanelButton.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		B4E9BCA12552ED8800C58E95 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B4E9BCA22552EE1A00C58E95 /* SimulationViewController+GLKViewControllerDelegate.swift */,
+				B4E9BCA42552EE7400C58E95 /* SimulationViewController+SimulationViewControllerDelegate.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		B4EB44F32542CC760014DB6D /* Extensions */ = {
@@ -424,22 +441,25 @@
 				B45DCF332541BC5F006A5C69 /* StorageViewController.swift in Sources */,
 				B40F6DC825401792004A3845 /* MapPresenter.swift in Sources */,
 				B46E037825501D8900842537 /* SimulationPresenter.swift in Sources */,
+				B4E9BCA32552EE1A00C58E95 /* SimulationViewController+GLKViewControllerDelegate.swift in Sources */,
 				B411B1702543046F00BF9F60 /* StorageViewController+UITableView.swift in Sources */,
 				B40F6DC6254014DD004A3845 /* MapCreationViewControllerDelegate.swift in Sources */,
 				B430F2F12543072C0025FC07 /* CellWithStoredMap.swift in Sources */,
 				B430F2F8254311CC0025FC07 /* StoragePresenter.swift in Sources */,
 				B41446E8255177F700052BF1 /* ShortestPathFinder.swift in Sources */,
-				B4ADE4F9254C4EFA00E13AD4 /* SimulationView.swift in Sources */,
 				B430F2F42543113A0025FC07 /* StorageViewControllerDelegate.swift in Sources */,
 				B411B16D2542EC3700BF9F60 /* DBMapModel.swift in Sources */,
+				B4E9BCA02552E40100C58E95 /* Array+size.swift in Sources */,
 				B4EB44F52542CCF40014DB6D /* MapCreationViewController+MapCreationViewControllerrDelegate.swift in Sources */,
 				B4EB44F02542C4530014DB6D /* SceneFactory.swift in Sources */,
 				B4E378E3253EC8A900C80866 /* AppDelegate.swift in Sources */,
 				B41D8C94253EE084005D7B9D /* MapItemCollectionViewCell.swift in Sources */,
 				B4E378E5253EC8A900C80866 /* SceneDelegate.swift in Sources */,
 				B4743C13253F1E16005BEFE5 /* BottomPanelButton.swift in Sources */,
+				B4E9BCA52552EE7400C58E95 /* SimulationViewController+SimulationViewControllerDelegate.swift in Sources */,
 				B41D8C92253EDE80005D7B9D /* SurfaceType.swift in Sources */,
 				B4EB44F72542CDA70014DB6D /* MapCreationViewController+UICollectionViewDelegateFlowLayout.swift in Sources */,
+				B4E9BC9E255292F100C58E95 /* Vertex.swift in Sources */,
 				B4944116255017490098D2C0 /* MapSector.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -575,6 +595,7 @@
 					"PB_NO_PACKED_STRUCTS=1",
 					"PB_ENABLE_MALLOC=1",
 					"GLES_SILENCE_DEPRECATION=1",
+					"CI_SILENCE_GL_DEPRECATION=1",
 				);
 				INFOPLIST_FILE = Rover/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
