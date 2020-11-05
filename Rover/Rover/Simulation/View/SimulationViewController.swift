@@ -17,10 +17,10 @@ class SimulationViewController: GLKViewController {
     var map: [MapSector]?
     
     // Array of vertices for drawing
-    private var vertices = [Vertex]()
+    var vertices = [Vertex]()
 
     // Array specifies the order in which to draw each vertex
-    private var Indices = [GLubyte]()
+    var indices = [GLubyte]()
     
     var effect = GLKBaseEffect()
     private var ciContext: CIContext?
@@ -39,21 +39,19 @@ class SimulationViewController: GLKViewController {
     
     
     override func loadView() {
-        
+
         super.loadView()
         
         simulationView = self.view as? GLKView
         
         setupGL()
         
-        setupVertexBuffer()
-        
         self.simulationPresenterDelegate?.setMapToView()
     }
     
     
     override func glkView(_ view: GLKView, drawIn rect: CGRect) {
-
+        
         // Specifying RGB and alpha values to use when clearing the screen
         glClearColor(0.0, 0.0, 0.0, 1.0)
         
@@ -77,7 +75,7 @@ class SimulationViewController: GLKViewController {
         glBindVertexArrayOES(vertexArrayObject);
         
         glDrawElements(GLenum(GL_LINES),            // This tells OpenGL what we want to draw
-                       GLsizei(Indices.count),      // Tells OpenGL how many vertices we want to draw
+                       GLsizei(indices.count),      // Tells OpenGL how many vertices we want to draw
                        GLenum(GL_UNSIGNED_BYTE),    // Specifying the type of values contained in each index
                        nil)                         // Specifies an offset within a buffer
         
@@ -168,8 +166,8 @@ class SimulationViewController: GLKViewController {
         glBindBuffer(GLenum(GL_ELEMENT_ARRAY_BUFFER), elementBufferObject)
         
         glBufferData(GLenum(GL_ELEMENT_ARRAY_BUFFER),
-                     Indices.size(),
-                     Indices,
+                     indices.size(),
+                     indices,
                      GLenum(GL_STATIC_DRAW))
         
         glBindVertexArrayOES(0)
@@ -196,6 +194,7 @@ class SimulationViewController: GLKViewController {
     
     
     deinit {
+        
         tearDownGL()
     }
 }
