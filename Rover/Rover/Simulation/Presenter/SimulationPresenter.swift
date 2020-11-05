@@ -70,5 +70,22 @@ class SimulationPresenter: SimulationPresenterDelegate {
     func mapWasSet(map: [MapSector]) {
         
         let path = ShortestPathFinder.shortestPath(source: map[4], destination: map[139])
+        
+        var verticies = [Vertex]()
+        
+        if path != nil {
+            
+            for node in path!.pathNodes {
+                
+                let x = (node as! MapSector).coordinates.midX
+                let y = UIScreen.main.bounds.height - ((node as! MapSector).coordinates.midY)
+                
+                let vertex = Vertex(x: GLfloat(x), y: GLfloat(y), z: 0.0, r: 1.0, g: 0.0, b: 0.0, a: 1.0)
+                
+                verticies.append(vertex)
+            }
+        }
+        
+        self.simulationViewControllerDelegate?.setVertices(vertices: verticies)
     }
 }
