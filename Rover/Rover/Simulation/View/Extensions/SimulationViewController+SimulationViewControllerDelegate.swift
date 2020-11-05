@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import GLKit
 
 extension SimulationViewController: SimulationViewControllerDelegate {
     
@@ -20,9 +21,42 @@ extension SimulationViewController: SimulationViewControllerDelegate {
         
         self.map = map
         
-        self.view.setNeedsDisplay()
-        
         self.simulationPresenterDelegate?.mapWasSet(map: self.map!)
+    }
+    
+    
+    func setVertices(vertices: [Vertex]) {
+        
+        var translatedVertices = [Vertex]()
+        
+        for (index, vertex) in vertices.enumerated() {
+
+            // Translating view coordinates to GL coordinates
+            var translatedVertex = vertex
+            
+            let translatedX: GLfloat = -1.0 + 2.0 * (vertex.x / GLfloat(self.view.bounds.width))
+            let translatedY: GLfloat = 1.0 - 2.0 * (vertex.y / GLfloat(self.view.bounds.height))
+
+            translatedVertex.x = translatedX
+            translatedVertex.y = translatedY
+
+            translatedVertices.append(translatedVertex)
+
+            if (index != 0) && (index != vertices.count - 1) {
+
+                self.indices.append(GLubyte(index))
+            }
+
+            self.indices.append(GLubyte(index))
+        }
+        
+        print(self.view.bounds.width)
+        
+        self.vertices = translatedVertices
+        
+        self.setupVertexBuffer()
+        
+        self.view.setNeedsDisplay()
     }
 }
 
