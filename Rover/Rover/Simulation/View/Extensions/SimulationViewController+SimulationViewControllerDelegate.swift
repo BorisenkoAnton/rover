@@ -50,8 +50,6 @@ extension SimulationViewController: SimulationViewControllerDelegate {
             self.indices.append(GLubyte(index))
         }
         
-        print(self.view.bounds.width)
-        
         self.vertices = translatedVertices
         
         self.setupVertexBuffer()

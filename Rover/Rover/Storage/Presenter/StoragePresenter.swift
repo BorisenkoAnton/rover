@@ -33,8 +33,12 @@ class StoragePresenter: StoragePresenterDelegate {
             storedMapsNames.append(storedMap.name)
         }
         
-        let latestlocalUpdatesTimestamp = storedMapsResults.max(ofProperty: "timestamp") as Int?
+        var latestlocalUpdatesTimestamp = storedMapsResults.max(ofProperty: "timestamp") as Int?
 
+        if latestlocalUpdatesTimestamp == nil {
+            latestlocalUpdatesTimestamp = 0
+        }
+        
         StorageManager.syncronize(storedMaps: storedMaps, storedMapsNames: storedMapsNames, latestLocalTimestamp: latestlocalUpdatesTimestamp) {
             
             self.storageViewControllerDelegate?.setArrayOfStoredMaps(storedMaps: storedMaps)
