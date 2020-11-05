@@ -38,6 +38,6 @@ extension MapCreationViewController: UICollectionViewDelegate, UICollectionViewD
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        mapPresenterDelegate?.mapItemSelected(selectedItem: self.map.mapItems[indexPath.row], map: self.map)
+        mapPresenterDelegate?.mapItemSelected(map: self.map, indexPath: indexPath)
     }
 }

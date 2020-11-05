@@ -27,13 +27,13 @@ class MapPresenter: MapPresenterDelegate {
     }
     
     
-    func mapItemSelected(selectedItem: DBMapItem, map: DBMapModel) {
+    func mapItemSelected(map: DBMapModel, indexPath: IndexPath) {
         
         guard let surfaceType = self.selectedSurfaceType else { return }
 
         let stringSurfaceType = SurfaceType.returnStringValue(surfaceType: surfaceType)
         
-        StorageManager.setMapItemSurface(mapItem: selectedItem, surfaceType: stringSurfaceType)
+        StorageManager.setMapItemSurface(map: map, indexPath: indexPath, surfaceType: stringSurfaceType)
         
         StorageManager.updateMapTimestamp(map: map)
         

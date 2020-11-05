@@ -12,7 +12,7 @@ protocol MapPresenterDelegate: class {
     
     func setViewDelegate(viewWithMapControllerDelegate: MapCreationViewControllerDelegate)
     func surfaceTypeSelected(selectedType: SurfaceType)
-    func mapItemSelected(selectedItem: DBMapItem, map: DBMapModel)
+    func mapItemSelected(map: DBMapModel, indexPath: IndexPath)
     func generateRandomMap(neededNumberOfMapItems: Int, map: DBMapModel, itemsPerRow: Int)
     func storageButtonPressed()
     func saveMap(map: DBMapModel)

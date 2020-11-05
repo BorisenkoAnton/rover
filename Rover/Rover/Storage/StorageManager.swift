@@ -75,11 +75,19 @@ class StorageManager {
     }
     
     
-    static func setMapItemSurface(mapItem: DBMapItem, surfaceType: String) {
+    static func setMapItemSurface(map: DBMapModel, indexPath: IndexPath, surfaceType: String) {
+        
+        let mapItemToUpdate = map.mapItems[indexPath.row]
+        
+        let mapItem = DBMapItem()
+        
+        mapItem.surfaceType = surfaceType
+        mapItem.indexInRow = mapItemToUpdate.indexInRow
+        mapItem.row = mapItemToUpdate.row
         
         try! realm.write {
 
-            mapItem.surfaceType = surfaceType
+            map.mapItems.replace(index: indexPath.row, object: mapItem)
         }
     }
     
