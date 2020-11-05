@@ -67,7 +67,7 @@ enum SurfaceType: CaseIterable {
             penalty = 3
             
         case .pit:
-            penalty = 4
+            penalty = 999
         
         default:
             penalty = 0
