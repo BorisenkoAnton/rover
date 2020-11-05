@@ -12,4 +12,5 @@ protocol SimulationViewControllerDelegate: class {
 
     func setMap(map: [MapSector])
     func setSimulationPresenterDelegate(delegate: SimulationPresenterDelegate)
+    func setVertices(vertices: [Vertex])
 }
