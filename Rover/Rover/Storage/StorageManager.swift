@@ -75,10 +75,28 @@ class StorageManager {
     }
     
     
+    static func setMapItemSurface(mapItem: DBMapItem, surfaceType: String) {
+        
+        try! realm.write {
+
+            mapItem.surfaceType = surfaceType
+        }
+    }
+    
+    
     static func updateMapInCloud(map: DBMapModel) {
         
         firestore.collection("maps").document(map.name).updateData(map.asDictionary!)
     }
+    
+    
+    static func updateMapTimestamp(map: DBMapModel) {
+        
+        try! realm.write {
+            map.timestamp = Int(Date().timeIntervalSince1970)
+        }
+    }
+    
     
     // Setting surface types for all map
     static func setSurfacesForFullMap(map: DBMapModel, surfaces: [SurfaceType], itemsPerRow: Int) {

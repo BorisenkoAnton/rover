@@ -73,7 +73,7 @@ class MapCreationViewController: UIViewController {
         
         if let mapItemIndexPath = self.mapItemsCollectionView.indexPathForItem(at: location) {
             
-            mapPresenterDelegate?.mapItemSelected(selectedItemIndexPath: mapItemIndexPath)
+            mapPresenterDelegate?.mapItemSelected(selectedItem: self.map.mapItems[mapItemIndexPath.row], map: self.map)
         }
     }
     

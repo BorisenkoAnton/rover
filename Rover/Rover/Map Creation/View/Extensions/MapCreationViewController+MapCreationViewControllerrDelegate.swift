@@ -37,19 +37,9 @@ extension MapCreationViewController: MapCreationViewControllerDelegate {
     }
     
     // Set surface type for one map item (one content view cell)
-    func setMapItemSurface(indexPath: IndexPath, surfaceType: SurfaceType) {
-        
-        try! realm.write {
-            let mapItem = DBMapItem()
-
-            mapItem.surfaceType = SurfaceType.returnStringValue(surfaceType: surfaceType)
+    func mapItemSurfaceWasSet() {
             
-            self.map.mapItems.replace(index: indexPath.row, object: mapItem)
-
-            self.map.timestamp = Int(Date().timeIntervalSince1970)
-            
-            self.mapItemsCollectionView.reloadData()
-        }
+        self.mapItemsCollectionView.reloadData()
     }
     
     // Set surface types for all map

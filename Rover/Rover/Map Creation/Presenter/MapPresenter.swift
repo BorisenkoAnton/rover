@@ -27,11 +27,17 @@ class MapPresenter: MapPresenterDelegate {
     }
     
     
-    func mapItemSelected(selectedItemIndexPath: IndexPath) {
+    func mapItemSelected(selectedItem: DBMapItem, map: DBMapModel) {
         
         guard let surfaceType = self.selectedSurfaceType else { return }
 
-        self.mapCreationViewControllerDelegate?.setMapItemSurface(indexPath: selectedItemIndexPath, surfaceType: surfaceType)
+        let stringSurfaceType = SurfaceType.returnStringValue(surfaceType: surfaceType)
+        
+        StorageManager.setMapItemSurface(mapItem: selectedItem, surfaceType: stringSurfaceType)
+        
+        StorageManager.updateMapTimestamp(map: map)
+        
+        self.mapCreationViewControllerDelegate?.mapItemSurfaceWasSet()
     }
     
     

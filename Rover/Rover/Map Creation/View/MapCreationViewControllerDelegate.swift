@@ -12,7 +12,7 @@ protocol MapCreationViewControllerDelegate: class {
     
     func setMapPresenterDelegate(delegate: MapPresenterDelegate)
     func highlightBottomPanelButton(selectedSurfaceType: SurfaceType)
-    func setMapItemSurface(indexPath: IndexPath, surfaceType: SurfaceType)
+    func mapItemSurfaceWasSet()
     func reloadMapView()
     func navigateTo(viewController: UIViewController)
     func setMap(map: DBMapModel)
