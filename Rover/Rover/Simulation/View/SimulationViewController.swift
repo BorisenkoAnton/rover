@@ -37,6 +37,8 @@ class SimulationViewController: GLKViewController {
     //This object can be bound like the vertex buffer object. Any future vertex attribute calls you make will be stored inside it
     private var vertexArrayObject = GLuint()
     
+    var rover: Rover?
+    
     
     override func loadView() {
 
@@ -45,6 +47,8 @@ class SimulationViewController: GLKViewController {
         simulationView = self.view as? GLKView
         
         setupGL()
+    
+        self.rover = Rover(withFile: "/Users/borisenko/Documents/Rover/Rover/Rover/Assets.xcassets/rover.imageset/rover.png", effect: self.effect)
         
         self.simulationPresenterDelegate?.setMapToView()
     }
@@ -71,7 +75,7 @@ class SimulationViewController: GLKViewController {
                 self.ciContext?.draw(image, in: drawingRect, from: image.extent)
             }
         }
-        
+
         glBindVertexArrayOES(vertexArrayObject);
         
         glDrawElements(GLenum(GL_LINES),            // This tells OpenGL what we want to draw
@@ -80,6 +84,8 @@ class SimulationViewController: GLKViewController {
                        nil)                         // Specifies an offset within a buffer
         
         glBindVertexArrayOES(0)
+        
+        self.rover?.render()
     }
     
 // MARK: - Setting up GL
