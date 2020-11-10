@@ -25,12 +25,22 @@ extension SimulationViewController: SimulationViewControllerDelegate {
     }
     
     
-    func setVertices(vertices: [Vertex]) {
+    func setVertices(vertices: [Vertex], sectorSideSize: CGFloat) {
         
         var translatedVertices = [Vertex]()
         
+        var roverPathSectors = [CGRect]()
+        
+        for vertex in vertices.reversed() {
+            let sector = CGRect(x: CGFloat(vertex.x) - sectorSideSize / 2, y: CGFloat(vertex.y) - sectorSideSize / 2, width: sectorSideSize, height: sectorSideSize)
+            
+            roverPathSectors.append(sector)
+        }
+        
+        self.roverPathSectors = roverPathSectors
+        
         for (index, vertex) in vertices.enumerated() {
-
+            
             // Translating view coordinates to GL coordinates
             var translatedVertex = vertex
             

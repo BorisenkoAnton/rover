@@ -23,9 +23,11 @@ class SimulationViewController: GLKViewController {
     var indices = [GLubyte]()
     
     var effect = GLKBaseEffect()
+    
     private var ciContext: CIContext?
 
     private var simulationView: GLKView!
+    
     private var context: EAGLContext?
     
     // Keeps track of the indices
@@ -37,6 +39,9 @@ class SimulationViewController: GLKViewController {
     //This object can be bound like the vertex buffer object. Any future vertex attribute calls you make will be stored inside it
     private var vertexArrayObject = GLuint()
     
+    var rover: Rover?
+    var roverPathSectors = [CGRect]()
+    
     
     override func loadView() {
 
@@ -45,8 +50,18 @@ class SimulationViewController: GLKViewController {
         simulationView = self.view as? GLKView
         
         setupGL()
+    
+        self.rover = Rover(frame:.zero, imageName: "rover")
         
         self.simulationPresenterDelegate?.setMapToView()
+    }
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        self.rover?.render(coordinates: self.roverPathSectors)
+
+        self.view.addSubview(rover!)
     }
     
     
@@ -54,12 +69,10 @@ class SimulationViewController: GLKViewController {
         
         // Specifying RGB and alpha values to use when clearing the screen
         glClearColor(0.0, 0.0, 0.0, 1.0)
-        
+
         // Performing clearing
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT))
-        
-        effect.prepareToDraw()
-        
+
         if self.map != nil {
             for mapSector in self.map! {
                 let image = CIImage(cgImage: UIImage(named: mapSector.surfaceImageName)!.cgImage!)
@@ -71,14 +84,16 @@ class SimulationViewController: GLKViewController {
                 self.ciContext?.draw(image, in: drawingRect, from: image.extent)
             }
         }
-        
+
+        effect.prepareToDraw()
+
         glBindVertexArrayOES(vertexArrayObject);
-        
+
         glDrawElements(GLenum(GL_LINES),            // This tells OpenGL what we want to draw
                        GLsizei(indices.count),      // Tells OpenGL how many vertices we want to draw
                        GLenum(GL_UNSIGNED_BYTE),    // Specifying the type of values contained in each index
                        nil)                         // Specifies an offset within a buffer
-        
+
         glBindVertexArrayOES(0)
     }
     

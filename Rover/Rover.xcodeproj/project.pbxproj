@@ -25,6 +25,7 @@
 		B430F2F42543113A0025FC07 /* StorageViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B430F2F32543113A0025FC07 /* StorageViewControllerDelegate.swift */; };
 		B430F2F6254311650025FC07 /* StorageViewController+StorageViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B430F2F5254311650025FC07 /* StorageViewController+StorageViewControllerDelegate.swift */; };
 		B430F2F8254311CC0025FC07 /* StoragePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B430F2F7254311CC0025FC07 /* StoragePresenter.swift */; };
+		B453FA7C25552D31001BABBD /* Rover.swift in Sources */ = {isa = PBXBuildFile; fileRef = B453FA7B25552D31001BABBD /* Rover.swift */; };
 		B45DCF332541BC5F006A5C69 /* StorageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45DCF322541BC5F006A5C69 /* StorageViewController.swift */; };
 		B46E037425501C6600842537 /* SimulationViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46E037325501C6600842537 /* SimulationViewControllerDelegate.swift */; };
 		B46E037625501D0000842537 /* SimulationPresenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46E037525501D0000842537 /* SimulationPresenterDelegate.swift */; };
@@ -72,6 +73,7 @@
 		B430F2F32543113A0025FC07 /* StorageViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageViewControllerDelegate.swift; sourceTree = "<group>"; };
 		B430F2F5254311650025FC07 /* StorageViewController+StorageViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StorageViewController+StorageViewControllerDelegate.swift"; sourceTree = "<group>"; };
 		B430F2F7254311CC0025FC07 /* StoragePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoragePresenter.swift; sourceTree = "<group>"; };
+		B453FA7B25552D31001BABBD /* Rover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rover.swift; sourceTree = "<group>"; };
 		B45DCF322541BC5F006A5C69 /* StorageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageViewController.swift; sourceTree = "<group>"; };
 		B46E037325501C6600842537 /* SimulationViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulationViewControllerDelegate.swift; sourceTree = "<group>"; };
 		B46E037525501D0000842537 /* SimulationPresenterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulationPresenterDelegate.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 				B4ADE4F5254C4B1800E13AD4 /* View */,
 				B46E037225501C3500842537 /* Presenter */,
 				B4944115255017490098D2C0 /* MapSector.swift */,
+				B453FA7B25552D31001BABBD /* Rover.swift */,
 			);
 			path = Simulation;
 			sourceTree = "<group>";
@@ -455,6 +458,7 @@
 				B4E378E3253EC8A900C80866 /* AppDelegate.swift in Sources */,
 				B41D8C94253EE084005D7B9D /* MapItemCollectionViewCell.swift in Sources */,
 				B4E378E5253EC8A900C80866 /* SceneDelegate.swift in Sources */,
+				B453FA7C25552D31001BABBD /* Rover.swift in Sources */,
 				B4743C13253F1E16005BEFE5 /* BottomPanelButton.swift in Sources */,
 				B4E9BCA52552EE7400C58E95 /* SimulationViewController+SimulationViewControllerDelegate.swift in Sources */,
 				B41D8C92253EDE80005D7B9D /* SurfaceType.swift in Sources */,
