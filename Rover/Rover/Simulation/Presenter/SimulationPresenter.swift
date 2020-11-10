@@ -12,7 +12,8 @@ class SimulationPresenter: SimulationPresenterDelegate {
     
     weak private var simulationViewControllerDelegate: SimulationViewControllerDelegate?
     var map: DBMapModel!
-    
+    private let screenSize = UIScreen.main.bounds
+    private let sectorSideSize = UIScreen.main.bounds.width / 9.0
     
     func setViewDelegate(simulationViewControllerDelegate: SimulationViewControllerDelegate) {
         
@@ -23,10 +24,6 @@ class SimulationPresenter: SimulationPresenterDelegate {
     func setMapToView() {
         
         var mapSectors = [MapSector]()
-        
-        let screenSize = UIScreen.main.bounds
-        
-        let sectorSideSize = screenSize.width / 9.0
         
         let yPseudoConstraint = screenSize.height * 0.05
         
@@ -86,6 +83,6 @@ class SimulationPresenter: SimulationPresenterDelegate {
             }
         }
         
-        self.simulationViewControllerDelegate?.setVertices(vertices: verticies)
+        self.simulationViewControllerDelegate?.setVertices(vertices: verticies, sectorSideSize: self.sectorSideSize)
     }
 }
