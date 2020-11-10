@@ -23,9 +23,11 @@ class SimulationViewController: GLKViewController {
     var indices = [GLubyte]()
     
     var effect = GLKBaseEffect()
+    
     private var ciContext: CIContext?
 
     private var simulationView: GLKView!
+    
     private var context: EAGLContext?
     
     // Keeps track of the indices
@@ -38,6 +40,7 @@ class SimulationViewController: GLKViewController {
     private var vertexArrayObject = GLuint()
     
     var rover: Rover?
+    var roverPathSectors = [CGRect]()
     
     
     override func loadView() {
@@ -48,9 +51,17 @@ class SimulationViewController: GLKViewController {
         
         setupGL()
     
-        self.rover = Rover(withFile: "/Users/borisenko/Documents/Rover/Rover/Rover/Assets.xcassets/rover.imageset/rover.png", effect: self.effect)
+        self.rover = Rover(frame:.zero, imageName: "rover")
         
         self.simulationPresenterDelegate?.setMapToView()
+    }
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        self.rover?.render(coordinates: self.roverPathSectors)
+
+        self.view.addSubview(rover!)
     }
     
     
@@ -58,12 +69,10 @@ class SimulationViewController: GLKViewController {
         
         // Specifying RGB and alpha values to use when clearing the screen
         glClearColor(0.0, 0.0, 0.0, 1.0)
-        
+
         // Performing clearing
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT))
-        
-        effect.prepareToDraw()
-        
+
         if self.map != nil {
             for mapSector in self.map! {
                 let image = CIImage(cgImage: UIImage(named: mapSector.surfaceImageName)!.cgImage!)
@@ -76,16 +85,16 @@ class SimulationViewController: GLKViewController {
             }
         }
 
+        effect.prepareToDraw()
+
         glBindVertexArrayOES(vertexArrayObject);
-        
+
         glDrawElements(GLenum(GL_LINES),            // This tells OpenGL what we want to draw
                        GLsizei(indices.count),      // Tells OpenGL how many vertices we want to draw
                        GLenum(GL_UNSIGNED_BYTE),    // Specifying the type of values contained in each index
                        nil)                         // Specifies an offset within a buffer
-        
+
         glBindVertexArrayOES(0)
-        
-        self.rover?.render()
     }
     
 // MARK: - Setting up GL
