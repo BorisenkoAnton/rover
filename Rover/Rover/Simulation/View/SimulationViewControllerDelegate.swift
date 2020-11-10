@@ -6,11 +6,11 @@
 //  Copyright © 2020 Anton Borisenko. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol SimulationViewControllerDelegate: class {
 
     func setMap(map: [MapSector])
     func setSimulationPresenterDelegate(delegate: SimulationPresenterDelegate)
-    func setVertices(vertices: [Vertex])
+    func setVertices(vertices: [Vertex], sectorSideSize: CGFloat)
 }
