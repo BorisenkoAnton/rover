@@ -49,6 +49,8 @@ class SimulationViewController: GLKViewController {
         
         simulationView = self.view as? GLKView
         
+        configureNavigationBar()
+        
         setupGL()
     
         self.rover = Rover(frame:.zero, imageName: "rover")
@@ -97,6 +99,23 @@ class SimulationViewController: GLKViewController {
         glBindVertexArrayOES(0)
     }
     
+    
+// MARK: - Configuring View
+    
+    func configureNavigationBar() {
+        
+        let returnButton = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(returnButtonPressed))
+        
+        self.navigationItem.leftBarButtonItem  = returnButton
+    }
+    
+    
+    // MARK: actions
+    
+    @objc func returnButtonPressed() {
+        
+        self.dismiss(animated: false)
+    }
 // MARK: - Setting up GL
     
     private func setupGL() {
