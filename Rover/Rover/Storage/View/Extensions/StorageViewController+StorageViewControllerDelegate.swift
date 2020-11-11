@@ -34,4 +34,14 @@ extension StorageViewController: StorageViewControllerDelegate {
         
         self.navigationController?.present(viewController, animated: true)
     }
+    
+    
+    func showAlert(title: String?, message: String) {
+        
+        var alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        
+        self.present(alert, animated: true)
+    }
 }

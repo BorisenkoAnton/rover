@@ -64,6 +64,13 @@ class StoragePresenter: StoragePresenterDelegate {
     
     func simulateMap(map: DBMapModel, navigationController: UINavigationController) {
         
+        for mapItem in map.mapItems {
+            if mapItem.surfaceType == nil {
+                self.storageViewControllerDelegate?.showAlert(title: nil, message: "There are empty sectors on the map. Please, complete map before simulating")
+                return
+            }
+        }
+        
         let simulationVC = SceneFactory.simulationScene(map: map)
         
         simulationVC.modalPresentationStyle = .fullScreen

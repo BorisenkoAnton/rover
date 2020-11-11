@@ -14,4 +14,5 @@ protocol StorageViewControllerDelegate: class {
     func setArrayOfStoredMaps(storedMaps: Array<DBMapModel>)
     func returnToMapCreation()
     func navigateTo(viewController: UIViewController)
+    func showAlert(title: String?, message: String)
 }
