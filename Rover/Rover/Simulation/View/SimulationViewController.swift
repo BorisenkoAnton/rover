@@ -15,6 +15,12 @@ class SimulationViewController: GLKViewController {
     
     var simulationPresenterDelegate: SimulationPresenterDelegate?
     var map: [MapSector]?
+    var rover: Rover?
+    var roverPathSectors = [CGRect]()
+    
+    private var simulationView: GLKView!
+    private var context: EAGLContext?
+    private var ciContext: CIContext?
     
     // Array of vertices for drawing
     var vertices = [Vertex]()
@@ -22,13 +28,8 @@ class SimulationViewController: GLKViewController {
     // Array specifies the order in which to draw each vertex
     var indices = [GLubyte]()
     
-    var effect = GLKBaseEffect()
-    
-    private var ciContext: CIContext?
-
-    private var simulationView: GLKView!
-    
-    private var context: EAGLContext?
+    // Index of sector with pit
+    var emergencySectorIndex: Int? = nil
     
     // Keeps track of the indices
     private var elementBufferObject = GLuint()
@@ -39,8 +40,7 @@ class SimulationViewController: GLKViewController {
     //This object can be bound like the vertex buffer object. Any future vertex attribute calls you make will be stored inside it
     private var vertexArrayObject = GLuint()
     
-    var rover: Rover?
-    var roverPathSectors = [CGRect]()
+    var effect = GLKBaseEffect()
     
     
     override func loadView() {
@@ -61,7 +61,7 @@ class SimulationViewController: GLKViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         
-        self.rover?.render(coordinates: self.roverPathSectors)
+        self.rover?.render(coordinates: self.roverPathSectors, emergencySectorIndex: self.emergencySectorIndex)
 
         self.view.addSubview(rover!)
     }

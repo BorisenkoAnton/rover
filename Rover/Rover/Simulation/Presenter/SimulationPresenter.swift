@@ -72,7 +72,7 @@ class SimulationPresenter: SimulationPresenterDelegate {
         
         if path != nil {
             
-            for node in path!.pathNodes {
+            for (index, node) in path!.pathNodes.enumerated() {
                 
                 let x = (node as! MapSector).coordinates.midX
                 let y = UIScreen.main.bounds.height - ((node as! MapSector).coordinates.midY)
@@ -80,6 +80,12 @@ class SimulationPresenter: SimulationPresenterDelegate {
                 let vertex = Vertex(x: GLfloat(x), y: GLfloat(y), z: 0.0, r: 1.0, g: 0.0, b: 0.0, a: 1.0)
                 
                 verticies.append(vertex)
+                
+                if (node as! MapSector).penalty > 3 {
+                    
+                    // pathNodes.count - index because of the difference between coordinate systems
+                    self.simulationViewControllerDelegate?.setEmergencySectorIndex(index: path!.pathNodes.count - 1 - index)
+                }
             }
         }
         
