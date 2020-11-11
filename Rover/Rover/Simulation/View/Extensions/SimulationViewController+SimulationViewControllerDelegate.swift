@@ -69,9 +69,7 @@ extension SimulationViewController: SimulationViewControllerDelegate {
     
     
     func setEmergencySectorIndex(index: Int) {
-        
-        if self.emergencySectorIndex == nil {
-            self.emergencySectorIndex = index
-        }
+            
+        self.emergencySectorIndex = index
     }
 }

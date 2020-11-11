@@ -82,6 +82,7 @@ class SimulationPresenter: SimulationPresenterDelegate {
                 verticies.append(vertex)
                 
                 if (node as! MapSector).penalty > 3 {
+                    
                     // pathNodes.count - index because of the difference between coordinate systems
                     self.simulationViewControllerDelegate?.setEmergencySectorIndex(index: path!.pathNodes.count - 1 - index)
                 }
