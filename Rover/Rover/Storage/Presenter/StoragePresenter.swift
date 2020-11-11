@@ -58,7 +58,7 @@ class StoragePresenter: StoragePresenterDelegate {
         
         (presentingViewController as! MapCreationViewController).mapPresenterDelegate?.loadStoredMap(map: map)
         
-        self.storageViewControllerDelegate?.navigate()
+        self.storageViewControllerDelegate?.returnToMapCreation()
     }
     
     
@@ -78,13 +78,13 @@ class StoragePresenter: StoragePresenterDelegate {
         
         (presentingViewController as! MapCreationViewController).mapPresenterDelegate?.clearMap()
         
-        self.storageViewControllerDelegate?.navigate()
+        self.storageViewControllerDelegate?.returnToMapCreation()
     }
     
     
     func returnToCurrentMap() {
         
-        self.storageViewControllerDelegate?.navigate()
+        self.storageViewControllerDelegate?.returnToMapCreation()
     }
     
     

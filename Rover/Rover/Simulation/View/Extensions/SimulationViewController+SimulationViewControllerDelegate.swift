@@ -67,4 +67,3 @@ extension SimulationViewController: SimulationViewControllerDelegate {
         self.view.setNeedsDisplay()
     }
 }
-

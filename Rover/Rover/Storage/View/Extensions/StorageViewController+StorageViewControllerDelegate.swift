@@ -24,7 +24,7 @@ extension StorageViewController: StorageViewControllerDelegate {
     }
     
     
-    func navigate() {
+    func returnToMapCreation() {
 
         self.dismiss(animated: true)
     }

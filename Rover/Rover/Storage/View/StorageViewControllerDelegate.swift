@@ -12,6 +12,6 @@ protocol StorageViewControllerDelegate: class {
     
     func setStoragePresenterDelegate(delegate: StoragePresenterDelegate)
     func setArrayOfStoredMaps(storedMaps: Array<DBMapModel>)
-    func navigate()
+    func returnToMapCreation()
     func navigateTo(viewController: UIViewController)
 }
