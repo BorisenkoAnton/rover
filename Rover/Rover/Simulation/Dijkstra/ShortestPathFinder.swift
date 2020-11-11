@@ -10,30 +10,35 @@ import Foundation
 
 class ShortestPathFinder {
     
-static func shortestPath(source: Node, destination: Node) -> Path? {
-    
-    var frontier: [Path] = [] {
-        didSet { frontier.sort { return $0.cumulativeWeight < $1.cumulativeWeight } } // The frontier has to be always ordered
-    }
-
-    frontier.append(Path(to: source)) // the frontier is made by a path that starts nowhere and ends in the source
-
-    while !frontier.isEmpty {
-        let cheapestPathInFrontier = frontier.removeFirst() // getting the cheapest path available
+    static func shortestPath(source: Node, destination: Node) -> Path? {
         
-        guard !cheapestPathInFrontier.node.visited else { continue } // making sure we haven't visited the node already
-
-        if cheapestPathInFrontier.node === destination {
-            return cheapestPathInFrontier // found the cheapest path
+        var frontier: [Path] = [] {
+            // The frontier has to be always ordered
+            didSet { frontier.sort { return $0.cumulativeWeight < $1.cumulativeWeight } }
         }
 
-        cheapestPathInFrontier.node.visited = true
+        // The frontier is made by a path that starts nowhere and ends in the source
+        frontier.append(Path(to: source))
 
-        for connection in cheapestPathInFrontier.node.connections where !connection.to.visited { // adding new paths to our frontier
-            frontier.append(Path(to: connection.to, via: connection, previousPath: cheapestPathInFrontier))
+        while !frontier.isEmpty {
+            // Getting the cheapest path available
+            let cheapestPathInFrontier = frontier.removeFirst()
+            
+            // Making sure we haven't visited the node already
+            guard !cheapestPathInFrontier.node.visited else { continue }
+
+            if cheapestPathInFrontier.node === destination {
+                // Found the cheapest path
+                return cheapestPathInFrontier
+            }
+
+            cheapestPathInFrontier.node.visited = true
+
+            for connection in cheapestPathInFrontier.node.connections where !connection.to.visited {
+                frontier.append(Path(to: connection.to, via: connection, previousPath: cheapestPathInFrontier))
+            }
         }
+        
+        return nil // we didn't find a path
     }
-    
-    return nil // we didn't find a path
-}
 }

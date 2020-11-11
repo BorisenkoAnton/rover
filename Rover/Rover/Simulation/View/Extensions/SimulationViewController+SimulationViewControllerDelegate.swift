@@ -66,4 +66,12 @@ extension SimulationViewController: SimulationViewControllerDelegate {
         
         self.view.setNeedsDisplay()
     }
+    
+    
+    func setEmergencySectorIndex(index: Int) {
+        
+        if self.emergencySectorIndex == nil {
+            self.emergencySectorIndex = index
+        }
+    }
 }

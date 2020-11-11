@@ -16,6 +16,8 @@ class SimulationViewController: GLKViewController {
     var simulationPresenterDelegate: SimulationPresenterDelegate?
     var map: [MapSector]?
     
+    var emergencySectorIndex: Int? = nil
+    
     // Array of vertices for drawing
     var vertices = [Vertex]()
 
@@ -61,7 +63,7 @@ class SimulationViewController: GLKViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         
-        self.rover?.render(coordinates: self.roverPathSectors)
+        self.rover?.render(coordinates: self.roverPathSectors, emergencySectorIndex: self.emergencySectorIndex)
 
         self.view.addSubview(rover!)
     }

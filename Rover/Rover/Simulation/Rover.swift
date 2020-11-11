@@ -29,17 +29,21 @@ class Rover: UIImageView {
     }
     
     
-    func render(coordinates: [CGRect]) {
+    func render(coordinates: [CGRect], emergencySectorIndex: Int?) {
         
-        UIView.animateKeyframes(withDuration: 10.0, delay: 0, options: [.calculationModeLinear, .repeat], animations: {
+        UIView.animateKeyframes(withDuration: 10.0, delay: 0, options: [.calculationModeLinear], animations: {
             
             var relativeStartTime = 0.0
             let duration = Double(coordinates.count)
             
-            for coordinate in coordinates {
+            for (index, coordinate) in coordinates.enumerated() {
                 
                 UIView.addKeyframe(withRelativeStartTime: relativeStartTime / duration, relativeDuration: 1.0 / duration) {
                     self.frame = coordinate
+                }
+                
+                if (emergencySectorIndex != nil) && (index == emergencySectorIndex) {
+                    break
                 }
                 
                 relativeStartTime += 1.0
