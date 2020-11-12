@@ -12,11 +12,19 @@ extension MapCreationViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
      
-        let paddingSpace = sectionInsets.left + sectionInsets.right + minimumItemSpacing * (CGFloat(integerLiteral: itemsPerRow) - 1)
-        let availableWidth = collectionView.bounds.width - paddingSpace
+        let widthPaddingSpace = sectionInsets.left + sectionInsets.right + minimumItemSpacing * (CGFloat(integerLiteral: itemsPerRow) - 1)
+        
+        let availableWidth = collectionView.bounds.width - widthPaddingSpace
+        
         let widthPerItem = availableWidth / CGFloat(integerLiteral: itemsPerRow)
      
-        return CGSize(width: widthPerItem, height: widthPerItem)
+        let heightPaddingSpace = sectionInsets.top + sectionInsets.bottom + minimumItemSpacing * (CGFloat(integerLiteral: rowsCount) - 1)
+        
+        let availableHeight = collectionView.bounds.height - heightPaddingSpace
+        
+        let heightPerItem = availableHeight / CGFloat(integerLiteral: rowsCount)
+        
+        return CGSize(width: widthPerItem, height: heightPerItem)
     }
     
     

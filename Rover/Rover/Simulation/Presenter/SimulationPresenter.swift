@@ -13,7 +13,7 @@ class SimulationPresenter: SimulationPresenterDelegate {
     weak private var simulationViewControllerDelegate: SimulationViewControllerDelegate?
     var map: DBMapModel!
     private let screenSize = UIScreen.main.bounds
-    private let sectorSideSize = UIScreen.main.bounds.width / 9.0
+    private let sectorSideSize = UIScreen.main.bounds.height * 0.8 / 16.0
     
     func setViewDelegate(simulationViewControllerDelegate: SimulationViewControllerDelegate) {
         
@@ -27,10 +27,12 @@ class SimulationPresenter: SimulationPresenterDelegate {
         
         let yPseudoConstraint = screenSize.height * 0.05
         
+        let xPseudoConstraint = (screenSize.width - 9 * sectorSideSize) / 2
+        
         for mapItem in self.map.mapItems {
             let penalty = SurfaceType.getPenaltyFromSurfaceType(typeString: mapItem.surfaceType!)
             
-            let coordinates = CGRect(x: (CGFloat)(mapItem.indexInRow) * sectorSideSize,
+            let coordinates = CGRect(x: (CGFloat)(mapItem.indexInRow) * sectorSideSize + xPseudoConstraint,
                                      y: (CGFloat)(15 - mapItem.row) * sectorSideSize + yPseudoConstraint,
                                      width: sectorSideSize,
                                      height: sectorSideSize
