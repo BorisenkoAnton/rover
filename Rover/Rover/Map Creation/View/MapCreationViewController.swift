@@ -11,13 +11,17 @@ import RealmSwift
 
 class MapCreationViewController: UIViewController {
 
+    private var screenSize: CGRect {
+        return UIScreen.main.bounds
+    }
+    
     var mapItemsCollectionView: UICollectionView! // Collection View, representing map
     var bottomPanelStackView: UIStackView!
     
     let itemsPerRow = 9
     let rowsCount = 16
     let minimumItemSpacing: CGFloat = 1.0
-    let sectionInsets = UIEdgeInsets(top: 8.0, left: 8.0, bottom: 8.0, right: 8.0)
+    let sectionInsets = UIEdgeInsets(top: 2.0, left: 2.0, bottom: 2.0, right: 2.0)
     
     var map: DBMapModel!
     
@@ -89,11 +93,10 @@ class MapCreationViewController: UIViewController {
         view.addSubview(mapItemsCollectionView)
         
         NSLayoutConstraint.activate([
-            mapItemsCollectionView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            mapItemsCollectionView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 20.0),
-            mapItemsCollectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20.0),
-            mapItemsCollectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20.0),
-            mapItemsCollectionView.bottomAnchor.constraint(equalTo: bottomPanelStackView.topAnchor, constant: -20.0)
+            mapItemsCollectionView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: screenSize.height * 0.10),
+            mapItemsCollectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: screenSize.width * 0.05),
+            mapItemsCollectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -(screenSize.width * 0.05)),
+            mapItemsCollectionView.bottomAnchor.constraint(equalTo: bottomPanelStackView.topAnchor, constant: -(screenSize.height * 0.05))
         ])
         
         mapItemsCollectionView.register(MapItemCollectionViewCell.self, forCellWithReuseIdentifier: MapItemCollectionViewCell.reuseID)
@@ -119,10 +122,10 @@ class MapCreationViewController: UIViewController {
         view.addSubview(bottomPanelStackView)
         
         NSLayoutConstraint.activate([
-            bottomPanelStackView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20.0),
-            bottomPanelStackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20.0),
-            bottomPanelStackView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -20.0),
-            bottomPanelStackView.heightAnchor.constraint(equalToConstant: 80.0)
+            bottomPanelStackView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: screenSize.width * 0.05),
+            bottomPanelStackView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -(screenSize.width * 0.05)),
+            bottomPanelStackView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -(screenSize.height * 0.05)),
+            bottomPanelStackView.heightAnchor.constraint(equalToConstant: screenSize.height * 0.1)
         ])
         
         for surfaceType in SurfaceType.allCases {
