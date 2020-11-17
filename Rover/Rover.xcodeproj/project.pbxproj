@@ -114,6 +114,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		531A9E682563A07200F9B08E /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				B4E9BC9F2552E40100C58E95 /* Array+size.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		531A9E692563A0C100F9B08E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B4E378EB253EC8AA00C80866 /* Assets.xcassets */,
+				B41D8C95253EF656005D7B9D /* Default-568h@2x.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		A5931FE722AF2C8D5A313751 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -217,8 +234,6 @@
 		B4E378D6253EC8A900C80866 = {
 			isa = PBXGroup;
 			children = (
-				B4743C10253EF823005BEFE5 /* Launch Screen.storyboard */,
-				B41D8C95253EF656005D7B9D /* Default-568h@2x.png */,
 				B4E378E1253EC8A900C80866 /* Rover */,
 				B4E378E0253EC8A900C80866 /* Products */,
 				B8C5924ACC18CE211B504801 /* Pods */,
@@ -240,11 +255,12 @@
 				B4E378F6253ED43F00C80866 /* Map Creation */,
 				B45DCF312541BC0C006A5C69 /* Storage */,
 				B4ADE4F4254C4B0200E13AD4 /* Simulation */,
+				531A9E682563A07200F9B08E /* Helpers */,
+				531A9E692563A0C100F9B08E /* Resources */,
+				B4743C10253EF823005BEFE5 /* Launch Screen.storyboard */,
 				B4EB44EF2542C4530014DB6D /* SceneFactory.swift */,
 				B4E378E2253EC8A900C80866 /* AppDelegate.swift */,
 				B4E378E4253EC8A900C80866 /* SceneDelegate.swift */,
-				B4E9BC9F2552E40100C58E95 /* Array+size.swift */,
-				B4E378EB253EC8AA00C80866 /* Assets.xcassets */,
 				B4E378F0253EC8AA00C80866 /* Info.plist */,
 				B47E71CE25482F1500969686 /* GoogleService-Info.plist */,
 			);
