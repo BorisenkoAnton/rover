@@ -114,7 +114,7 @@ class SimulationViewController: GLKViewController {
     
     @objc func returnButtonPressed() {
         
-        self.dismiss(animated: false)
+        self.navigationController?.popViewController(animated: true)
     }
 // MARK: - Setting up GL
     

@@ -26,19 +26,19 @@ extension StorageViewController: StorageViewControllerDelegate {
     
     func returnToMapCreation() {
 
-        self.dismiss(animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
     
     
     func navigateTo(viewController: UIViewController) {
         
-        self.navigationController?.present(viewController, animated: true)
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     
     func showAlert(title: String?, message: String) {
         
-        var alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         

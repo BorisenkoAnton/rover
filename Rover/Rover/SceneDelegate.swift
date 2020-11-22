@@ -24,7 +24,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         
-        window?.rootViewController = SceneFactory.mapCreationScene()
+        let mapCreationViewController = SceneFactory.mapCreationScene()
+        
+        window?.rootViewController = UINavigationController(rootViewController: mapCreationViewController)
         window?.makeKeyAndVisible()
         window?.windowScene = windowScene
     }

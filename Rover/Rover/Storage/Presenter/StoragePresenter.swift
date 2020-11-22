@@ -54,9 +54,7 @@ class StoragePresenter: StoragePresenterDelegate {
     
     func editMap(map: DBMapModel, navigationController: UINavigationController) {
         
-        let presentingViewController = (navigationController.presentingViewController as! UINavigationController).viewControllers.first
-        
-        (presentingViewController as! MapCreationViewController).mapPresenterDelegate?.loadStoredMap(map: map)
+        (navigationController.viewControllers.first as! MapCreationViewController).mapPresenterDelegate?.loadStoredMap(map: map)
         
         self.storageViewControllerDelegate?.returnToMapCreation()
     }

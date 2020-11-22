@@ -50,8 +50,8 @@ extension MapCreationViewController: MapCreationViewControllerDelegate {
     
     
     func navigateTo(viewController: UIViewController) {
-        
-        self.navigationController?.present(viewController, animated: true)
+
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     

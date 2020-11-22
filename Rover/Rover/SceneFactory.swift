@@ -10,11 +10,9 @@ import UIKit
 
 class SceneFactory {
     
-    static func mapCreationScene() -> UINavigationController {
+    static func mapCreationScene() -> UIViewController {
         
         let mapCreationViewController = MapCreationViewController()
-        
-        let mapCreationNavigationController = UINavigationController.init(rootViewController: mapCreationViewController)
         
         let mapPresenter = MapPresenter()
         
@@ -22,15 +20,13 @@ class SceneFactory {
         
         mapCreationViewController.setMapPresenterDelegate(delegate: mapPresenter)
         
-        return mapCreationNavigationController
+        return mapCreationViewController
     }
     
     
-    static func storageScene() -> UINavigationController {
+    static func storageScene() -> UIViewController {
         
         let storageViewController = StorageViewController()
-        
-        let storageNavigationController = UINavigationController.init(rootViewController: storageViewController)
         
         let storagePresenter = StoragePresenter()
         
@@ -38,23 +34,21 @@ class SceneFactory {
         
         storageViewController.setStoragePresenterDelegate(delegate: storagePresenter)
         
-        return storageNavigationController
+        return storageViewController
     }
     
     
-    static func simulationScene(map: DBMapModel) -> UINavigationController {
+    static func simulationScene(map: DBMapModel) -> UIViewController {
         
-        let stimulationViewController = SimulationViewController()
-        
-        let stimulationNavigationController = UINavigationController.init(rootViewController: stimulationViewController)
+        let simulationViewController = SimulationViewController()
         
         let simulationPresenter = SimulationPresenter()
         
-        simulationPresenter.setViewDelegate(simulationViewControllerDelegate: stimulationViewController)
+        simulationPresenter.setViewDelegate(simulationViewControllerDelegate: simulationViewController)
         simulationPresenter.map = map
         
-        stimulationViewController.setSimulationPresenterDelegate(delegate: simulationPresenter)
+        simulationViewController.setSimulationPresenterDelegate(delegate: simulationPresenter)
         
-        return stimulationNavigationController
+        return simulationViewController
     }
 }
