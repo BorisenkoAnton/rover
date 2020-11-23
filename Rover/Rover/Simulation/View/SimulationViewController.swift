@@ -15,6 +15,8 @@ class SimulationViewController: GLKViewController {
     
     var simulationPresenterDelegate: SimulationPresenterDelegate?
     var map: [MapSector]?
+    var mapRect: CGRect?
+    var mapImage: UIImage?
     var rover: Rover?
     var roverPathSectors = [CGRect]()
     
@@ -50,16 +52,16 @@ class SimulationViewController: GLKViewController {
         simulationView = self.view as? GLKView
         
         configureNavigationBar()
-        
-        setupGL()
     
         self.rover = Rover(frame:.zero, imageName: "rover")
-        
-        self.simulationPresenterDelegate?.setMapToView()
     }
     
     
     override func viewDidAppear(_ animated: Bool) {
+        
+        setupGL()
+        
+        self.simulationPresenterDelegate?.setMapToView()
         
         self.rover?.render(coordinates: self.roverPathSectors, emergencySectorIndex: self.emergencySectorIndex)
 
@@ -76,15 +78,27 @@ class SimulationViewController: GLKViewController {
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT))
 
         if self.map != nil {
-            for mapSector in self.map! {
-                let image = CIImage(cgImage: UIImage(named: mapSector.surfaceImageName)!.cgImage!)
-
-                let scale = CGAffineTransform(scaleX: self.simulationView.contentScaleFactor, y: self.simulationView.contentScaleFactor)
-
-                let drawingRect = mapSector.coordinates.applying(scale)
-
-                self.ciContext?.draw(image, in: drawingRect, from: image.extent)
+            if self.mapRect == nil {
+                let screenHeight = UIScreen.main.bounds.height
+                let screenWidth = UIScreen.main.bounds.width
+                
+                let mapWidth = screenWidth * 0.9
+                let mapHeight = screenHeight * 0.8
+                
+                self.mapRect = CGRect(x: screenWidth * 0.05, y: screenHeight * 0.05, width: mapWidth, height: mapHeight)
             }
+            
+            if self.mapImage == nil {
+                self.mapImage = collageMapSectors()
+            }
+            
+            let image = CIImage(cgImage: self.mapImage!.cgImage!)
+
+            let scale = CGAffineTransform(scaleX: self.simulationView.contentScaleFactor, y: self.simulationView.contentScaleFactor)
+            
+            let drawingRect = self.mapRect!.applying(scale) //image.extent.applying(scale)
+            
+            self.ciContext?.draw(image, in: drawingRect, from: image.extent)
         }
 
         effect.prepareToDraw()
@@ -97,6 +111,35 @@ class SimulationViewController: GLKViewController {
                        nil)                         // Specifies an offset within a buffer
 
         glBindVertexArrayOES(0)
+    }
+    
+    
+    func collageMapSectors() -> UIImage {
+
+        let mapSectorSideWidth = self.map?.first?.coordinates.width
+        let mapSectorSideHeight = self.map?.first?.coordinates.height
+        
+        var mapImage: CIImage?
+        
+        for mapSector in self.map!{
+            let mapSectorImage =  UIImage(named: mapSector.surfaceImageName)!
+            
+            var ci = CIImage(image: mapSectorImage)!
+            
+            ci = ci.transformed(by: CGAffineTransform(scaleX: (mapSectorSideWidth! / mapSectorImage.size.width) / CGFloat(2.0), y: (mapSectorSideHeight! / mapSectorImage.size.height) / CGFloat(2.0)))
+            ci = ci.transformed(by: CGAffineTransform(translationX: mapSector.coordinates.origin.x, y: mapSector.coordinates.origin.y))
+            
+            if mapImage == nil {
+                mapImage = ci
+            } else {
+                mapImage = ci.composited(over: mapImage!)
+            }
+        }
+        
+        let cgIntermediate = CIContext(options: nil).createCGImage(mapImage!, from: mapImage!.extent)!
+        let finalRenderedMapImage = UIImage(cgImage: cgIntermediate)
+     
+        return finalRenderedMapImage
     }
     
     
