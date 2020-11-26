@@ -63,8 +63,6 @@ extension SimulationViewController: SimulationViewControllerDelegate {
         self.vertices = translatedVertices
         
         self.setupVertexBuffer()
-        
-        self.view.setNeedsDisplay()
     }
     
     

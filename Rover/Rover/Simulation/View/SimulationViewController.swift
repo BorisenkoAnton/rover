@@ -62,10 +62,6 @@ class SimulationViewController: GLKViewController {
         setupGL()
         
         self.simulationPresenterDelegate?.setMapToView()
-        
-        self.rover?.render(coordinates: self.roverPathSectors, emergencySectorIndex: self.emergencySectorIndex)
-
-        self.view.addSubview(rover!)
     }
     
     
@@ -111,6 +107,12 @@ class SimulationViewController: GLKViewController {
                        nil)                         // Specifies an offset within a buffer
 
         glBindVertexArrayOES(0)
+
+        self.isPaused = true
+        
+        self.rover?.render(coordinates: self.roverPathSectors, emergencySectorIndex: self.emergencySectorIndex)
+
+        self.view.addSubview(rover!)
     }
     
     

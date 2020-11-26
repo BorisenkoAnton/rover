@@ -31,7 +31,7 @@ class Rover: UIImageView {
     
     func render(coordinates: [CGRect], emergencySectorIndex: Int?) {
         
-        UIView.animateKeyframes(withDuration: 20.0, delay: 2, options: [.calculationModeLinear], animations: {
+        UIView.animateKeyframes(withDuration: 20.0, delay: 0, options: [.calculationModeLinear], animations: {
             
             var relativeStartTime = 0.0
             let duration = Double(coordinates.count)
