@@ -17,12 +17,11 @@ class SimulationViewController: GLKViewController {
     var map: [MapSector]?
     var mapRect: CGRect?
     var mapImage: UIImage?
-    var rover: Rover?
     var roverPathSectors = [CGRect]()
     
-    private var simulationView: GLKView!
+    var simulationView: GLKView!
     private var context: EAGLContext?
-    private var ciContext: CIContext?
+    var ciContext: CIContext?
     
     // Array of vertices for drawing
     var vertices = [Vertex]()
@@ -44,6 +43,10 @@ class SimulationViewController: GLKViewController {
     
     var effect = GLKBaseEffect()
     
+    var roverCoordinates = [CGRect]()
+    var currentRoverCoordinateIndex = 0
+    var mapWasDraw = false
+    let roverImg = CIImage(cgImage: (UIImage(named: "rover")?.cgImage)!)
     
     override func loadView() {
 
@@ -52,8 +55,6 @@ class SimulationViewController: GLKViewController {
         simulationView = self.view as? GLKView
         
         configureNavigationBar()
-    
-        self.rover = Rover(frame:.zero, imageName: "rover")
     }
     
     
@@ -62,6 +63,8 @@ class SimulationViewController: GLKViewController {
         setupGL()
         
         self.simulationPresenterDelegate?.setMapToView()
+        
+        self.roverCoordinates = self.simulationPresenterDelegate?.generateRoverPathCoordinates(roverPathSectors: self.roverPathSectors, emergencySectorIndex: self.emergencySectorIndex) as! [CGRect]
     }
     
     
@@ -72,7 +75,7 @@ class SimulationViewController: GLKViewController {
 
         // Performing clearing
         glClear(GLbitfield(GL_COLOR_BUFFER_BIT))
-
+        
         if self.map != nil {
             if self.mapRect == nil {
                 let screenHeight = UIScreen.main.bounds.height
@@ -87,32 +90,36 @@ class SimulationViewController: GLKViewController {
             if self.mapImage == nil {
                 self.mapImage = collageMapSectors()
             }
-            
+
             let image = CIImage(cgImage: self.mapImage!.cgImage!)
 
             let scale = CGAffineTransform(scaleX: self.simulationView.contentScaleFactor, y: self.simulationView.contentScaleFactor)
             
-            let drawingRect = self.mapRect!.applying(scale) //image.extent.applying(scale)
+            let mapDrawingRect = self.mapRect!.applying(scale)
             
-            self.ciContext?.draw(image, in: drawingRect, from: image.extent)
+            self.ciContext?.draw(image, in: mapDrawingRect, from: image.extent)
+            
+            effect.prepareToDraw()
+
+            glBindVertexArrayOES(vertexArrayObject);
+
+            glDrawElements(GLenum(GL_LINES),            // This tells OpenGL what we want to draw
+                           GLsizei(indices.count),      // Tells OpenGL how many vertices we want to draw
+                           GLenum(GL_UNSIGNED_BYTE),    // Specifying the type of values contained in each index
+                           nil)                         // Specifies an offset within a buffer
+
+            glBindVertexArrayOES(0)
+    
+            let roverDrawingRect = self.roverCoordinates[currentRoverCoordinateIndex].applying(scale)
+            
+            self.ciContext?.draw(roverImg, in: roverDrawingRect, from: roverImg.extent)
+            
+            self.currentRoverCoordinateIndex += 1
         }
 
-        effect.prepareToDraw()
-
-        glBindVertexArrayOES(vertexArrayObject);
-
-        glDrawElements(GLenum(GL_LINES),            // This tells OpenGL what we want to draw
-                       GLsizei(indices.count),      // Tells OpenGL how many vertices we want to draw
-                       GLenum(GL_UNSIGNED_BYTE),    // Specifying the type of values contained in each index
-                       nil)                         // Specifies an offset within a buffer
-
-        glBindVertexArrayOES(0)
-
-        self.isPaused = true
-        
-        self.rover?.render(coordinates: self.roverPathSectors, emergencySectorIndex: self.emergencySectorIndex)
-
-        self.view.addSubview(rover!)
+        if self.currentRoverCoordinateIndex == self.roverCoordinates.count - 1 {
+            self.isPaused = true
+        }
     }
     
     
@@ -151,9 +158,8 @@ class SimulationViewController: GLKViewController {
         
         let returnButton = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(returnButtonPressed))
         
-        self.navigationItem.leftBarButtonItem  = returnButton
+        self.navigationItem.leftBarButtonItem = returnButton
     }
-    
     
     // MARK: actions
     

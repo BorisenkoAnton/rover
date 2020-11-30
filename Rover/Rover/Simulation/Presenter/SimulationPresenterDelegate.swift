@@ -6,11 +6,12 @@
 //  Copyright © 2020 Anton Borisenko. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol SimulationPresenterDelegate {
     
     func setViewDelegate(simulationViewControllerDelegate: SimulationViewControllerDelegate)
     func setMapToView()
     func mapWasSet(map: [MapSector])
+    func generateRoverPathCoordinates(roverPathSectors: [CGRect], emergencySectorIndex: Int?) -> [CGRect]
 }

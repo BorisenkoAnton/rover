@@ -93,4 +93,64 @@ class SimulationPresenter: SimulationPresenterDelegate {
         
         self.simulationViewControllerDelegate?.setVertices(vertices: verticies, sectorSideSize: self.sectorSideSize)
     }
+    
+    
+    func generateRoverPathCoordinates(roverPathSectors: [CGRect], emergencySectorIndex: Int?) -> [CGRect] {
+        
+        var coordinates = [CGRect]()
+        
+        let shiftPerTick = roverPathSectors.first!.size.height / 40
+
+        for (index, rect) in roverPathSectors.enumerated() {
+
+            if (index == roverPathSectors.count - 1) || (index == emergencySectorIndex) {
+                break
+            }
+            
+            let width = rect.size.width
+            let height = rect.size.height
+            
+            let x = rect.minX
+            let y = roverPathSectors.last!.minY -  rect.minY + UIScreen.main.bounds.height * 0.05
+                
+            coordinates.append(CGRect(x: x, y: y, width: width, height: height))
+            
+            let direction: Direction
+            
+            if rect.origin.y > roverPathSectors[index + 1].origin.y {
+                direction = .down
+            } else if rect.origin.y < roverPathSectors[index + 1].origin.y {
+                direction = .up
+            } else if rect.origin.x > roverPathSectors[index + 1].origin.x {
+                direction = .left
+            } else {
+                direction = .right
+            }
+            
+            for _ in 0...39 {
+                var x = coordinates.last!.minX
+                var y = coordinates.last!.minY
+                
+                switch direction {
+                case .up:
+                    y -= shiftPerTick
+                    
+                case .down:
+                    y += shiftPerTick
+                    
+                case .left:
+                    x -= shiftPerTick
+                    
+                case .right:
+                    x += shiftPerTick
+                }
+                
+                let newCoordinate = CGRect(x: x, y: y, width: width, height: height)
+                
+                coordinates.append(newCoordinate)
+            }
+        }
+        
+        return coordinates
+    }
 }
